@@ -7,3 +7,4 @@ import './blocks/case-study';
 import './blocks/case-studies-carousel';
 import './blocks/content-section';
 import './blocks/content-columns';
+import './blocks/team-grid'

@@ -140,14 +140,7 @@ function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
         'core/embed',
         'core/spacer',
         'ceiba/map-embed',
-        'ceiba/testimonials',
+        'ceiba/testimonial',
     );
 }
-// Temporarily allow all blocks for case_study to isolate the issue
-function ceiba_tmp_allow_all( $allowed, $context = null ) {
-    $pt = is_object($context) && isset($context->post) ? $context->post->post_type : ( is_array($context) && isset($context['post_type']) ? $context['post_type'] : null );
-    if ( $pt === 'case_study' ) return true;
-    return $allowed;
-}
-// add_filter('allowed_block_types_all','ceiba_tmp_allow_all',10,2);
 

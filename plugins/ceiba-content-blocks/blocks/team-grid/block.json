@@ -1,0 +1,26 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/team-grid",
+  "title": "Team Grid",
+  "category": "widgets",
+  "icon": "groups",
+  "description": "Grid of team members with headshot, name, title, and expandable bio.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "margin": true, "padding": true },
+    "color": { "background": true, "text": false, "gradients": false, "link": false }
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "intro": { "type": "string", "default": "" },
+    "members": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+  "editorStyle": "ceiba-blocks-style",
+  "render": "file:./render.php"
+}

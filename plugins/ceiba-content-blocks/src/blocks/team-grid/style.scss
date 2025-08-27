@@ -1,0 +1,95 @@
+.wp-block-ceiba-team-grid {
+  --gap: clamp(16px, 3vw, 32px);
+
+  .ceiba-team-grid__head {
+    margin-bottom: 1rem;
+  }
+
+  .ceiba-team-grid__controls {
+    margin: 0 0 1rem;
+  }
+
+  .ceiba-team-grid__list {
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .ceiba-team-grid__row {
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+  }
+
+  .ceiba-team-grid__row-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    .row-actions > * + * { margin-left: 6px; }
+  }
+
+  .ceiba-team-grid__row-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--gap);
+  }
+
+  .headshot-placeholder {
+    width: 160px; height: 160px; border-radius: 12px;
+    border: 1px dashed rgba(0,0,0,.2);
+    background: rgba(0,0,0,.04);
+    margin-top: 8px;
+  }
+
+  .headshot-preview img {
+    width: 160px; height: 160px; object-fit: cover; border-radius: 12px; display: block; margin-top: 8px;
+  }
+}
+
+/* Front-end helpers */
+/* Front-end layout */
+.ceiba-team-grid {
+  --gap: clamp(16px, 3vw, 32px);
+
+  .ceiba-team-grid__title { margin: 0 0 .5rem; }
+  .ceiba-team-grid__intro { margin: 0 0 1rem; }
+
+  /* Max 4 columns, step down responsively */
+  .ceiba-team-grid__grid {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 600px) {
+    .ceiba-team-grid__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ceiba-team-grid__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1200px) {
+    .ceiba-team-grid__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } /* cap at 4 */
+  }
+
+  .ceiba-team-grid__item { text-align: left; }
+  .ceiba-team-grid__media { margin-bottom: .5rem; }
+  .ceiba-team-grid__img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    display: block;
+  }
+  .ceiba-team-grid__name { margin: 0 0 .125rem; font-size: 1.1rem; }
+  .ceiba-team-grid__role { margin: 0 0 .5rem; font-weight: 500; color: #555; }
+
+  .ceiba-team-grid__bio summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .ceiba-team-grid__bio summary::-webkit-details-marker { display: none; }
+  .ceiba-team-grid__bio-toggle { text-decoration: underline; }
+  .ceiba-team-grid__bio-content { margin-top: .5rem; }
+}
