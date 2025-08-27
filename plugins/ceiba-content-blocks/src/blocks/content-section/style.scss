@@ -1,0 +1,38 @@
+.wp-block-ceiba-content-section {
+  --gap: clamp(16px, 3vw, 32px);
+
+  .ceiba-csct__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    align-items: center;
+  }
+
+  .ceiba-csct__col--media {
+    /* maintains shape while editing; front-end can be auto-height if desired */
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  &.is-editor .ph-img {
+    background: rgba(0,0,0,.06);
+    border: 1px dashed rgba(0,0,0,.2);
+    border-radius: 8px;
+    aspect-ratio: inherit;
+  }
+}
+
+.ceiba-csct__col--media .ceiba-csct__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* runtime overridden inline per attribute */
+}
+
+.ceiba-csct__title { margin: 0 0 8px; line-height: 1.2; }
+.ceiba-csct__content { margin: 0 0 14px; }
+.ceiba-csct__cta { display: inline-flex; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 900px) {
+  .wp-block-ceiba-content-section .ceiba-csct__grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,39 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/content-columns",
+  "title": "Content Section (Multi-column)",
+  "category": "layout",
+  "icon": "columns",
+  "description": "Title, text, 1–4 columns (thumb + H3 + text), outro text, and optional primary CTA.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "margin": true, "padding": true },
+    "color": { "background": true, "text": false, "gradients": false, "link": false }
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "introContent": { "type": "string", "default": "" },
+    "outroContent": { "type": "string", "default": "" },
+    "columnsCount": { "type": "number", "default": 3 },
+    "columns": {
+      "type": "array",
+      "default": [
+        { "imageId": 0, "imageUrl": "", "imageAlt": "", "heading": "", "text": "" },
+        { "imageId": 0, "imageUrl": "", "imageAlt": "", "heading": "", "text": "" },
+        { "imageId": 0, "imageUrl": "", "imageAlt": "", "heading": "", "text": "" },
+        { "imageId": 0, "imageUrl": "", "imageAlt": "", "heading": "", "text": "" }
+      ]
+    },
+    "enablePrimary": { "type": "boolean", "default": false },
+    "primaryLabel": { "type": "string", "default": "" },
+    "primaryLink": {
+      "type": "object",
+      "default": { "url": "", "id": 0, "kind": "", "type": "", "opensInNewTab": false }
+    }
+  },
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+  "editorStyle": "ceiba-blocks-style",
+  "render": "file:./render.php"
+}

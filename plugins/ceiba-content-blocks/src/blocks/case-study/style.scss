@@ -1,0 +1,45 @@
+/* Editor + front shared skin for single card */
+.wp-block-ceiba-case-study {
+  .ceiba-case-study__placeholder {
+    padding: 16px;
+    border: 1px dashed rgba(0,0,0,.15);
+    border-radius: 8px;
+    .hint { color: #666; font-size: 12px; margin-top: 6px; }
+  }
+}
+
+/* Card skin (used by render.php output) */
+.ceiba-cs-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--wp--preset--color--base-2, #fff);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--wp--custom--radius-md, 12px);
+  overflow: hidden;
+}
+
+.ceiba-cs-card__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.ceiba-cs-card__body {
+  padding: clamp(12px, 1.8vw, 18px);
+}
+
+.ceiba-cs-card__title {
+  margin: 0 0 6px 0;
+  font-size: clamp(18px, 1.8vw, 20px);
+  line-height: 1.2;
+}
+
+.ceiba-cs-card__excerpt {
+  margin: 0 0 10px 0;
+  color: var(--wp--preset--color--contrast-2, #444);
+}
+
+.ceiba-cs-card__link {
+  text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+.wp-block-ceiba-image-frame {
+  .ceiba-image-frame__placeholder {
+    padding: 16px;
+    border: 1px dashed rgba(0,0,0,.15);
+    border-radius: 8px;
+    background: rgba(0,0,0,.03);
+    text-align: center;
+  }
+
+  &.is-square img { aspect-ratio: 1/1; }
+  &.is-slim img   { aspect-ratio: 4/5; }
+  &.is-wide img   { aspect-ratio: 16/9; }
+
+  .ceiba-image-frame__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}

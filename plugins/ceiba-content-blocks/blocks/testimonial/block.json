@@ -1,0 +1,13 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/testimonial",
+  "title": "Testimonial (Single)",
+  "category": "widgets",
+  "icon": "format-quote",
+  "supports": { "anchor": true, "align": ["wide", "full"] },
+  "attributes": { "postId": { "type": "number", "default": 0 } },
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+  "editorStyle": "ceiba-blocks-style",
+  "render": "file:./render.php"
+}

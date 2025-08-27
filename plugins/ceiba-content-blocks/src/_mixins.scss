@@ -1,0 +1,42 @@
+/* Grid */
+@mixin two-col($left: 1fr, $right: 2fr) { grid-template-columns: $left $right; }
+@mixin one-col() { grid-template-columns: 1fr; }
+
+/* Card */
+@mixin card {
+  display: grid;
+  gap: var(--ceiba-space-m);
+  align-items: start;
+  border: 1px solid color-mix(in oklab, var(--ceiba-color-ink) 12%, transparent);
+  border-radius: var(--ceiba-radius-md);
+  padding: calc(var(--ceiba-space-m) + .25rem);
+  background: var(--ceiba-color-bg);
+  box-shadow: var(--ceiba-shadow-1);
+  color: var(--ceiba-color-ink);
+  font-family: var(--ceiba-font-ui);
+}
+
+/* Media */
+@mixin media-img {
+  img { display:block; max-width:100%; height:auto; border-radius: var(--ceiba-radius-sm); }
+}
+
+/* CTA */
+@mixin cta {
+  .cb-cta a {
+    display:inline-block; text-decoration:none;
+    padding:.55rem .9rem; border-radius:999px;
+    transition: transform .05s ease-in-out, background .2s ease;
+  }
+  .cb-cta a.is-primary { background: var(--ceiba-cta-bg);     color: var(--ceiba-cta-text); }
+  .cb-cta a.is-alt     { background: var(--ceiba-cta-bg--alt); color: var(--ceiba-cta-text--alt); }
+  .cb-cta a:hover { transform: translateY(-1px); }
+}
+
+/* Responsive collapse */
+@mixin collapse-to-single($bp: 800px) {
+  @media (max-width: $bp) {
+    grid-template-columns: 1fr !important;
+    .cb-media, .cb-content { order:0; }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/content-card",
+  "version": "1.0.0",
+  "title": "Content Card (Ceiba)",
+  "category": "design",
+  "icon": "feedback",
+  "description": "Title, body (WYSIWYG), link, image, and layout options.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "padding": true, "margin": true },
+    "color": { "background": true, "text": true }
+  },
+  "attributes": {
+    "heading":    { "type": "string", "source": "html", "selector": "h3" },
+    "body":       { "type": "string", "source": "html", "selector": ".cb-body" },
+    "linkText":   { "type": "string", "default": "" },
+    "linkUrl":    { "type": "string", "default": "" },
+    "imgId":      { "type": "number", "default": 0 },
+    "imgUrl":     { "type": "string", "default": "" },
+    "imgAlt":     { "type": "string", "default": "" },
+    "layout":     { "type": "string", "default": "image-left" },
+    "ctaVariant": { "type": "string", "default": "primary" }
+  },
+
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+
+  "keywords": ["card","content","image","cta"]
+}

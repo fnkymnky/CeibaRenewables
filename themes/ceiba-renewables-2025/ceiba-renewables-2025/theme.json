@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "ceiba-navy",  "name": "Ceiba Navy",  "color": "#23345d" },
+        { "slug": "ceiba-green", "name": "Ceiba Green", "color": "#45ad58" },
+        { "slug": "bg",          "name": "Background",  "color": "#ffffff" },
+        { "slug": "ink",         "name": "Ink",         "color": "#333333" },
+        { "slug": "black",       "name": "Black",       "color": "#000000" }
+      ],
+      "background": true,
+      "text": true
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        { "slug": "ui", "name": "System UI", "fontFamily": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif" }
+      ]
+    },
+    "spacing": {
+      "scale": "fluid",
+      "spacingSizes": [
+        { "slug": "xs", "size": "0.5rem" },
+        { "slug": "s",  "size": "0.75rem" },
+        { "slug": "m",  "size": "1rem" },
+        { "slug": "l",  "size": "1.5rem" },
+        { "slug": "xl", "size": "2rem" },
+        { "slug": "xxl","size": "3rem" }
+      ]
+    },
+    "blocks": {
+      "core/button": { "border": { "radius": "999px" } },
+      "core/image":  { "border": { "radius": "8px" } }
+    },
+    "layout": { "contentSize": "720px", "wideSize": "1100px" },
+    "appearanceTools": false
+  },
+  "styles": {
+    "color": {
+      "text": "var(--wp--preset--color--ink)",
+      "background": "var(--wp--preset--color--bg)"
+    },
+    "elements": {
+      "heading": {
+        "typography": { "fontFamily": "var(--wp--preset--font-family--ui)", "fontWeight": "700", "lineHeight": "1.15" },
+        "color": { "text": "var(--wp--preset--color--ceiba-navy)" }
+      },
+      "link": { "color": { "text": "var(--wp--preset--color--ceiba-navy)" } }
+    },
+    "blocks": {
+      "core/button": {
+        "typography": { "fontWeight": "600" },
+        "spacing": { "padding": { "top": "0.6rem", "right": "1rem", "bottom": "0.6rem", "left": "1rem" } }
+      }
+    }
+  }
+}
