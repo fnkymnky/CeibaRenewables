@@ -7,19 +7,50 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 add_action('init', function () {
     $build_dir = __DIR__ . '/build';
-    $asset = [ 'dependencies' => [ 'wp-blocks','wp-element','wp-i18n','wp-editor','wp-components','wp-block-editor' ], 'version' => file_exists("$build_dir/index.js") ? filemtime("$build_dir/index.js") : '1.0.0' ];
+    
+    $asset = [
+        'dependencies' => [
+            'wp-blocks',
+            'wp-element',
+            'wp-i18n',
+            'wp-editor',
+            'wp-components',
+            'wp-block-editor',
+            'wp-data',
+        ],
+        'version' => file_exists("$build_dir/index.js") ? filemtime("$build_dir/index.js") : '1.0.0'
+    ];
+
     $asset_file = "$build_dir/index.asset.php";
     if ( file_exists( $asset_file ) ) {
         $asset_tmp = include $asset_file;
-        if ( is_array($asset_tmp) ) { $asset = array_merge($asset, $asset_tmp); }
+        if ( is_array( $asset_tmp ) ) {
+            $asset['version'] = $asset_tmp['version'] ?? $asset['version'];
+            $asset['dependencies'] = array_values( array_unique( array_merge(
+                $asset['dependencies'],
+                $asset_tmp['dependencies'] ?? []
+            ) ) );
+        }
     }
+
+
+    foreach ( [ 'wp-data', 'wp-core-data', 'wp-api-fetch' ] as $dep ) {
+        if ( ! in_array( $dep, $asset['dependencies'], true ) ) {
+            $asset['dependencies'][] = $dep;
+        }
+    }
+    register_block_type_from_metadata( __DIR__ . '/blocks/content-grid' );
+    register_block_type_from_metadata( __DIR__ . '/blocks/content-grid-item' );
 
     wp_register_script('ceiba-blocks-editor', plugins_url('build/index.js', __FILE__), $asset['dependencies'], $asset['version'], true);
     wp_register_style('ceiba-blocks-style', plugins_url('build/style-index.css', __FILE__), [], file_exists("$build_dir/style-index.css") ? filemtime("$build_dir/style-index.css") : $asset['version']);
     wp_register_script('ceiba-blocks-view', plugins_url('build/view.js', __FILE__), [], file_exists("$build_dir/view.js") ? filemtime("$build_dir/view.js") : $asset['version'], true);
     wp_register_style('ceiba-blocks-swiper', plugins_url('build/view.css', __FILE__), [], file_exists("$build_dir/view.css") ? filemtime("$build_dir/view.css") : $asset['version']);
+
+
 
     register_post_type('testimonial', [
         'labels' => [

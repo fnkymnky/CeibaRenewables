@@ -1,0 +1,26 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/content-grid-item",
+  "title": "Content Grid Item",
+  "parent": ["ceiba/content-grid"],
+  "category": "widgets",
+  "icon": "text-page",
+  "description": "An item in the Content Grid.",
+  "supports": { "reusable": false, "html": false },
+  "attributes": {
+    "mediaID":  { "type": "number" },
+    "mediaURL": { "type": "string", "default": "" },
+    "thumbURL": { "type": "string", "default": "" },
+    "alt":      { "type": "string", "default": "" },
+    "heading":  { "type": "string", "default": "" },
+    "text":     { "type": "string", "default": "" },
+
+    "tag":      { "type": "string", "default": "h3" }
+  },
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+  "editorStyle": "ceiba-blocks-style",
+  "viewScript": "ceiba-blocks-view",
+  "viewStyle": "ceiba-blocks-swiper",
+  "render": "file:./render.php"
+}

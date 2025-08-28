@@ -1,0 +1,25 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/content-grid",
+  "title": "Content Grid",
+  "category": "widgets",
+  "icon": "screenoptions",
+  "description": "Grid of items with image + heading and short paragraph.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "margin": true, "padding": true },
+    "html": false
+  },
+  "attributes": {
+    "columns": { "type": "number", "default": 3 },
+    "itemCount": { "type": "number", "default": 4 },
+    "gap": { "type": "string", "default": "1.25rem" }
+  },
+  "editorScript": "ceiba-blocks-editor",
+  "style": "ceiba-blocks-style",
+  "editorStyle": "ceiba-blocks-style",
+  "viewScript": "ceiba-blocks-view",
+  "viewStyle": "ceiba-blocks-swiper",
+  "render": "file:./render.php"
+}
