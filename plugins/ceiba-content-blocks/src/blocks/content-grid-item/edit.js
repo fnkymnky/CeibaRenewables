@@ -33,28 +33,28 @@ export default function Edit({ attributes, setAttributes }) {
 		const sizes = media?.sizes || {};
 		setAttributes({
 			mediaID: media.id,
-			mediaURL: media.url, // full
+			mediaURL: media.url,
 			mediaThumbURL: sizes?.thumbnail?.url || sizes?.medium?.url || media.url,
 			mediaMediumURL: sizes?.medium?.url || sizes?.large?.url || media.url,
 			alt: media.alt || media.alt_text || ''
 		});
 	};
 
-	const blockProps = useBlockProps({ className: 'ceiba-content-grid__item' });
+	const blockProps = useBlockProps({ className: 'content-grid__item' });
 
 	return (
-		<div {...blockProps}>
+		<div { ...blockProps }>
 			<BlockControls>
 				<ToolbarGroup>
 					<MediaReplaceFlow
-						mediaId={mediaID}
-						mediaURL={mediaURL || mediaMediumURL || mediaThumbURL}
+						mediaId={ mediaID }
+						mediaURL={ mediaURL || mediaMediumURL || mediaThumbURL }
 						accept="image/*"
-						allowedTypes={['image']}
-						onSelect={onSelectImage}
-						name={__('Replace image', 'ceiba')}
+						allowedTypes={ ['image'] }
+						onSelect={ onSelectImage }
+						name={ __('Replace image', 'ceiba') }
 					/>
-					{(mediaURL || mediaMediumURL || mediaThumbURL) && (
+					{ (mediaURL || mediaMediumURL || mediaThumbURL) && (
 						<Button
 							variant="tertiary"
 							onClick={() => setAttributes({
@@ -65,51 +65,51 @@ export default function Edit({ attributes, setAttributes }) {
 								alt: ''
 							})}
 						>
-							{__('Remove image', 'ceiba')}
+							{ __('Remove image', 'ceiba') }
 						</Button>
-					)}
+					) }
 				</ToolbarGroup>
 			</BlockControls>
 
-			<div className="ceiba-content-grid__media">
-				{mediaThumbURL ? (
+			<div className="content-grid__media">
+				{ mediaThumbURL ? (
 					<img
-						className="ceiba-content-grid__image is-editor"
-						src={mediaThumbURL}
-						alt={alt || ''}
+						className="content-grid__image is-editor"
+						src={ mediaThumbURL }
+						alt={ alt || '' }
 						decoding="async"
 						loading="lazy"
 					/>
 				) : (
 					<MediaUpload
-						onSelect={onSelectImage}
-						allowedTypes={['image']}
-						render={({ open }) => (
-							<Button variant="secondary" onClick={open}>
-								{__('Select image', 'ceiba')}
+						onSelect={ onSelectImage }
+						allowedTypes={ ['image'] }
+						render={ ({ open }) => (
+							<Button variant="secondary" onClick={ open }>
+								{ __('Select image', 'ceiba') }
 							</Button>
-						)}
+						) }
 					/>
-				)}
+				) }
 			</div>
 
 			<RichText
 				tagName="h3"
-				className="ceiba-content-grid__title"
-				placeholder={__('Add heading…', 'ceiba')}
-				value={title}
-				onChange={(v) => setAttributes({ title: v })}
-				allowedFormats={['core/bold', 'core/italic', 'core/link']}
+				className="content-grid__title"
+				placeholder={ __('Add heading…', 'ceiba') }
+				value={ title }
+				onChange={ (v) => setAttributes({ title: v }) }
+				allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
 			/>
 
 			<RichText
 				tagName="div"
-				className="ceiba-content-grid__text"
+				className="content-grid__text"
 				multiline="p"
-				placeholder={__('Add content…', 'ceiba')}
-				value={text}
-				onChange={(v) => setAttributes({ text: v })}
-				allowedFormats={['core/bold', 'core/italic', 'core/link']}
+				placeholder={ __('Add content…', 'ceiba') }
+				value={ text }
+				onChange={ (v) => setAttributes({ text: v }) }
+				allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
 			/>
 		</div>
 	);

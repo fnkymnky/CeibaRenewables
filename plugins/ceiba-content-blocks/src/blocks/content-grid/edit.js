@@ -8,20 +8,24 @@ export default function Edit({ attributes, setAttributes }) {
 	const { columns, gap } = attributes;
 
 	const blockProps = useBlockProps({
-		className: `ceiba-content-grid columns-${columns}`,
-		style: { '--content-grid-gap': gap, '--content-grid-columns': columns }
+		className: `content-grid columns-${ columns }`,
+		style: {
+			'--content-grid-gap': gap,
+			'--content-grid-columns': String(columns) // unitless for repeat()
+		}
 	});
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __('Grid', 'ceiba') } initialOpen>
+				<PanelBody title={ __('Grid settings', 'ceiba') } initialOpen>
 					<RangeControl
 						label={ __('Columns', 'ceiba') }
 						value={ columns }
 						onChange={ (v) => setAttributes({ columns: v }) }
-						min={1}
-						max={6}
+						min={ 1 }
+						max={ 6 }
+						allowReset={ false }
 					/>
 					<UnitControl
 						label={ __('Gap', 'ceiba') }
@@ -30,16 +34,16 @@ export default function Edit({ attributes, setAttributes }) {
 						units={[
 							{ value: 'px', label: 'px' },
 							{ value: 'rem', label: 'rem' },
-							{ value: 'em', label: 'em' }
+							{ value: 'em',  label: 'em' }
 						]}
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div {...blockProps}>
+			<div { ...blockProps }>
 				<InnerBlocks
 					allowedBlocks={[ 'ceiba/content-grid-item' ]}
-					template={TEMPLATE}
+					template={ TEMPLATE }
 					renderAppender={ InnerBlocks.ButtonBlockAppender }
 				/>
 			</div>

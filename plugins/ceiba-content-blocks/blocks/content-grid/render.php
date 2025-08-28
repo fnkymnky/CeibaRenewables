@@ -11,8 +11,8 @@ $columns = max(1, min(6, (int) $attr['columns']));
 $gap     = $attr['gap'];
 
 $wrapper = get_block_wrapper_attributes( [
-  'class' => 'ceiba-content-grid columns-' . $columns,
-  'style' => sprintf('--ceiba-grid-gap:%s;--ceiba-grid-columns:%d;', esc_attr($gap), $columns),
+  'class' => 'content-grid columns-' . $columns,
+  'style' => sprintf('--content-grid-gap:%s;--content-grid-columns:%d;', esc_attr($gap), $columns),
 ] );
 
 $inner_html = $content ? do_blocks( $content ) : '';

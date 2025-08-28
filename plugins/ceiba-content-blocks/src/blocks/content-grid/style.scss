@@ -1,4 +1,4 @@
-.ceiba-content-grid {
+.content-grid {
   --content-grid-gap: var(--content-grid-gap, 1.25rem);
   --content-grid-columns: var(--content-grid-columns, 3);
   display: grid;
@@ -6,7 +6,7 @@
   grid-template-columns: repeat(var(--content-grid-columns), minmax(0, 1fr));
 }
 
-.ceiba-content-grid .ceiba-content-grid__item {
+.content-grid .content-grid__item {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
