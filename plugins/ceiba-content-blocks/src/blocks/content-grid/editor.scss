@@ -1,0 +1,5 @@
+.ceiba-content-grid {
+  display: grid;
+  gap: var(--content-grid-gap, 1.25rem);
+  grid-template-columns: repeat(var(--content-grid-columns, 3), minmax(0, 1fr));
+}

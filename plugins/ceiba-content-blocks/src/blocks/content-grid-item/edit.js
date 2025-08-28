@@ -1,84 +1,116 @@
-import { useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, Button } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import {
+	useBlockProps,
+	RichText,
+	MediaUpload,
+	MediaReplaceFlow,
+	BlockControls,
+} from '@wordpress/block-editor';
+import { ToolbarGroup, Button } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
+import { store as coreStore } from '@wordpress/core-data';
 
-export default function Edit( { attributes, setAttributes } ) {
-  const { mediaID, mediaURL, thumbURL, alt, heading, text, tag = 'h3' } = attributes;
-  const blockProps = useBlockProps( { className: 'ceiba-content-grid-item' } );
+export default function Edit({ attributes, setAttributes }) {
+	const { mediaID, mediaURL, mediaThumbURL, mediaMediumURL, alt, title, text } = attributes;
 
-  return (
-    <>
-      <InspectorControls>
-        <PanelBody title="Heading & Image" initialOpen>
-          <SelectControl
-            label="Heading Level"
-            value={ tag }
-            options={[
-              { label: 'H2', value: 'h2' },
-              { label: 'H3', value: 'h3' },
-              { label: 'H4', value: 'h4' },
-            ]}
-            onChange={ (val) => setAttributes({ tag: val }) }
-          />
-          <TextControl
-            label="Image Alt Text"
-            value={ alt }
-            onChange={ (val) => setAttributes({ alt: val }) }
-          />
-        </PanelBody>
-      </InspectorControls>
+	useSelect(
+		(select) => (mediaID ? select(coreStore).getMedia(mediaID) : null),
+		[mediaID]
+	);
 
-      <div {...blockProps}>
-        <div className="ceiba-content-grid-item__image">
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={ ( media ) => {
-                setAttributes({
-                  mediaID:  media?.id,
-                  mediaURL: media?.sizes?.full?.url || media?.url || '',
-                  thumbURL: media?.sizes?.thumbnail?.url || media?.sizes?.medium?.url || media?.url || '',
-                  alt:      media?.alt || alt || ''
-                });
-              } }
-              allowedTypes={ [ 'image' ] }
-              value={ mediaID }
-              render={ ( { open } ) => (
-                <div className="ceiba-content-grid-item__image-wrap">
-                  { (thumbURL || mediaURL) ? (
-                    <>
-                      <img src={ thumbURL || mediaURL } alt={ alt || '' } loading="lazy" decoding="async" />
-                      <div className="ceiba-content-grid-item__image-actions">
-                        <Button variant="secondary" onClick={ open }>Replace</Button>
-                        <Button variant="link" onClick={ () =>
-                          setAttributes({ mediaID: undefined, mediaURL: '', thumbURL: '', alt: '' })
-                        }>Remove</Button>
-                      </div>
-                    </>
-                  ) : (
-                    <Button variant="primary" onClick={ open }>Select Image</Button>
-                  ) }
-                </div>
-              ) }
-            />
-          </MediaUploadCheck>
-        </div>
+	const onSelectImage = (media) => {
+		if (!media || !media.url) {
+			setAttributes({
+				mediaID: undefined,
+				mediaURL: '',
+				mediaThumbURL: '',
+				mediaMediumURL: '',
+				alt: ''
+			});
+			return;
+		}
 
-        <div className="ceiba-content-grid-item__content">
-          <RichText
-            tagName={ tag }
-            placeholder="Heading…"
-            value={ heading }
-            onChange={ ( val ) => setAttributes( { heading: val } ) }
-            allowedFormats={ [ 'core/bold', 'core/italic' ] }
-          />
-          <RichText
-            tagName="p"
-            placeholder="Short paragraph…"
-            value={ text }
-            onChange={ ( val ) => setAttributes( { text: val } ) }
-            allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
-          />
-        </div>
-      </div>
-    </>
-  );
+		const sizes = media?.sizes || {};
+		setAttributes({
+			mediaID: media.id,
+			mediaURL: media.url, // full
+			mediaThumbURL: sizes?.thumbnail?.url || sizes?.medium?.url || media.url,
+			mediaMediumURL: sizes?.medium?.url || sizes?.large?.url || media.url,
+			alt: media.alt || media.alt_text || ''
+		});
+	};
+
+	const blockProps = useBlockProps({ className: 'ceiba-content-grid__item' });
+
+	return (
+		<div {...blockProps}>
+			<BlockControls>
+				<ToolbarGroup>
+					<MediaReplaceFlow
+						mediaId={mediaID}
+						mediaURL={mediaURL || mediaMediumURL || mediaThumbURL}
+						accept="image/*"
+						allowedTypes={['image']}
+						onSelect={onSelectImage}
+						name={__('Replace image', 'ceiba')}
+					/>
+					{(mediaURL || mediaMediumURL || mediaThumbURL) && (
+						<Button
+							variant="tertiary"
+							onClick={() => setAttributes({
+								mediaID: undefined,
+								mediaURL: '',
+								mediaThumbURL: '',
+								mediaMediumURL: '',
+								alt: ''
+							})}
+						>
+							{__('Remove image', 'ceiba')}
+						</Button>
+					)}
+				</ToolbarGroup>
+			</BlockControls>
+
+			<div className="ceiba-content-grid__media">
+				{mediaThumbURL ? (
+					<img
+						className="ceiba-content-grid__image is-editor"
+						src={mediaThumbURL}
+						alt={alt || ''}
+						decoding="async"
+						loading="lazy"
+					/>
+				) : (
+					<MediaUpload
+						onSelect={onSelectImage}
+						allowedTypes={['image']}
+						render={({ open }) => (
+							<Button variant="secondary" onClick={open}>
+								{__('Select image', 'ceiba')}
+							</Button>
+						)}
+					/>
+				)}
+			</div>
+
+			<RichText
+				tagName="h3"
+				className="ceiba-content-grid__title"
+				placeholder={__('Add heading…', 'ceiba')}
+				value={title}
+				onChange={(v) => setAttributes({ title: v })}
+				allowedFormats={['core/bold', 'core/italic', 'core/link']}
+			/>
+
+			<RichText
+				tagName="div"
+				className="ceiba-content-grid__text"
+				multiline="p"
+				placeholder={__('Add content…', 'ceiba')}
+				value={text}
+				onChange={(v) => setAttributes({ text: v })}
+				allowedFormats={['core/bold', 'core/italic', 'core/link']}
+			/>
+		</div>
+	);
 }
