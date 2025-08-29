@@ -20,3 +20,8 @@
   gap: var(--content-grid-gap);
   grid-template-columns: repeat(var(--content-grid-columns), minmax(0, 1fr));
 }
+
+.block-editor-block-list__block .block-list-appender {
+  display:block;
+  position: relative;
+}

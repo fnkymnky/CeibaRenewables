@@ -16,10 +16,10 @@ add_filter( 'allowed_block_types_all', function( $allowed, $ctx ) {
     'core/paragraph','core/heading','core/list', 'core/list-item', 'core/quote',
     'core/separator','core/spacer','core/image','core/gallery',
     'core/cover','core/media-text','core/buttons','core/button',
-    'core/columns','core/column','core/group','core/row','core/stack',
+    'core/columns','core/column','core/group','core/row','core/stack', 'core/table',
     'ceiba/content-card', 'ceiba/image-frame', 'ceiba/map-embed', 'ceiba/testimonials-carousel',
     'ceiba/testimonial', 'ceiba/case-study', 'ceiba/case-studies-carousel', 'ceiba/content-section', 'ceiba/content-columns', 'ceiba/team-grid', 'ceiba/content-grid',
-    'ceiba/content-grid-item',
+    'ceiba/content-grid-item', 'ceiba/accordion'
 
   ];
 }, 10, 2 );
