@@ -1,0 +1,29 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/testimonials-carousel",
+  "title": "Testimonials (Carousel)",
+  "category": "widgets",
+  "icon": "format-quote",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "includeIds": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "script": "file:./view.js",
+  "style": "file:./style.css",
+  "viewStyle": "file:./view.css",
+  "render": "file:./render.php"
+}

@@ -59,7 +59,7 @@ add_action('init', function () {
         'auth_callback' => function(){ return current_user_can('edit_posts'); }
     ]);
 
-    $base = __DIR__ . '/blocks';
+    $base = __DIR__ . '/build';
     foreach ( glob( $base . '/*/block.json' ) as $json ) {
         register_block_type_from_metadata( dirname( $json ) );
     }
