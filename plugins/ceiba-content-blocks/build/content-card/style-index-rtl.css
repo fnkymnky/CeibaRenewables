@@ -1,1 +1,82 @@
-.cb-card{align-items:start;background:var(--ceiba-color-bg);border:1px solid color-mix(in oklab,var(--ceiba-color-ink) 12%,transparent);border-radius:var(--ceiba-radius-md);box-shadow:var(--ceiba-shadow-1);color:var(--ceiba-color-ink);display:grid;font-family:var(--ceiba-font-ui);gap:var(--ceiba-space-m);padding:calc(var(--ceiba-space-m) + .25rem)}.cb-card .cb-media img{border-radius:var(--ceiba-radius-sm);display:block;height:auto;max-width:100%}.cb-card .cb-media-actions{display:flex;gap:.5rem;margin-top:.5rem}.cb-card h3{color:var(--ceiba-color-primary,var(--wp--preset--color--ceiba-navy));font-size:clamp(1.125rem,2vw,1.5rem);line-height:1.25;margin:0 0 .5rem}.cb-card .cb-body{line-height:1.6;margin-bottom:.75rem}.cb-card .cb-cta a{border-radius:999px;display:inline-block;padding:.55rem .9rem;text-decoration:none;transition:transform .05s ease-in-out,background .2s ease}.cb-card .cb-cta a.is-primary{background:var(--ceiba-cta-bg);color:var(--ceiba-cta-text)}.cb-card .cb-cta a.is-alt{background:var(--ceiba-cta-bg--alt);color:var(--ceiba-cta-text--alt)}.cb-card .cb-cta a:hover{transform:translateY(-1px)}.cb-card.layout-image-left{grid-template-columns:1fr 2fr}.cb-card.layout-image-right{grid-template-columns:2fr 1fr}.cb-card.layout-image-right .cb-media{order:2}.cb-card.layout-image-right .cb-content{order:1}.cb-card.layout-image-top{grid-template-columns:1fr}@media(max-width:800px){.cb-card{grid-template-columns:1fr!important}.cb-card .cb-content,.cb-card .cb-media{order:0}}
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/content-card/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/* Grid */
+/* Card */
+/* Media */
+/* CTA */
+/* Responsive collapse */
+.cb-card {
+  display: grid;
+  gap: var(--ceiba-space-m);
+  align-items: start;
+  border: 1px solid color-mix(in oklab, var(--ceiba-color-ink) 12%, transparent);
+  border-radius: var(--ceiba-radius-md);
+  padding: calc(var(--ceiba-space-m) + 0.25rem);
+  background: var(--ceiba-color-bg);
+  box-shadow: var(--ceiba-shadow-1);
+  color: var(--ceiba-color-ink);
+  font-family: var(--ceiba-font-ui);
+}
+.cb-card .cb-media img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ceiba-radius-sm);
+}
+.cb-card .cb-media-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.cb-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.25;
+  color: var(--ceiba-color-primary, var(--wp--preset--color--ceiba-navy));
+}
+.cb-card .cb-body {
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.cb-card .cb-cta a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  transition: transform 0.05s ease-in-out, background 0.2s ease;
+}
+.cb-card .cb-cta a.is-primary {
+  background: var(--ceiba-cta-bg);
+  color: var(--ceiba-cta-text);
+}
+.cb-card .cb-cta a.is-alt {
+  background: var(--ceiba-cta-bg--alt);
+  color: var(--ceiba-cta-text--alt);
+}
+.cb-card .cb-cta a:hover {
+  transform: translateY(-1px);
+}
+.cb-card.layout-image-left {
+  grid-template-columns: 1fr 2fr;
+}
+.cb-card.layout-image-right {
+  grid-template-columns: 2fr 1fr;
+}
+.cb-card.layout-image-right .cb-media {
+  order: 2;
+}
+.cb-card.layout-image-right .cb-content {
+  order: 1;
+}
+.cb-card.layout-image-top {
+  grid-template-columns: 1fr;
+}
+@media (max-width: 800px) {
+  .cb-card {
+    grid-template-columns: 1fr !important;
+  }
+  .cb-card .cb-media, .cb-card .cb-content {
+    order: 0;
+  }
+}

@@ -1,16 +1,20 @@
 {
   "apiVersion": 3,
-  "name": "ceiba/technical-spec",
-  "title": "Technical Specification",
+  "name": "ceiba/accordion",
+  "title": "accordion",
   "category": "widgets",
   "icon": "list-view",
-  "description": "Accordion with editable technical specification content.",
+  "description": "Accordion with editable content.",
   "supports": {
     "html": false
   },
   "attributes": {
     "blockId": {
       "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "default": "Expand"
     }
   },
   "editorScript": "file:./index.js",

@@ -43,7 +43,7 @@ export default function Edit({ attributes, setAttributes }) {
 			<div { ...blockProps }>
 				<InnerBlocks
 					allowedBlocks={[ 'ceiba/content-grid-item' ]}
-					
+					template={ TEMPLATE }
 					renderAppender={ InnerBlocks.ButtonBlockAppender }
 				/>
 			</div>

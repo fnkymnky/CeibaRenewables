@@ -3,4 +3,4 @@ import Edit from './edit';
 import save from './save';
 import './style.scss';
 
-registerBlockType('ceiba/technical-spec', { edit: Edit, save });
+registerBlockType('ceiba/accordion', { edit: Edit, save });
