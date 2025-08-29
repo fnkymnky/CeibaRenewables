@@ -30,7 +30,7 @@
   },
   "editorScript": "file:./index.js",
   "script": "file:./view.js",
-  "style": "file:./style.css",
+  "style": "file:./style-index.css",
   "viewStyle": "file:./view.css",
   "render": "file:./render.php"
 }

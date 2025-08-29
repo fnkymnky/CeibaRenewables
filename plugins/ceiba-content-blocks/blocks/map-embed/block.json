@@ -22,6 +22,6 @@
     "mapsUrl": { "type": "string", "default": "" }
   },
   "editorScript": "file:./index.js",
-  "style": "file:./style.css",
+  "style": "file:./style-index.css",
   "keywords": ["map","google maps","embed","location"]
 }
