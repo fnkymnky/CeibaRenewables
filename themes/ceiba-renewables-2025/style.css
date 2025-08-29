@@ -5,3 +5,8 @@ Version: 1.0.0
 Description: Ceiba child theme with tokens and curated blocks.
 Text Domain: ceiba-child
 */
+
+.contact-navigation {
+	background: var(--ceiba-color-accent);
+	color: #fff;
+}
