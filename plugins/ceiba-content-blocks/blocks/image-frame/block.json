@@ -17,8 +17,7 @@
     "focalPoint": { "type": "object", "default": { "x": 0.5, "y": 0.5 } },
     "proportion": { "type": "string", "default": "wide" }
   },
-  "editorScript": "ceiba-blocks-editor",
-  "style": "ceiba-blocks-style",
-  "editorStyle": "ceiba-blocks-style",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
   "render": "file:./render.php"
 }

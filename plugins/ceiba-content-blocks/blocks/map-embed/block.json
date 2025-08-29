@@ -21,7 +21,7 @@
   "attributes": {
     "mapsUrl": { "type": "string", "default": "" }
   },
-  "editorScript": "ceiba-blocks-editor",
-  "style": "ceiba-blocks-style",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
   "keywords": ["map","google maps","embed","location"]
 }

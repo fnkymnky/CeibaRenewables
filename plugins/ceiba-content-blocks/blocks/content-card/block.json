@@ -24,8 +24,8 @@
     "ctaVariant": { "type": "string", "default": "primary" }
   },
 
-  "editorScript": "ceiba-blocks-editor",
-  "style": "ceiba-blocks-style",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
 
   "keywords": ["card","content","image","cta"]
 }

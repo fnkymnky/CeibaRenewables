@@ -13,8 +13,6 @@ $attrs = wp_parse_args( $attributes, [
 ]);
 
 // Reuse the exact same asset handles as Testimonials
-wp_enqueue_style('ceiba-blocks-swiper');
-wp_enqueue_script('ceiba-blocks-view');
 
 // Normalise & bound IDs
 $ids = array_values(array_unique(array_map('absint', is_array($attrs['includeIds']) ? $attrs['includeIds'] : [] )));

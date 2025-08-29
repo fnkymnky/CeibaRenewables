@@ -6,8 +6,7 @@
   "icon": "format-quote",
   "supports": { "anchor": true, "align": ["wide", "full"] },
   "attributes": { "postId": { "type": "number", "default": 0 } },
-  "editorScript": "ceiba-blocks-editor",
-  "style": "ceiba-blocks-style",
-  "editorStyle": "ceiba-blocks-style",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
   "render": "file:./render.php"
 }

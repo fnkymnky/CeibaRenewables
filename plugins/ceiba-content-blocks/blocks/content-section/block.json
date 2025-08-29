@@ -31,8 +31,7 @@
     "secondaryLabel": { "type": "string", "default": "" },
     "secondaryLink": { "type": "object", "default": { "url": "", "id": 0, "kind": "", "type": "", "opensInNewTab": false } }
   },
-  "editorScript": "ceiba-blocks-editor",
-  "style": "ceiba-blocks-style",
-  "editorStyle": "ceiba-blocks-style",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
   "render": "file:./render.php"
 }

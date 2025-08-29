@@ -8,9 +8,9 @@
   "attributes": {
     "includeIds": { "type": "array", "default": [], "items": { "type": "number" } }
   },
-  "editorScript": "ceiba-blocks-editor",
-  "script": "ceiba-blocks-view",
-  "style": "ceiba-blocks-style",
-  "viewStyle": "ceiba-blocks-swiper",
+  "editorScript": "file:./index.js",
+  "script": "file:./view.js",
+  "style": "file:./style.css",
+  "viewStyle": "file:./view.css",
   "render": "file:./render.php"
 }

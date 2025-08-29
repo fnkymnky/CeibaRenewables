@@ -29,8 +29,6 @@ if ( ! $q->have_posts() ) {
     return;
 }
 
-wp_enqueue_style( 'ceiba-blocks-swiper' );
-wp_enqueue_script( 'ceiba-blocks-view' );
 
 echo '<div class="wp-block-ceiba-testimonials-carousel cb-tc swiper">';
 echo '  <div class="swiper-wrapper">';

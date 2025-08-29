@@ -1,4 +1,4 @@
-@use "../../_mixins" as m;
+@use "../_mixins" as m;
 
 .cb-card {
   @include m.card;

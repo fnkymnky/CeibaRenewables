@@ -19,6 +19,6 @@
     "content-grid:gap": "gap"
   },
   "style": "file:./style.css",
-  "editorStyle": "ceiba-blocks-editor-style",
+  "editorStyle": "file:./editor.css",
   "editorScript": "file:./index.js"
 }
