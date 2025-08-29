@@ -7,20 +7,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 add_action('init', function () {
-    $build_dir = __DIR__ . '/build';
-    $asset = [ 'dependencies' => [ 'wp-blocks','wp-element','wp-i18n','wp-editor','wp-components','wp-block-editor' ], 'version' => file_exists("$build_dir/index.js") ? filemtime("$build_dir/index.js") : '1.0.0' ];
-    $asset_file = "$build_dir/index.asset.php";
-    if ( file_exists( $asset_file ) ) {
-        $asset_tmp = include $asset_file;
-        if ( is_array($asset_tmp) ) { $asset = array_merge($asset, $asset_tmp); }
-    }
-
-    wp_register_script('ceiba-blocks-editor', plugins_url('build/index.js', __FILE__), $asset['dependencies'], $asset['version'], true);
-    wp_register_style('ceiba-blocks-style', plugins_url('build/style-index.css', __FILE__), [], file_exists("$build_dir/style-index.css") ? filemtime("$build_dir/style-index.css") : $asset['version']);
-    wp_register_script('ceiba-blocks-view', plugins_url('build/view.js', __FILE__), [], file_exists("$build_dir/view.js") ? filemtime("$build_dir/view.js") : $asset['version'], true);
-    wp_register_style('ceiba-blocks-swiper', plugins_url('build/view.css', __FILE__), [], file_exists("$build_dir/view.css") ? filemtime("$build_dir/view.css") : $asset['version']);
-
     register_post_type('testimonial', [
         'labels' => [
             'name' => 'Testimonials',
@@ -71,9 +59,9 @@ add_action('init', function () {
         'auth_callback' => function(){ return current_user_can('edit_posts'); }
     ]);
 
-    $base = __DIR__ . '/blocks';
+    $base = __DIR__ . '/build';
     foreach ( glob( $base . '/*/block.json' ) as $json ) {
-        register_block_type( dirname( $json ) );
+        register_block_type_from_metadata( dirname( $json ) );
     }
 });
 

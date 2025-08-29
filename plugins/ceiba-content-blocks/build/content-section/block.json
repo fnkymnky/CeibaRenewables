@@ -1,0 +1,102 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/content-section",
+  "title": "Content Section (2-Col)",
+  "category": "layout",
+  "icon": "align-pull-right",
+  "description": "Two-column section with background, image left/right, rich text, and up to two CTAs.",
+  "textdomain": "ceiba",
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "padding": true,
+      "margin": true
+    },
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": false,
+      "link": false
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imageSide": {
+      "type": "string",
+      "default": "left"
+    },
+    "imageFit": {
+      "type": "string",
+      "default": "cover"
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "enablePrimary": {
+      "type": "boolean",
+      "default": false
+    },
+    "primaryLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "primaryLink": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "id": 0,
+        "kind": "",
+        "type": "",
+        "opensInNewTab": false
+      }
+    },
+    "enableSecondary": {
+      "type": "boolean",
+      "default": false
+    },
+    "secondaryLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "secondaryLink": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "id": 0,
+        "kind": "",
+        "type": "",
+        "opensInNewTab": false
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

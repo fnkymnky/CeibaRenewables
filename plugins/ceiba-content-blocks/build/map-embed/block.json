@@ -1,0 +1,38 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/map-embed",
+  "version": "1.0.0",
+  "title": "Ceiba Map Embed",
+  "category": "embed",
+  "icon": "location-alt",
+  "description": "Embed a Google Map using a Share URL.",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "styles": false,
+    "color": false,
+    "typography": false,
+    "spacing": false,
+    "border": false,
+    "dimensions": false,
+    "shadow": false
+  },
+  "attributes": {
+    "mapsUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "keywords": [
+    "map",
+    "google maps",
+    "embed",
+    "location"
+  ]
+}

@@ -1,0 +1,15 @@
+.content-grid__media {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: hidden;
+}
+.content-grid__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}

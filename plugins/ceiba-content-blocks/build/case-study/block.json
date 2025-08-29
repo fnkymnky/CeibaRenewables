@@ -1,0 +1,29 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/case-study",
+  "title": "Case Study (Single)",
+  "category": "widgets",
+  "icon": "media-document",
+  "description": "Render a single Case Study card.",
+  "textdomain": "ceiba",
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "postId": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

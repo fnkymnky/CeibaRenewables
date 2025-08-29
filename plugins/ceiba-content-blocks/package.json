@@ -5,8 +5,8 @@
     "@wordpress/scripts": "^27.1.0"
   },
   "scripts": {
-    "start": "wp-scripts start src/index.js src/view.js",
-    "build": "wp-scripts build src/index.js src/view.js"
+    "start": "wp-scripts start --webpack-src-dir=blocks",
+    "build": "wp-scripts build --webpack-src-dir=blocks --output-path=build"
   },
   "dependencies": {
     "swiper": "^11.2.10"

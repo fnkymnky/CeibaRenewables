@@ -1,0 +1,25 @@
+@use "../_mixins" as m;
+
+.cb-card {
+  @include m.card;
+
+  .cb-media { @include m.media-img; }
+  .cb-media-actions { margin-top:.5rem; display:flex; gap:.5rem; }
+
+  h3 {
+    margin: 0 0 .5rem 0;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.25;
+    color: var(--ceiba-color-primary, var(--wp--preset--color--ceiba-navy));
+  }
+
+  .cb-body { line-height: 1.6; margin-bottom: .75rem; }
+
+  @include m.cta;
+
+  &.layout-image-left  { @include m.two-col(1fr, 2fr); }
+  &.layout-image-right { @include m.two-col(2fr, 1fr); .cb-media{order:2} .cb-content{order:1} }
+  &.layout-image-top   { @include m.one-col(); }
+
+  @include m.collapse-to-single(800px);
+}

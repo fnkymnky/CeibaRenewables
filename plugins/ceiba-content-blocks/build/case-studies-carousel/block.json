@@ -1,0 +1,36 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/case-studies-carousel",
+  "title": "Case Studies (Carousel)",
+  "category": "widgets",
+  "icon": "slides",
+  "description": "Carousel of selected Case Studies using the same Swiper setup as Testimonials.",
+  "textdomain": "ceiba",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": false,
+    "typography": false,
+    "spacing": false,
+    "dimensions": false,
+    "shadow": false
+  },
+  "attributes": {
+    "includeIds": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "default": []
+    }
+  },
+  "editorScript": "file:./index.js",
+  "script": "file:./view.js",
+  "style": "file:./style-index.css",
+  "viewStyle": "file:./view.css",
+  "render": "file:./render.php"
+}
