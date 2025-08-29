@@ -1,0 +1,1 @@
+.cb-tech-spec__trigger{align-items:center;background:none;border:0;cursor:pointer;display:flex;font-weight:600;gap:.5rem;padding:.5rem 0;text-align:right;width:100%}.cb-tech-spec__icon{height:1em;transition:transform .2s;width:1em}.cb-tech-spec.is-open .cb-tech-spec__icon{transform:rotate(-180deg)}.cb-tech-spec__panel{margin-top:.75rem}

@@ -19,7 +19,7 @@ add_filter( 'allowed_block_types_all', function( $allowed, $ctx ) {
     'core/columns','core/column','core/group','core/row','core/stack',
     'ceiba/content-card', 'ceiba/image-frame', 'ceiba/map-embed', 'ceiba/testimonials-carousel',
     'ceiba/testimonial', 'ceiba/case-study', 'ceiba/case-studies-carousel', 'ceiba/content-section', 'ceiba/content-columns', 'ceiba/team-grid', 'ceiba/content-grid',
-    'ceiba/content-grid-item',
+    'ceiba/content-grid-item', 'ceiba/technical-spec'
 
   ];
 }, 10, 2 );

@@ -1,0 +1,19 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/technical-spec",
+  "title": "Technical Specification",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Accordion with editable technical specification content.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "blockId": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "script": "file:./view.js",
+  "style": "file:./style-index.css"
+}
