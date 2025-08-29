@@ -49,6 +49,7 @@ add_action('init', function () {
     wp_register_style('ceiba-blocks-style', plugins_url('build/style-index.css', __FILE__), [], file_exists("$build_dir/style-index.css") ? filemtime("$build_dir/style-index.css") : $asset['version']);
     wp_register_script('ceiba-blocks-view', plugins_url('build/view.js', __FILE__), [], file_exists("$build_dir/view.js") ? filemtime("$build_dir/view.js") : $asset['version'], true);
     wp_register_style('ceiba-blocks-swiper', plugins_url('build/view.css', __FILE__), [], file_exists("$build_dir/view.css") ? filemtime("$build_dir/view.css") : $asset['version']);
+    wp_register_style('ceiba-blocks-editor-style', plugins_url('build/editor.css', __FILE__), [], file_exists("$build_dir/editor.css") ? filemtime("$build_dir/editor.css") : $asset['version']);
 
 
 

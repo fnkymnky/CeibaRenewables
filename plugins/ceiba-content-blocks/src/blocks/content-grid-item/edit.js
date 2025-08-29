@@ -1,12 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import {
-	useBlockProps,
-	RichText,
-	MediaUpload,
-	MediaReplaceFlow,
-	BlockControls,
+        useBlockProps,
+        MediaUpload,
+        InspectorControls,
 } from '@wordpress/block-editor';
-import { ToolbarGroup, Button } from '@wordpress/components';
+import { Button, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 
@@ -40,77 +38,72 @@ export default function Edit({ attributes, setAttributes }) {
 		});
 	};
 
-	const blockProps = useBlockProps({ className: 'content-grid__item' });
+        const blockProps = useBlockProps({ className: 'content-grid__item' });
 
-	return (
-		<div { ...blockProps }>
-			<BlockControls>
-				<ToolbarGroup>
-					<MediaReplaceFlow
-						mediaId={ mediaID }
-						mediaURL={ mediaURL || mediaMediumURL || mediaThumbURL }
-						accept="image/*"
-						allowedTypes={ ['image'] }
-						onSelect={ onSelectImage }
-						name={ __('Replace image', 'ceiba') }
-					/>
-					{ (mediaURL || mediaMediumURL || mediaThumbURL) && (
-						<Button
-							variant="tertiary"
-							onClick={() => setAttributes({
-								mediaID: undefined,
-								mediaURL: '',
-								mediaThumbURL: '',
-								mediaMediumURL: '',
-								alt: ''
-							})}
-						>
-							{ __('Remove image', 'ceiba') }
-						</Button>
-					) }
-				</ToolbarGroup>
-			</BlockControls>
+        return (
+                <>
+                        <InspectorControls>
+                                <PanelBody title={ __('Content', 'ceiba') } initialOpen>
+                                        <MediaUpload
+                                                onSelect={ onSelectImage }
+                                                allowedTypes={ ['image'] }
+                                                value={ mediaID }
+                                                render={ ({ open }) => (
+                                                        <Button variant="secondary" onClick={ open }>
+                                                                { mediaThumbURL ? __('Replace image', 'ceiba') : __('Select image', 'ceiba') }
+                                                        </Button>
+                                                ) }
+                                        />
+                                        { mediaThumbURL && (
+                                                <Button
+                                                        variant="tertiary"
+                                                        onClick={() => setAttributes({
+                                                                mediaID: undefined,
+                                                                mediaURL: '',
+                                                                mediaThumbURL: '',
+                                                                mediaMediumURL: '',
+                                                                alt: ''
+                                                        })}
+                                                        style={{ marginTop: '8px' }}
+                                                >
+                                                        { __('Remove image', 'ceiba') }
+                                                </Button>
+                                        ) }
+                                        <TextControl
+                                                label={ __('Heading', 'ceiba') }
+                                                value={ title }
+                                                onChange={(v) => setAttributes({ title: v })}
+                                                placeholder={ __('Add heading…', 'ceiba') }
+                                                style={{ marginTop: '16px' }}
+                                        />
+                                        <TextareaControl
+                                                label={ __('Content', 'ceiba') }
+                                                value={ text }
+                                                onChange={(v) => setAttributes({ text: v })}
+                                                placeholder={ __('Add content…', 'ceiba') }
+                                        />
+                                </PanelBody>
+                        </InspectorControls>
 
-			<div className="content-grid__media">
-				{ mediaThumbURL ? (
-					<img
-						className="content-grid__image is-editor"
-						src={ mediaThumbURL }
-						alt={ alt || '' }
-						decoding="async"
-						loading="lazy"
-					/>
-				) : (
-					<MediaUpload
-						onSelect={ onSelectImage }
-						allowedTypes={ ['image'] }
-						render={ ({ open }) => (
-							<Button variant="secondary" onClick={ open }>
-								{ __('Select image', 'ceiba') }
-							</Button>
-						) }
-					/>
-				) }
-			</div>
-
-			<RichText
-				tagName="h3"
-				className="content-grid__title"
-				placeholder={ __('Add heading…', 'ceiba') }
-				value={ title }
-				onChange={ (v) => setAttributes({ title: v }) }
-				allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
-			/>
-
-			<RichText
-				tagName="div"
-				className="content-grid__text"
-				multiline="p"
-				placeholder={ __('Add content…', 'ceiba') }
-				value={ text }
-				onChange={ (v) => setAttributes({ text: v }) }
-				allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
-			/>
-		</div>
-	);
+                        <div { ...blockProps }>
+                                <div className="content-grid__media">
+                                        { mediaThumbURL && (
+                                                <img
+                                                        className="content-grid__image"
+                                                        src={ mediaThumbURL }
+                                                        alt={ alt || '' }
+                                                        decoding="async"
+                                                        loading="lazy"
+                                                />
+                                        ) }
+                                </div>
+                                { title && (
+                                        <h3 className="content-grid__title">{ title }</h3>
+                                ) }
+                                { text && (
+                                        <div className="content-grid__text">{ text }</div>
+                                ) }
+                        </div>
+                </>
+        );
 }
