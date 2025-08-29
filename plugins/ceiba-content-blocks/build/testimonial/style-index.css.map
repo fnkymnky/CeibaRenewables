@@ -1,1 +1,0 @@
-{"version":3,"file":"testimonial/style-index.css","mappings":";;;AAAA;EACE;EACA;EACA;AACF,C","sources":["webpack://ceiba-content-blocks/./blocks/testimonial/style.scss"],"sourcesContent":[".wp-block-ceiba-testimonial .ceiba-testimonial__placeholder {\n  padding: 16px;\n  border: 1px dashed rgba(0,0,0,.15);\n  border-radius: 8px;\n}\n"],"names":[],"sourceRoot":""}

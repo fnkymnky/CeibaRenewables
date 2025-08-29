@@ -1,0 +1,41 @@
+.wp-block-ceiba-callout {
+  display: grid;
+  gap: var(--ceiba-space-m);
+  padding: calc(var(--ceiba-space-m) + .25rem);
+  border-radius: var(--ceiba-radius-md);
+  font-family: var(--ceiba-font-ui);
+  text-align: center;
+
+  &.is-green { background: var(--ceiba-color-accent); color: var(--ceiba-color-accent-text); }
+  &.is-blue  { background: var(--ceiba-color-primary); color: var(--ceiba-color-bg); }
+
+  .ceiba-callout__media img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--ceiba-radius-sm);
+    object-fit: cover;
+  }
+
+  .ceiba-callout__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--ceiba-space-s);
+    flex-wrap: wrap;
+  }
+
+  .ceiba-callout__actions a {
+    display: inline-block;
+    text-decoration: none;
+    padding: .55rem .9rem;
+    border-radius: 999px;
+    transition: transform .05s ease-in-out, background .2s ease;
+    background: var(--ceiba-cta-bg);
+    color: var(--ceiba-cta-text);
+  }
+  .ceiba-callout__actions a.is-secondary {
+    background: var(--ceiba-cta-bg--alt);
+    color: var(--ceiba-cta-text--alt);
+  }
+  .ceiba-callout__actions a:hover { transform: translateY(-1px); }
+}
