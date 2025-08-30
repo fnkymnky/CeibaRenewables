@@ -35,8 +35,8 @@
       "core/image":  { "border": { "radius": "8px" } },
       "core/group":  { "background": true }
     },
-    "layout": { "contentSize": "1280" },
-    "appearanceTools": false
+    "layout": { "contentSize": "1280px" },
+    "appearanceTools": true
   },
   "styles": {
     "color": {
