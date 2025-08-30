@@ -6,7 +6,32 @@ Description: Ceiba child theme with tokens and curated blocks.
 Text Domain: ceiba-child
 */
 
-.contact-navigation {
-	background: var(--ceiba-color-accent);
-	color: #fff;
+.phone-link, .email-link {
+	margin-left: 20px; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 20px;
+	line-height: 20px;
 }
+
+.phone-link:before, .email-link:before {
+	font-family: FontAwesome;
+    left:-20px;
+    position:absolute;
+}
+
+.phone-link:before {
+	content: "\f095";
+}
+
+.email-link:before {
+	content: "\f0e0";
+}
+
+.navigation-and-search {
+	display: flex;
+}
+
+
+.testeroni { background-color: #000 !important; }

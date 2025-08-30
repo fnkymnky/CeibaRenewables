@@ -3,7 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /* Load design tokens in front-end and editor */
 add_action('wp_enqueue_scripts', function () {
-  wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', [], '1.0');
+	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), ['twentytwentyfive-style'], wp_get_theme()->get('Version'));
+	wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', [], '1.0');
+	wp_enqueue_style('ceiba-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1');
 }, 20);
 
 add_action('enqueue_block_editor_assets', function () {

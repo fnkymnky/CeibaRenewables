@@ -32,9 +32,10 @@
     },
     "blocks": {
       "core/button": { "border": { "radius": "999px" } },
-      "core/image":  { "border": { "radius": "8px" } }
+      "core/image":  { "border": { "radius": "8px" } },
+      "core/group":  { "background": true }
     },
-    "layout": { "contentSize": "720px", "wideSize": "1100px" },
+    "layout": { "contentSize": "1280" },
     "appearanceTools": false
   },
   "styles": {
