@@ -1,0 +1,63 @@
+/* Base container */
+.social-links {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Link + icon */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--slm-bg, #111);
+  color: var(--slm-fg, #fff);
+  text-decoration: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.social-link:hover,
+.social-link:focus {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.social-link__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Platform modifiers (feel free to override in theme) */
+.social-link--facebook { --slm-bg: #1877F2; }
+.social-link--twitter { --slm-bg: #1DA1F2; }
+.social-link--instagram { --slm-bg: #E4405F; }
+.social-link--linkedin { --slm-bg: #0A66C2; }
+.social-link--whatsapp { --slm-bg: #25D366; }
+.social-link--snapchat { --slm-bg: #000; --slm-fg: #FFFC00; }
+.social-link--tiktok { --slm-bg: #000; }
+.social-link--youtube { --slm-bg: #FF0000; }
+
+/* Monochrome mode: icon only (no colored background) */
+.social-links.is-monochrome .social-link {
+  --slm-bg: transparent;
+  background: transparent;
+  color: currentColor;
+}
+
+/* Accessibility helper */
+.screen-reader-text {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

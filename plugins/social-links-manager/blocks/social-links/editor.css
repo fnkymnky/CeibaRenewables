@@ -1,0 +1,3 @@
+/* Editor-only tweaks */
+.wp-block-slm-social-links .social-links { min-height: 24px; }
+.wp-block-slm-social-links .social-link { pointer-events: auto; cursor: default; }

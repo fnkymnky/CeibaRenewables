@@ -5,7 +5,14 @@ Version: 1.0.0
 Description: Ceiba child theme with tokens and curated blocks.
 Text Domain: ceiba-child
 */
+
+// You can @use or @import additional partials here.
+// Example:
+// @use 'tokens';
+// @use 'header';
+
 /* Existing styles migrated from style.css */
+
 .contact-bar {
   background-color: var(--wp--preset--color--ceiba-green);
   color: #fff;
@@ -52,3 +59,4 @@ Text Domain: ceiba-child
 .navigation-and-search {
   display: flex;
 }
+
