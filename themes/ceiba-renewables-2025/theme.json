@@ -16,7 +16,8 @@
     "typography": {
       "fluid": true,
       "fontFamilies": [
-        { "slug": "ui", "name": "System UI", "fontFamily": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif" }
+        { "slug": "ui", "name": "System UI", "fontFamily": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif" },
+        { "slug": "montserrat", "name": "Montserrat", "fontFamily": "Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif" }
       ]
     },
     "spacing": {

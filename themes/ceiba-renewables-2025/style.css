@@ -5,18 +5,35 @@ Version: 1.0.0
 Description: Ceiba child theme with tokens and curated blocks.
 Text Domain: ceiba-child
 */
-/* Existing styles migrated from style.css */
+:root {
+  --font-montserrat: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-montserrat);
+}
+
+.contact-bar__inner,
+.navbar__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
 .contact-bar {
   background-color: var(--wp--preset--color--ceiba-green);
   color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 0;
 }
-
 .contact-bar a {
   color: white;
+  text-decoration: none;
 }
-
-.navbar {
-  background-color: var(--wp--preset--color--bg);
+.contact-bar a:hover {
+  text-decoration: underline;
 }
 
 .slm-contact {
@@ -24,31 +41,41 @@ Text Domain: ceiba-child
 }
 
 .slm-contact__item--phone, .slm-contact__item--email {
-  margin: 0 16px 0 20px;
+  margin: 0 16px 0 16px;
   display: inline-block;
   justify-content: center;
   align-items: center;
-  height: 20px;
-  line-height: 20px;
-  font-size: 16px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 12px;
   position: relative;
 }
 
 .slm-contact__item--phone:before, .slm-contact__item--email:before {
-  font-family: FontAwesome;
-  left: -20px;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  left: -16px;
   position: absolute;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .slm-contact__item--phone:before {
-  content: "\\f095";
+  content: "\f095";
 }
 
 .slm-contact__item--email:before {
-  content: "\\f0e0";
+  content: "\f0e0";
 }
 
-.navigation-and-search {
-  display: flex;
+.navbar {
+  background-color: var(--wp--preset--color--bg);
 }
+.navbar .navbar__inner {
+  justify-content: space-between;
+}
+.navbar .navbar__inner .menu-and-search {
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map */

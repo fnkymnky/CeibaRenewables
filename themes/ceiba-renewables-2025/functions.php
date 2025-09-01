@@ -9,10 +9,13 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), ['twentytwentyfive-style'], wp_get_theme()->get('Version'));
 	wp_enqueue_style('ceiba-header', get_stylesheet_directory_uri() . '/assets/header.css',	wp_get_theme()->get('Version'));
 	wp_enqueue_style('ceiba-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1');
+	wp_enqueue_style('ceiba-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap', [], null);
 }, 20);
 
 add_action('enqueue_block_editor_assets', function () {
 	wp_enqueue_style('ceiba-tokens-editor', get_stylesheet_directory_uri() . '/assets/tokens.css', [], '1.0');
+	// Load Montserrat in editor as well
+	wp_enqueue_style('ceiba-google-fonts-editor', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap', [], null);
 });
 
 // /* Curate allowed blocks */
