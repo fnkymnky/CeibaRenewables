@@ -15,35 +15,7 @@
 	outline: 2px solid #fff;
 }
 
-/* Header tweaks */
-.site-header {
-	position: relative;
-}
-.site-header.is-transparent {
-	background: transparent;
-}
-
 /* Mobile overlay menu: keep body from shifting when open (Navigation block adds .is-menu-open on html) */
 html.is-menu-open {
 	overflow: hidden;
 }
-
-/* Prevent CLS on logo images */
-.site-header .site-logo img {
-	display: block;
-	height: auto;
-}
-
-/* Optional: sticky header hook (apply position via editor if desired) */
-.site-header.is-sticky {
-	position: sticky;
-	top: 0;
-	backdrop-filter: saturate(1.2) blur(6px);
-}
-
-/* CTA group spacing on narrow screens */
-.header-cta {
-	gap: 8px;
-}
-
-
