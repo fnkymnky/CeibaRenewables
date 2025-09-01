@@ -11,8 +11,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--slm-bg, #111);
   color: var(--slm-fg, #fff);
@@ -27,9 +28,10 @@
 }
 
 .social-link__icon {
-  width: 20px;
-  height: 20px;
-  display: block;
+  display: inline-block;
+  font-size: 12px; /* for Font Awesome <i> */
+
+  line-height: 1;
 }
 
 /* Platform modifiers (feel free to override in theme) */

@@ -20,7 +20,7 @@
 
   registerBlockType('slm/social-links', {
     title: __('Social Links', 'social-links-manager'),
-    description: __('Display saved social links from Settings → Social Links.', 'social-links-manager'),
+    description: __('Display saved social links from Settings → Contact Details.', 'social-links-manager'),
     icon: 'share',
     category: 'widgets',
     supports: { html: false, align: [ 'left', 'center', 'right' ] },
@@ -52,7 +52,7 @@
         el(ServerSideRender, { block: 'slm/social-links', attributes }),
         el(Notice, { status: 'info', isDismissible: false, className: 'slm-social-links-help' },
           el('span', null,
-            __('Only icons for links saved in Settings → Social Links will show. ', 'social-links-manager'),
+            __('Only icons for links saved in Settings → Contact Details will show. ', 'social-links-manager'),
             el('a', { href: '/wp-admin/options-general.php?page=social-links-manager' }, __('Open settings', 'social-links-manager'))
           )
         )

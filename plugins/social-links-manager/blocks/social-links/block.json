@@ -5,7 +5,7 @@
   "title": "Social Links",
   "category": "widgets",
   "icon": "share",
-  "description": "Display saved social links from Settings → Social Links.",
+  "description": "Display saved social links from Settings → Contact Details.",
   "textdomain": "social-links-manager",
   "supports": {
     "html": false,
@@ -15,7 +15,7 @@
   "style": "file:../../assets/social-links.css",
   "editorStyle": "file:./editor.css",
   "attributes": {
-    "brandColors": { "type": "boolean", "default": true },
+    "brandColors": { "type": "boolean", "default": false },
     "showFacebook": { "type": "boolean", "default": true },
     "showTwitter": { "type": "boolean", "default": true },
     "showInstagram": { "type": "boolean", "default": true },
