@@ -5,7 +5,9 @@
 .editor-styles-wrapper .wp-block-ceiba-hero-section.alignwide{
   max-width:100%;
 }
-.editor-styles-wrapper .wp-block-ceiba-hero-section{overflow:visible}
+.editor-styles-wrapper .wp-block-ceiba-hero-section{
+  overflow:visible;
+}
 
 @supports (width: 100dvw) {
   .editor-styles-wrapper .wp-block-ceiba-hero-section.alignfull{

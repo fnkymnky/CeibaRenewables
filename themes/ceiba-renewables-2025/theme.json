@@ -59,6 +59,9 @@
         "typography": {
           "textAlign": "center"
         },
+        "color":{
+          "text": "var(--wp--preset--color--bg)"
+        },
         "elements": {
           "heading": {
             "color": { "text": "var(--wp--preset--color--bg)" },

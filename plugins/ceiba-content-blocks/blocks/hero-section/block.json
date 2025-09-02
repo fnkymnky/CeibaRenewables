@@ -8,7 +8,7 @@
   "description": "Full-width hero with title, rich content, and background image.",
   "supports": {
     "anchor": true,
-    "align": ["full", "wide"],
+    "align": ["full"],
     "spacing": {
       "padding": true,
       "margin": true
@@ -25,6 +25,7 @@
     "color": { "text": true, "background": true }
   },
   "attributes": {
+    "align": { "type": "string", "default": "full" },
     "title": { "type": "string", "default": "" },
     "backgroundId": { "type": "number", "default": 0 },
     "backgroundUrl": { "type": "string", "default": "" },

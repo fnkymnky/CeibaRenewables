@@ -25,17 +25,25 @@ if ( isset( $attr['align'] ) ) {
   }
 }
 
-$wrapper = get_block_wrapper_attributes( array_filter( [
-  'class' => 'ceiba-hero' . $align_class,
-  'style' => $bg_url ? 'background-image:url(' . esc_url_raw( $bg_url ) . ');' : null,
-] ) );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-hero' . $align_class ] );
+
+$top_style = $bg_url ? ' style="background-image:url(' . esc_url( $bg_url ) . ');"' : '';
 
 echo '<section ' . $wrapper . '>';
-echo '  <div class="ceiba-hero__backdrop" aria-hidden="true"></div>';
-echo '  <div class="ceiba-hero__inner">';
+// Top: background image + title
+echo '  <div class="ceiba-hero__top"' . $top_style . '>';
+echo '    <div class="ceiba-hero__backdrop" aria-hidden="true"></div>';
+echo '    <div class="ceiba-hero__inner">';
 if ( ! empty( $attr['title'] ) ) {
-  echo '    <h1 class="ceiba-hero__title">' . wp_kses_post( $attr['title'] ) . '</h1>';
+  echo '      <h1 class="ceiba-hero__title">' . wp_kses_post( $attr['title'] ) . '</h1>';
 }
-echo '    <div class="ceiba-hero__content">' . $content . '</div>';
+echo '    </div>';
+echo '  </div>';
+
+// Bottom: solid background + content
+echo '  <div class="ceiba-hero__bottom">';
+echo '    <div class="ceiba-hero__inner">';
+echo '      <div class="ceiba-hero__content">' . $content . '</div>';
+echo '    </div>';
 echo '  </div>';
 echo '</section>';

@@ -1,13 +1,13 @@
-.ceiba-hero {
+.ceiba-hero { position: relative; display: block; width: 100%; }
+.ceiba-hero__top {
   position: relative;
-  display: block;
-  width: 100%;
-  min-height: 320px;
-  color: white;
+  min-height: 460px;
   background-color: var(--wp--preset--color--contrast, #0a0a0a);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
 }
 
 .ceiba-hero__backdrop {
@@ -21,9 +21,8 @@
   z-index: 1;
   max-width: var(--wp--style--global--content-size, 1080px);
   margin: 0 auto;
-  padding: clamp(32px, 6vw, 120px) 20px;
   text-align: inherit;
-  color: var(--white);
+  overflow: hidden;
 }
 
 .ceiba-hero__title {
@@ -32,9 +31,8 @@
   line-height: 1.1;
 }
 
-.ceiba-hero__content {
-  font-size: clamp(16px, 2.2vw, 20px);
-}
+.ceiba-hero__content { font-size: clamp(16px, 2.2vw, 20px); }
+.ceiba-hero__bottom { background: var(--wp--preset--color--ceiba-navy, #333); }
 
 .ceiba-hero .wp-block-buttons {
   margin-top: 16px;

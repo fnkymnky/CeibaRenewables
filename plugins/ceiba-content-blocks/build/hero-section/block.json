@@ -9,8 +9,7 @@
   "supports": {
     "anchor": true,
     "align": [
-      "full",
-      "wide"
+      "full"
     ],
     "spacing": {
       "padding": true,
@@ -31,6 +30,10 @@
     }
   },
   "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
     "title": {
       "type": "string",
       "default": ""
