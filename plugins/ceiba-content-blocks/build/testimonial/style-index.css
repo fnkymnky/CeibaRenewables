@@ -1,1 +1,10 @@
-.wp-block-ceiba-testimonial .ceiba-testimonial__placeholder{border:1px dashed rgba(0,0,0,.15);border-radius:8px;padding:16px}
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/testimonial/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+.wp-block-ceiba-testimonial .ceiba-testimonial__placeholder {
+  padding: 16px;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

@@ -1,0 +1,55 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/hero-section",
+  "version": "1.0.0",
+  "title": "Hero Section",
+  "category": "layout",
+  "icon": "cover-image",
+  "description": "Full-width hero with title, rich content, and background image.",
+  "supports": {
+    "anchor": true,
+    "align": [
+      "full",
+      "wide"
+    ],
+    "spacing": {
+      "padding": true,
+      "margin": true
+    },
+    "typography": {
+      "fontSize": true,
+      "fontStyle": true,
+      "fontWeight": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "letterSpacing": true,
+      "textTransform": true
+    },
+    "color": {
+      "text": true,
+      "background": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundId": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundAlt": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./editor.css",
+  "render": "file:./render.php"
+}

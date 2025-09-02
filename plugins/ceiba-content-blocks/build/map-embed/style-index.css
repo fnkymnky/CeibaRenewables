@@ -1,1 +1,46 @@
-.cb-mapembed{background:var(--ceiba-color-bg);border:1px solid color-mix(in oklab,var(--ceiba-color-ink) 12%,transparent);border-radius:var(--ceiba-radius-md);box-shadow:var(--ceiba-shadow-1);padding:var(--ceiba-space-xs);width:100%}.cb-mapembed iframe{aspect-ratio:16/9;border:0;border-radius:var(--ceiba-radius-sm);display:block;height:100%;width:100%}.cb-mapembed__placeholder{align-items:center;color:var(--ceiba-color-ink);display:flex;justify-content:center;min-height:240px}.cb-mapembed{position:relative}.cb-mapembed__overlay{align-items:center;background:linear-gradient(180deg,hsla(0,0%,100%,.6),hsla(0,0%,100%,.6));color:var(--ceiba-color-ink);display:flex;font-size:.85rem;inset:0;justify-content:center;pointer-events:none;position:absolute}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/map-embed/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+.cb-mapembed {
+  width: 100%;
+  background: var(--ceiba-color-bg);
+  border: 1px solid color-mix(in oklab, var(--ceiba-color-ink) 12%, transparent);
+  border-radius: var(--ceiba-radius-md);
+  box-shadow: var(--ceiba-shadow-1);
+  padding: var(--ceiba-space-xs);
+}
+
+.cb-mapembed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: var(--ceiba-radius-sm);
+}
+
+.cb-mapembed__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  color: var(--ceiba-color-ink);
+}
+
+.cb-mapembed {
+  position: relative;
+}
+
+.cb-mapembed__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--ceiba-color-ink);
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+}
+
+/*# sourceMappingURL=style-index.css.map*/
