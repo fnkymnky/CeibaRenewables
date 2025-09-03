@@ -43,9 +43,12 @@
       "text": "var(--wp--preset--color--ink)",
       "background": "var(--wp--preset--color--bg)"
     },
+    "typography": {
+      "fontFamily":"var(--wp--preset--font-family--montserrat)"
+    },
     "elements": {
       "heading": {
-        "typography": { "fontFamily": "var(--wp--preset--font-family--montserrat)", "fontWeight": "500", "lineHeight": "1.15" },
+        "typography": { "fontWeight": "500", "lineHeight": "1.15" },
         "color": { "text": "var(--wp--preset--color--ceiba-green)" }
       },
       "link": { "color": { "text": "var(--wp--preset--color--ceiba-green)" } }
