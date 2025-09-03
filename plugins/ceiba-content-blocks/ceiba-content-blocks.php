@@ -59,9 +59,21 @@ add_action('init', function () {
         'auth_callback' => function(){ return current_user_can('edit_posts'); }
     ]);
 
-    $base = __DIR__ . '/build';
-    foreach ( glob( $base . '/*/block.json' ) as $json ) {
+    // Prefer built blocks (compiled assets)
+    $built = __DIR__ . '/build';
+    $registry = WP_Block_Type_Registry::get_instance();
+    foreach ( glob( $built . '/*/block.json' ) as $json ) {
         register_block_type_from_metadata( dirname( $json ) );
+    }
+
+    // Also allow registering blocks from source folder if not built yet
+    $src = __DIR__ . '/blocks';
+    foreach ( glob( $src . '/*/block.json' ) as $json ) {
+        $data = json_decode( file_get_contents( $json ), true );
+        $name = is_array( $data ) && isset( $data['name'] ) ? $data['name'] : null;
+        if ( $name && ! $registry->is_registered( $name ) ) {
+            register_block_type_from_metadata( dirname( $json ) );
+        }
     }
 });
 
@@ -132,3 +144,12 @@ function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
     );
 }
 
+// Conditionally enqueue Swiper for blocks that need it (e.g., Page List carousel on mobile)
+add_action('wp_enqueue_scripts', function(){
+    if ( is_admin() ) return;
+    // Only enqueue on pages where the Page List block exists
+    if ( function_exists('has_block') && has_block('ceiba/page-list') ) {
+        wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper@9/swiper-bundle.min.css', [], '9.4.1');
+        wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@9/swiper-bundle.min.js', [], '9.4.1', true);
+    }
+}, 20);

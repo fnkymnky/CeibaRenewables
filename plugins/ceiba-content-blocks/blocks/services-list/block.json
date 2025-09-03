@@ -1,0 +1,21 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/page-list",
+  "version": "1.0.0",
+  "title": "Page List",
+  "category": "widgets",
+  "icon": "grid-view",
+  "description": "Displays direct child pages (title + featured image) of a selected parent page in a 3-column grid.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "padding": true, "margin": true }
+  },
+  "attributes": {
+    "parentId": { "type": "number" }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "script": "file:./view.js",
+  "render": "file:./render.php"
+}

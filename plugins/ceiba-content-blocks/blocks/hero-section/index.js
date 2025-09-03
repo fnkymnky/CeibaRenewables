@@ -2,6 +2,8 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { createElement as el, Fragment } from '@wordpress/element';
 import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, InspectorControls, InnerBlocks, BlockControls, __experimentalBlockAlignmentMatrixControl as BlockAlignmentControl } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
+import { store as blockEditorStore } from '@wordpress/block-editor';
 import { PanelBody, Button, TextControl, RadioControl } from '@wordpress/components';
 import './style.scss';
 import save from './save';
@@ -15,9 +17,14 @@ registerBlockType('ceiba/hero-section', {
   category: 'layout',
   supports: { anchor: true, align: ['full'], spacing: { padding: true, margin: true } },
   edit(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, clientId } = props;
     const { title, backgroundId, backgroundUrl, backgroundAlt, align } = attributes;
     const blockProps = useBlockProps({ className: 'ceiba-hero' });
+
+    const hasInnerBlocks = useSelect(
+      (select) => select(blockEditorStore).getBlocks(clientId).length > 0,
+      [clientId]
+    );
 
     const onSelectBg = (media) => {
       if (!media) { setAttributes({ backgroundId: 0, backgroundUrl: '', backgroundAlt: '' }); return; }
@@ -62,7 +69,11 @@ registerBlockType('ceiba/hero-section', {
         el('div', { className: 'ceiba-hero__bottom' },
           el('div', { className: 'ceiba-hero__inner' },
             el('div', { className: 'ceiba-hero__content' },
-              el(InnerBlocks, { allowedBlocks: ALLOWED_BLOCKS, templateLock: false, renderAppender: InnerBlocks.ButtonBlockAppender })
+              el(InnerBlocks, {
+                allowedBlocks: ALLOWED_BLOCKS,
+                templateLock: false,
+                renderAppender: hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
+              })
             )
           )
         )

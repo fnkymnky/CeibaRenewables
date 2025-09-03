@@ -9,6 +9,15 @@
   overflow:visible;
 }
 
+/* Mirror clip-path rounding in the editor */
+.editor-styles-wrapper .ceiba-hero{
+  --hero-curve-depth: 18%;
+  --hero-curve-cut: calc(100% - var(--hero-curve-depth));
+}
+.editor-styles-wrapper .ceiba-hero__top{
+  clip-path: path('M 0 0 H 100% V var(--hero-curve-cut) Q 50% 100% 0% var(--hero-curve-cut) Z');
+}
+
 @supports (width: 100dvw) {
   .editor-styles-wrapper .wp-block-ceiba-hero-section.alignfull{
     width:100dvw;

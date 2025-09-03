@@ -40,10 +40,13 @@ if ( ! empty( $attr['title'] ) ) {
 echo '    </div>';
 echo '  </div>';
 
-// Bottom: solid background + content
-echo '  <div class="ceiba-hero__bottom">';
-echo '    <div class="ceiba-hero__inner">';
-echo '      <div class="ceiba-hero__content">' . $content . '</div>';
-echo '    </div>';
-echo '  </div>';
+// Bottom: solid background + content (render only if there is content)
+$has_content = trim( (string) $content ) !== '';
+if ( $has_content ) {
+  echo '  <div class="ceiba-hero__bottom">';
+  echo '    <div class="ceiba-hero__inner">';
+  echo '      <div class="ceiba-hero__content">' . $content . '</div>';
+  echo '    </div>';
+  echo '  </div>';
+}
 echo '</section>';

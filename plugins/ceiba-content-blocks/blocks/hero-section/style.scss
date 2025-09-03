@@ -1,13 +1,41 @@
-.ceiba-hero { position: relative; display: block; width: 100%; }
+.ceiba-hero { position: relative; display: block; width: 100%;
+  /* Controls the concave curve depth (percentage of height) */
+  --hero-curve-depth: 18%;
+  --hero-curve-cut: calc(100% - var(--hero-curve-depth));
+}
+
+.ceiba-hero {
+position: relative;
+--curve: ellipse(100% 55% at 48% 44%);
+--border-scale-x: 1; 
+--border-scale-y: 1; 
+}
+
 .ceiba-hero__top {
-  position: relative;
-  min-height: 460px;
-  background-color: var(--wp--preset--color--contrast, #0a0a0a);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
+position: relative;
+min-height: 460px;
+background-color: var(--wp--preset--color--contrast, #0a0a0a);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+display: flex;
+align-items: center;
+clip-path: var(--curve);
+z-index: 0; /* sits above the border underlay */
+}
+
+/* Green “border” under the curve */
+.ceiba-hero::after {
+content: "";
+position: absolute;
+inset: 0;
+background: var(--wp--preset--color--ceiba-green, #45ad58);
+clip-path: var(--curve);
+transform-origin: top center; 
+transform: scale(var(--border-scale-x), var(--border-scale-y));
+z-index: -1;
+pointer-events: none;
+height: 480px;
 }
 
 .ceiba-hero__backdrop {
@@ -32,7 +60,14 @@
 }
 
 .ceiba-hero__content { font-size: clamp(16px, 2.2vw, 20px); }
-.ceiba-hero__bottom { background: var(--wp--preset--color--ceiba-navy, #333); }
+
+.ceiba-hero__bottom { 
+  background: var(--wp--preset--color--ceiba-navy, #333); 
+  position: relative;
+  z-index: -1;
+  margin-top: -40px; /* Ensures the block sits under the header above */
+  padding-top: 55px; /* Offsets block content so it doesn't start under the header above */
+}
 
 .ceiba-hero .wp-block-buttons {
   margin-top: 16px;

@@ -3,6 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 
+// Media: ensure featured images and custom sizes for page list cards
+add_action('after_setup_theme', function(){
+    add_theme_support('post-thumbnails');
+    // Square crops for page list cards
+    add_image_size('page-list-360', 360, 360, true);
+    add_image_size('page-list-320', 320, 320, true);
+});
+
 /* Load design tokens in front-end and editor */
 add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', wp_get_theme()->get('Version'));
