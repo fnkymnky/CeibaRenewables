@@ -13,15 +13,21 @@ import 'swiper/css/navigation';
 
     const s = new Swiper(root, {
       modules: [Navigation],
-      slidesPerView: 3,
+      // Infinite loop with centered slides and peeking neighbors
+      loop: true,
+      centeredSlides: true,
       spaceBetween: 16,
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
-      breakpoints: { 0:{ slidesPerView: 1 }, 721:{ slidesPerView: 3 } },
+      breakpoints: {
+        0:   { slidesPerView: 1.15 },
+        721: { slidesPerView: 3.15 }
+      },
       watchOverflow: true,
       autoHeight: true,
       observer: true,
-      observeParents: true
+      observeParents: true,
+      loopAdditionalSlides: 6,
     });
 
     setTimeout(() => s.update(), 0);
@@ -31,3 +37,4 @@ import 'swiper/css/navigation';
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   new MutationObserver(boot).observe(document.documentElement, { childList: true, subtree: true });
 })();
+import './view.scss';

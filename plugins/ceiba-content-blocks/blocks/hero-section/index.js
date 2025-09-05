@@ -1,10 +1,10 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { createElement as el, Fragment } from '@wordpress/element';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, InspectorControls, InnerBlocks, BlockControls, __experimentalBlockAlignmentMatrixControl as BlockAlignmentControl } from '@wordpress/block-editor';
+import { useBlockProps, RichText, InspectorControls, InnerBlocks, BlockControls, __experimentalBlockAlignmentMatrixControl as BlockAlignmentControl } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { store as blockEditorStore } from '@wordpress/block-editor';
-import { PanelBody, Button, TextControl, RadioControl } from '@wordpress/components';
+import { PanelBody, RadioControl } from '@wordpress/components';
 import './style.scss';
 import save from './save';
 
@@ -18,7 +18,7 @@ registerBlockType('ceiba/hero-section', {
   supports: { anchor: true, align: ['full'], spacing: { padding: true, margin: true } },
   edit(props) {
     const { attributes, setAttributes, clientId } = props;
-    const { title, backgroundId, backgroundUrl, backgroundAlt, align } = attributes;
+    const { title, align } = attributes;
     const blockProps = useBlockProps({ className: 'ceiba-hero' });
 
     const hasInnerBlocks = useSelect(
@@ -26,10 +26,10 @@ registerBlockType('ceiba/hero-section', {
       [clientId]
     );
 
-    const onSelectBg = (media) => {
-      if (!media) { setAttributes({ backgroundId: 0, backgroundUrl: '', backgroundAlt: '' }); return; }
-      setAttributes({ backgroundId: media.id || 0, backgroundUrl: media.url || '', backgroundAlt: media.alt || media.title || '' });
-    };
+    // Pull current post featured image to preview in editor
+    const featuredId = useSelect( (select) => select('core/editor')?.getEditedPostAttribute('featured_media'), [] );
+    const featured = useSelect( (select) => featuredId ? select('core').getMedia(featuredId) : null, [featuredId] );
+    const editorBgUrl = featured?.source_url || '/wp-content/uploads/2025/09/Home-Page-Banner.jpg';
 
     return el(Fragment, null,
       el(BlockControls, null,
@@ -37,18 +37,7 @@ registerBlockType('ceiba/hero-section', {
       ),
       el(InspectorControls, null,
         el(PanelBody, { title: __('Background', 'ceiba'), initialOpen: true },
-          el(MediaUploadCheck, null,
-            el(MediaUpload, {
-              onSelect: onSelectBg,
-              allowedTypes: ['image'],
-              value: backgroundId,
-              render: ({ open }) => el('div', { style: { display: 'grid', gap: 8 } },
-                el(Button, { variant: 'secondary', onClick: open }, backgroundId ? __('Replace image', 'ceiba') : __('Select image', 'ceiba')),
-                backgroundUrl && el(TextControl, { label: __('Alt text', 'ceiba'), value: backgroundAlt || '', onChange: (val) => setAttributes({ backgroundAlt: val }) }),
-                backgroundId ? el(Button, { variant: 'link', isDestructive: true, onClick: () => onSelectBg(null) }, __('Remove image', 'ceiba')) : null
-              )
-            })
-          )
+          el('p', null, __('This hero uses the page Featured Image. To change it, set the Featured Image in the page settings. If none is set, a default banner is used.', 'ceiba'))
         ),
         el(PanelBody, { title: __('Layout', 'ceiba'), initialOpen: false },
           el(RadioControl, {
@@ -60,7 +49,7 @@ registerBlockType('ceiba/hero-section', {
         )
       ),
       el('section', blockProps,
-        el('div', { className: 'ceiba-hero__top', style: backgroundUrl ? { backgroundImage: `url(${backgroundUrl})` } : undefined },
+        el('div', { className: 'ceiba-hero__top', style: editorBgUrl ? { backgroundImage: `url(${editorBgUrl})` } : undefined },
           el('div', { className: 'ceiba-hero__backdrop', 'aria-hidden': true }),
           el('div', { className: 'ceiba-hero__inner' },
             el(RichText, { tagName: 'h1', className: 'ceiba-hero__title', placeholder: __('Add hero title…', 'ceiba'), value: title, allowedFormats: [], onChange: (val) => setAttributes({ title: val }) })

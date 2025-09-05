@@ -34,7 +34,7 @@ foreach ( $children as $child ) {
         'alt'      => esc_attr( $title ),
         'loading'  => 'lazy',
         'decoding' => 'async',
-        'sizes'    => '(min-width: 640px) 360px, 320px'
+        'sizes'    => '(min-width: 426px) 360px, 320px'
     ] );
 
     echo '      <article class="ceiba-service-card">';

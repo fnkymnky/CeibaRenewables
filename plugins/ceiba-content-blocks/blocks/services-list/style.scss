@@ -1,0 +1,129 @@
+:root {
+  --ceiby-navy-rgb: 35, 52, 93;
+}
+
+.ceiba-page-list {
+  width: 100%;
+}
+
+.ceiba-services-grid {
+  margin: 24px 0;
+}
+
+.ceiba-service-card {
+  border-radius: 64px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+
+  &:hover {
+    transition: transform 0.2s;
+    transform: scale(0.95);
+  }
+}
+
+.ceiba-service-card__link {
+  text-decoration: none;
+}
+
+.ceiba-service-card__media {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.ceiba-service-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ceiba-service-card__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 24px;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  font-size: clamp(16px, 2.3vw, 24px);
+  background: rgba(var(--ceiby-navy-rgb), 0.7);
+  border-top: 2px solid var(--wp--preset--color--ceiba-green);
+  transition: background 0.2s;
+}
+
+.ceiba-service-card:hover .ceiba-service-card__title {
+  background: rgba(var(--ceiby-navy-rgb), 1);
+  transition: background 0.2s;
+}
+
+/* Desktop/tablet: grid layout applied to swiper-wrapper */
+@media (min-width: 424px) {
+  .ceiba-services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin: 96px 0;
+  }
+
+  .ceiba-pl .swiper-wrapper.ceiba-services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--wp--preset--spacing--m, 1rem);
+  }
+
+  .ceiba-pl .swiper-slide {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 426px) and (max-width:768px) {
+  .ceiba-services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile: fallback to scroll-snap if Swiper isn’t present (using base classes) */
+@media (max-width: 426px) {
+  .ceiba-pl:not(.is-swiper-init) .ceiba-services-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 12px;
+    /*margin: 0 -24px; /*To make sure the slider expands the full page width*/
+  }
+
+  .ceiba-pl:not(.is-swiper-init) .ceiba-service-card {
+    flex: 0 0 88%;
+    scroll-snap-align: start;
+  }
+
+  .ceiba-pl:not(.is-swiper-init) .swiper-wrapper {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 12px;
+  }
+
+  .ceiba-pl:not(.is-swiper-init) .swiper-slide {
+    flex: 0 0 88%;
+    scroll-snap-align: start;
+  }  
+  
+  /* When Swiper is active: allow peeking and accentuate active slide */
+  .ceiba-pl.is-swiper-init {
+    overflow: visible;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .ceiba-pl.is-swiper-init .swiper-wrapper { align-items: stretch; }
+  .ceiba-pl.is-swiper-init .swiper-slide { transition: transform .2s ease; }
+  .ceiba-pl.is-swiper-init .swiper-slide-active { transform: scale(1.0); }
+}

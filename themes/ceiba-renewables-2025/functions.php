@@ -9,6 +9,8 @@ add_action('after_setup_theme', function(){
     // Square crops for page list cards
     add_image_size('page-list-360', 360, 360, true);
     add_image_size('page-list-320', 320, 320, true);
+    // 16:9 mobile hero background (used in CSS @media)
+    add_image_size('hero-mobile', 768, 432, true);
 });
 
 /* Load design tokens in front-end and editor */

@@ -13,6 +13,16 @@ body {
   margin-block-start: 0;
 }
 
+/* Reset margins on headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* Reset the padding for content area to 0 and set on individual components */
+.has-global-padding {
+  padding: 0;
+}
+
 .contact-bar__inner,
 .navbar__inner {
   max-width: 1280px;
@@ -103,4 +113,18 @@ body {
 .wp-block-ceiba-hero-section.alignfull {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+}
+
+/* MEDIA AND TEXT BLOCKS */
+.wp-block-media-text {
+  padding: 16px 0;
+}
+.wp-block-media-text img {
+  border-radius: 0 9999px 9999px 0;
+}
+
+@media (min-width: 425px) {
+  .wp-block-media-text {
+    padding: 64px 0;
+  }
 }

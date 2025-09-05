@@ -1,4 +1,7 @@
 /* Services List block (editor stub only; front-end is rendered in PHP) */
+// Import styles so @wordpress/scripts compiles style.scss -> style-index.css
+import './style.scss';
+
 (function(){
   function register() {
     const { registerBlockType } = wp.blocks;

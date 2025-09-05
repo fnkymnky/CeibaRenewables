@@ -1,0 +1,11 @@
+/* Front-end tweaks for peeking slides and spacing */
+.cb-tc.swiper {
+  overflow: visible; /* let neighbors peek */
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.cb-tc.swiper .swiper-wrapper { align-items: stretch; }
+.cb-tc.swiper .swiper-slide { transition: transform .2s ease; }
+.cb-tc.swiper .swiper-slide-active { transform: scale(1.0); }
+

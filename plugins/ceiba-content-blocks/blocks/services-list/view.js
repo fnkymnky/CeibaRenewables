@@ -13,21 +13,24 @@
     if (!container || container.dataset.plInit) return;
     container.dataset.plInit = '1';
     var instance = null;
-    var mql = window.matchMedia('(max-width: 639px)');
-
+    var mql = window.matchMedia('(max-width: 425px)');
     var wrapper = container.querySelector('.ceiba-services-grid');
     function mount(Sw){
       if (instance || !mql.matches) return;
-      // Add Swiper classes dynamically
+      // Activate Swiper on mobile: add classes Swiper expects
       container.classList.add('swiper');
       if (wrapper) wrapper.classList.add('swiper-wrapper');
       container.querySelectorAll('.ceiba-service-card').forEach(function(card){ card.classList.add('swiper-slide'); });
       instance = new Sw(container, {
-        slidesPerView: 1,
+        // Infinite, centered, with a hint of adjacent slides visible
+        loop: true,
+        centeredSlides: true,
+        slidesPerView: 1.15,
         spaceBetween: 12,
         watchOverflow: true,
         observer: true,
         observeParents: true,
+        loopAdditionalSlides: 4,
       });
       container.classList.add('is-swiper-init');
     }
@@ -36,8 +39,8 @@
       try { instance.destroy(true, true); } catch(e){}
       instance = null;
       container.classList.remove('is-swiper-init');
-      // Remove Swiper classes to restore grid layout
       container.classList.remove('swiper');
+      // Remove Swiper classes to prevent Swiper CSS from affecting desktop grid
       if (wrapper) wrapper.classList.remove('swiper-wrapper');
       container.querySelectorAll('.ceiba-service-card').forEach(function(card){ card.classList.remove('swiper-slide'); });
     }
@@ -54,7 +57,9 @@
     mql.addEventListener ? mql.addEventListener('change', sync) : window.addEventListener('resize', sync);
   }
 
-  function boot(){ document.querySelectorAll('.ceiba-pl.swiper').forEach(init); }
+  // Initialize on all Page List containers; JS will add/remove
+  // Swiper classes based on viewport, ensuring slider only on mobile.
+  function boot(){ document.querySelectorAll('.ceiba-pl').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   new MutationObserver(boot).observe(document.documentElement, { childList: true, subtree: true });
 })();
