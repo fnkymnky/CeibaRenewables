@@ -1,9 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { useMemo, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import {
   useBlockProps,
   InspectorControls,
   RichText,
+  InnerBlocks,
   MediaUpload,
   MediaUploadCheck,
   __experimentalLinkControl as LinkControl,
@@ -18,8 +19,7 @@ import {
   FocalPointPicker,
   SelectControl,
   ToggleControl,
-  Modal,
-  Spinner
+  Modal
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
@@ -29,16 +29,17 @@ const disallowTestimonials = (link) =>
 
 export default function Edit({ attributes, setAttributes }) {
   const {
-    title, content,
+    title, /* content (legacy, unused) */
     imageId, imageUrl, imageAlt, imageSide, imageFit, focalPoint,
     enablePrimary, primaryLabel, primaryLink,
     enableSecondary, secondaryLabel, secondaryLink
   } = attributes;
 
-  const blockProps = useBlockProps({ className: `ceiba-csct is-${imageSide}` });
+  const alignClass = imageSide === 'right' ? 'has-media-right' : 'has-media-left';
+  const blockProps = useBlockProps({ className: `ceiba-csct ${alignClass}` });
   const [ctaOpen, setCtaOpen] = useState(false);
 
-  const media = useSelect(
+  useSelect(
     (select) => (imageId ? select(coreStore).getMedia(imageId) : null),
     [imageId]
   );
@@ -74,7 +75,6 @@ export default function Edit({ attributes, setAttributes }) {
     setAttributes({ [key]: { url: '', id: 0, kind: '', type: '', opensInNewTab: false } });
   };
 
-  // Inline styles for preview image fit + focal point
   const objFit = imageFit === 'cover' ? 'cover' : imageFit === 'stretch' ? 'fill' : 'contain';
   const objPos = `${((focalPoint?.x ?? 0.5) * 100).toFixed(2)}% ${((focalPoint?.y ?? 0.5) * 100).toFixed(2)}%`;
 
@@ -162,7 +162,6 @@ export default function Edit({ attributes, setAttributes }) {
         </PanelBody>
       </InspectorControls>
 
-      {/* CTA Modal for roomy editing */}
       {ctaOpen && (
         <Modal title={__('Edit Call To Actions', 'ceiba')} onRequestClose={() => setCtaOpen(false)}>
           <div style={{ display: 'grid', gap: 16 }}>
@@ -228,7 +227,7 @@ export default function Edit({ attributes, setAttributes }) {
       )}
 
       <div {...blockProps}>
-        <div className="ceiba-csct__grid is-editor">
+        <div className={`ceiba-csct__grid is-editor ${imageSide === 'right' ? 'is-media-right' : 'is-media-left'}`}>
           {imageSide === 'left' && (
             <div className="ceiba-csct__col ceiba-csct__col--media">
               {imageId ? (
@@ -246,14 +245,12 @@ export default function Edit({ attributes, setAttributes }) {
               onChange={(v) => setAttributes({ title: v })}
               className="ceiba-csct__title"
             />
-            <RichText
-              tagName="div"
-              multiline="p"
-              placeholder={__('Write content…', 'ceiba')}
-              value={content}
-              onChange={(v) => setAttributes({ content: v })}
-              className="ceiba-csct__content"
-            />
+            <div className="ceiba-csct__content">
+              <InnerBlocks
+                allowedBlocks={['core/heading','core/paragraph','core/list','core/buttons']}
+                templateLock={false}
+              />
+            </div>
 
             <div className="ceiba-csct__cta">
               {enablePrimary && <Button variant="primary">{primaryLabel || __('Primary', 'ceiba')}</Button>}
@@ -273,3 +270,4 @@ export default function Edit({ attributes, setAttributes }) {
     </>
   );
 }
+
