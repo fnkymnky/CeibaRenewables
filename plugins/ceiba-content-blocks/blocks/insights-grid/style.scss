@@ -1,0 +1,29 @@
+/* Desktop/Tablet-only styles (mobile uses default Swiper CSS with no overrides) */
+@media (min-width: 721px) {
+  /* HIDE SWIPER CONTROLS */
+  .swiper-pagination,
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+  .wp-block-ceiba-insights-grid { display: block; }
+  .ceiba-insights__inner { position: relative; }
+  .ceiba-insights-grid { display: grid; gap: 16px; }
+  .ceiba-insights__inner.cols-1 .ceiba-insights-grid { grid-template-columns: 1fr; }
+  .ceiba-insights__inner.cols-2 .ceiba-insights-grid { grid-template-columns: repeat(2, 1fr); }
+  .ceiba-insights__inner.cols-3 .ceiba-insights-grid { grid-template-columns: repeat(3, 1fr); }
+
+  @media (max-width: 1024px) {
+    .ceiba-insights__inner.cols-3 .ceiba-insights-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .ceiba-insight-card {
+    background: #f5f7fa;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ceiba-insight-card__media img { width: 100%; height: auto; display: block; }
+  .ceiba-insight-card__body { padding: 12px 10px 16px; }
+  .ceiba-insight-card__label { margin: 0 0 6px; font-size: 0.8125rem; color: #0b5; text-transform: uppercase; letter-spacing: .02em; }
+  .ceiba-insight-card__title { margin: 0; font-size: 1rem; line-height: 1.3; }
+}

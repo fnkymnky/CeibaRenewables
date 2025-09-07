@@ -121,7 +121,7 @@ function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
     }
 
     if ( $post_type !== 'case_study' ) {
-        return $allowed; // don’t touch other post types
+        return $allowed; // don't touch other post types
     }
 
     // IMPORTANT: include both core/list and core/list-item
@@ -144,12 +144,6 @@ function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
     );
 }
 
-// Conditionally enqueue Swiper for blocks that need it (e.g., Page List carousel on mobile)
-add_action('wp_enqueue_scripts', function(){
-    if ( is_admin() ) return;
-    // Only enqueue on pages where the Page List block exists
-    if ( function_exists('has_block') && has_block('ceiba/page-list') ) {
-        wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper@9/swiper-bundle.min.css', [], '9.4.1');
-        wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@9/swiper-bundle.min.js', [], '9.4.1', true);
-    }
-}, 20);
+// Ensure the allow-list actually applies in the editor
+add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
+// Swiper is bundled via block view scripts (npm dependency) — no CDN enqueue needed.

@@ -58,8 +58,8 @@
   transition: background 0.2s;
 }
 
-/* Desktop/tablet: grid layout applied to swiper-wrapper */
-@media (min-width: 424px) {
+/* Desktop/tablet: grid layout (keep out of mobile breakpoint) */
+@media (min-width: 426px) {
   .ceiba-services-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -67,7 +67,8 @@
     margin: 96px 0;
   }
 
-  .ceiba-pl .swiper-wrapper.ceiba-services-grid {
+  /* When not using Swiper (desktop), ensure grid layout */
+  .ceiba-pl:not(.is-swiper-init) .ceiba-services-grid {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--wp--preset--spacing--m, 1rem);
@@ -123,6 +124,9 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+  /* Ensure Swiper uses flex on mobile */
+  .ceiba-pl.is-swiper-init .ceiba-services-grid { display: flex !important; }
+  .ceiba-pl.is-swiper-init .swiper-wrapper { display: flex !important; }
   .ceiba-pl.is-swiper-init .swiper-wrapper { align-items: stretch; }
   .ceiba-pl.is-swiper-init .swiper-slide { transition: transform .2s ease; }
   .ceiba-pl.is-swiper-init .swiper-slide-active { transform: scale(1.0); }

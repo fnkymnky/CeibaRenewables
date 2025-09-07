@@ -1,16 +1,21 @@
 {
   "apiVersion": 3,
-  "name": "ceiba/testimonials-carousel",
-  "title": "Testimonials (Carousel)",
+  "name": "ceiba/testimonial-carousel",
+  "title": "Testimonial Carousel",
   "category": "widgets",
   "icon": "format-quote",
-  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] },
+  "description": "Manual selection of Testimonials displayed as a 3-up carousel (activates when more than 3 items).",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "padding": true, "margin": true }
+  },
   "attributes": {
-    "includeIds": { "type": "array", "default": [], "items": { "type": "number" } }
+    "includeIds": { "type": "array", "items": { "type": "number" }, "default": [] }
   },
   "editorScript": "file:./index.js",
-  "script": "file:./view.js",
   "style": "file:./style-index.css",
+  "script": "file:./view.js",
   "viewStyle": "file:./view.css",
   "render": "file:./render.php"
 }

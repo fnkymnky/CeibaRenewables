@@ -73,14 +73,14 @@ export default function Edit({ attributes, setAttributes }) {
                                                 label={ __('Heading', 'ceiba') }
                                                 value={ title }
                                                 onChange={(v) => setAttributes({ title: v })}
-                                                placeholder={ __('Add heading…', 'ceiba') }
+                                                placeholder={ __('Add heading', 'ceiba') }
                                                 style={{ marginTop: '16px' }}
                                         />
                                         <TextareaControl
                                                 label={ __('Content', 'ceiba') }
                                                 value={ text }
                                                 onChange={(v) => setAttributes({ text: v })}
-                                                placeholder={ __('Add content…', 'ceiba') }
+                                                placeholder={ __('Add content', 'ceiba') }
                                         />
                                 </PanelBody>
                         </InspectorControls>
@@ -107,3 +107,4 @@ export default function Edit({ attributes, setAttributes }) {
                 </>
         );
 }
+

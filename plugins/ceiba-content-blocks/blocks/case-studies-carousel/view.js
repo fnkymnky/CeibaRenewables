@@ -11,13 +11,15 @@ import 'swiper/css/pagination';
 
     const prevEl = root.querySelector('.swiper-button-prev');
     const nextEl = root.querySelector('.swiper-button-next');
+    const slideCount = root.querySelectorAll('.swiper-slide').length;
+    const loopEnabled = slideCount > 3; // avoid Swiper loop warnings on low counts
 
     const s = new Swiper(root, {
       modules: [Navigation, Pagination],
       // Infinite loop with centered slides and peeking neighbors
-      loop: true,
+      loop: loopEnabled,
       centeredSlides: true,
-      spaceBetween: 16,
+      spaceBetween: 12,
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       pagination: { el: root.querySelector('.swiper-pagination'), clickable: true },

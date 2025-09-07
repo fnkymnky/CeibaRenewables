@@ -1,29 +1,26 @@
-(function(){
-  function whenSwiperReady(cb){
-    if (window.Swiper) return cb(window.Swiper);
-    var tries = 0;
-    (function wait(){
-      if (window.Swiper) return cb(window.Swiper);
-      if (tries++ > 120) return; // ~3s cap
-      setTimeout(wait, 25);
-    })();
-  }
+import Swiper from 'swiper';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
+(function(){
   function init(container){
     if (!container || container.dataset.plInit) return;
     container.dataset.plInit = '1';
     var instance = null;
     var mql = window.matchMedia('(max-width: 425px)');
     var wrapper = container.querySelector('.ceiba-services-grid');
-    function mount(Sw){
+    function mount(){
       if (instance || !mql.matches) return;
       // Activate Swiper on mobile: add classes Swiper expects
       container.classList.add('swiper');
       if (wrapper) wrapper.classList.add('swiper-wrapper');
       container.querySelectorAll('.ceiba-service-card').forEach(function(card){ card.classList.add('swiper-slide'); });
-      instance = new Sw(container, {
-        // Infinite, centered, with a hint of adjacent slides visible
-        loop: true,
+      var slideCount = container.querySelectorAll('.ceiba-service-card').length;
+      var loopEnabled = slideCount > 2; // avoid Swiper loop warnings on low counts
+      instance = new Swiper(container, {
+        modules: [Pagination],
+        loop: loopEnabled,
         centeredSlides: true,
         slidesPerView: 1.15,
         spaceBetween: 12,
@@ -46,13 +43,7 @@
       container.querySelectorAll('.ceiba-service-card').forEach(function(card){ card.classList.remove('swiper-slide'); });
     }
 
-    function sync(){
-      if (mql.matches) {
-        whenSwiperReady(mount);
-      } else {
-        unmount();
-      }
-    }
+    function sync(){ if (mql.matches) { mount(); } else { unmount(); } }
 
     sync();
     mql.addEventListener ? mql.addEventListener('change', sync) : window.addEventListener('resize', sync);

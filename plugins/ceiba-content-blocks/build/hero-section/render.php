@@ -9,7 +9,7 @@ $attr = wp_parse_args( (array) $attributes, [
   'backgroundAlt' => '',
 ] );
 
-// Use the page featured image as background; fallback to specified upload path when absent
+// Use the page featured image as background; allow a pluggable fallback via filter when absent
 $bg_url = '';
 $featured = get_post_thumbnail_id();
 if ( $featured ) {
@@ -17,8 +17,8 @@ if ( $featured ) {
   if ( $img ) { $bg_url = esc_url( $img[0] ); }
 }
 if ( ! $bg_url ) {
-  // Use a site-relative default image path if no featured image exists
-  $bg_url = esc_url( content_url( 'uploads/2025/09/Home-Page-Banner.jpg' ) );
+  $bg_url = apply_filters( 'ceiba_hero_default_background_url', '' );
+  $bg_url = $bg_url ? esc_url( $bg_url ) : '';
 }
 
 $align_class = '';
@@ -47,21 +47,19 @@ if ( $featured ) {
   }
 }
 
-// No inline style attribute; use inline CSS so mobile avoids fetching desktop asset
-$top_style = '';
-
 echo '<section ' . $wrapper . '>';
 // Top: background image + title
 echo '  <style>';
 if ( $bg_url_full ) echo '#' . esc_attr( $unique_id ) . ' .ceiba-hero__top{background-image:url(' . esc_url( $bg_url_full ) . ');}';
 if ( $bg_url_mobile ) echo '@media (max-width: 768px){#' . esc_attr( $unique_id ) . ' .ceiba-hero__top{background-image:url(' . esc_url( $bg_url_mobile ) . ') !important;}}';
 echo '</style>';
-echo '  <div class="ceiba-hero__top"' . $top_style . '>';
+echo '  <div class="ceiba-hero__top">';
 echo '    <div class="ceiba-hero__backdrop" aria-hidden="true"></div>';
 echo '    <div class="ceiba-hero__inner">';
 if ( ! empty( $attr['title'] ) ) {
   echo '      <h1 class="ceiba-hero__title">' . wp_kses_post( $attr['title'] ) . '</h1>';
 }
+
 echo '    </div>';
 echo '  </div>';
 
@@ -75,3 +73,4 @@ if ( $has_content ) {
   echo '  </div>';
 }
 echo '</section>';
+

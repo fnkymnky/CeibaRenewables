@@ -48,6 +48,7 @@ h6 {
   font-size: 12px;
   font-weight: 500;
   padding: 8px 0;
+  display: none;
 
   a {
     color: white;
@@ -203,6 +204,12 @@ h6 {
       display: flex;
       justify-content: center;
     }
+  }
+}
+
+@media (min-width: 600px) {
+  .contact-bar {
+    display: block;
   }
 }
 

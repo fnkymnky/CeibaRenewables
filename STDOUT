@@ -1,0 +1,40 @@
+    $post_type = null;
+
+    if ( is_array( $context ) && isset( $context['post_type'] ) ) {
+        $post_type = $context['post_type'];
+    } elseif ( is_object( $context ) && isset( $context->post ) && $context->post ) {
+        $post_type = $context->post->post_type;
+    } elseif ( is_object( $context ) && isset( $context->postType ) ) {
+        $post_type = $context->postType;
+    }
+
+    if ( $post_type !== 'case_study' ) {
+        return $allowed; // don’t touch other post types
+    }
+
+    // IMPORTANT: include both core/list and core/list-item
+    return array(
+        'core/paragraph',
+        'core/heading',
+        'core/list',
+        'core/list-item',
+        'core/quote',
+        'core/image',
+        'core/gallery',
+        'core/separator',
+        'core/buttons',
+        'core/columns',
+        'core/column',
+        'core/embed',
+        'core/spacer',
+        'ceiba/map-embed',
+        'ceiba/testimonial',
+    );
+}
+
+// Conditionally enqueue Swiper for blocks that need it (e.g., Page List carousel on mobile)
+add_action('wp_enqueue_scripts', function(){
+    if ( is_admin() ) return;
+    // Only enqueue on pages where the Page List block exists
+    if ( function_exists('has_block') && has_block('ceiba/page-list') ) {
+        wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper@9/swiper-bundle.min.css', [], '9.4.1');

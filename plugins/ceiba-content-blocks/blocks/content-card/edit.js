@@ -92,7 +92,7 @@ export default function Edit( { attributes, setAttributes } ) {
             tagName="h3"
             value={ heading }
             onChange={ (value) => setAttributes({ heading: value }) }
-            placeholder={ __('Add heading…', 'ceiba') }
+            placeholder={ __('Add heading', 'ceiba') }
             allowedFormats={[ 'core/bold','core/italic','core/link' ]}
           />
           <RichText
@@ -100,7 +100,7 @@ export default function Edit( { attributes, setAttributes } ) {
             className="cb-body"
             value={ body }
             onChange={ (value) => setAttributes({ body: value }) }
-            placeholder={ __('Start writing…', 'ceiba') }
+            placeholder={ __('Start writing', 'ceiba') }
             allowedFormats={[ 'core/bold','core/italic','core/underline','core/link','core/strikethrough','core/code' ]}
           />
           {(linkText || linkUrl) && (
@@ -119,3 +119,4 @@ export default function Edit( { attributes, setAttributes } ) {
     </Fragment>
   );
 }
+

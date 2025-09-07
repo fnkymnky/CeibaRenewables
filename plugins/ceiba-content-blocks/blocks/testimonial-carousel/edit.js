@@ -28,13 +28,7 @@ export default function Edit({ attributes, setAttributes }) {
 
   const toggle = (id, checked) => {
     const set = new Set(includeIds);
-    if (checked) {
-      if (set.size >= 6) return;
-      set.add(id);
-    } else {
-      if (set.size <= 1) return;
-      set.delete(id);
-    }
+    if (checked) set.add(id); else set.delete(id);
     setAttributes({ includeIds: Array.from(set).filter(Boolean) });
   };
 
@@ -67,33 +61,34 @@ export default function Edit({ attributes, setAttributes }) {
             />
           ))}
           <div style={{ marginTop: 12, fontSize: 12, color: '#666' }}>
-            {includeIds.length} / 6 selected
+            {includeIds.length} {__('selected', 'ceiba')}
           </div>
         </PanelBody>
 
-        <PanelBody title={__('Order', 'ceiba')} initialOpen={false}>
-          {selected.length ? selected.map((item, index) => (
-            <div key={item.id} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-              <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</div>
-              <div style={{ display: 'inline-flex', gap: 6 }}>
-                <Button icon="arrow-up-alt2" label={__('Up', 'ceiba')} onClick={() => move(index, -1)} disabled={index === 0} />
-                <Button icon="arrow-down-alt2" label={__('Down', 'ceiba')} onClick={() => move(index, +1)} disabled={index === selected.length - 1} />
+        {selected.length > 1 && (
+          <PanelBody title={__('Order', 'ceiba')} initialOpen={false}>
+            {selected.map((item, index) => (
+              <div key={item.id} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+                <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</div>
+                <div style={{ display: 'inline-flex', gap: 6 }}>
+                  <Button icon="arrow-up-alt2" label={__('Up', 'ceiba')} onClick={() => move(index, -1)} disabled={index === 0} />
+                  <Button icon="arrow-down-alt2" label={__('Down', 'ceiba')} onClick={() => move(index, +1)} disabled={index === selected.length - 1} />
+                </div>
               </div>
-            </div>
-          )) : (
-            <Notice status="warning" isDismissible={false}>{__('Select at least one item.', 'ceiba')}</Notice>
-          )}
-        </PanelBody>
+            ))}
+          </PanelBody>
+        )}
       </InspectorControls>
 
       <div {...blockProps}>
-        <div className="ceiba-tc-carousel__placeholder">
-          <strong>{__('Testimonials (Carousel)', 'ceiba')}</strong>
+        <div className="ceiba-tc__placeholder">
+          <strong>{__('Testimonial Carousel', 'ceiba')}</strong>
           <div className="hint">
-            { includeIds.length ? __('Front-end will render selected items in this order.', 'ceiba') : __('Tick items in the sidebar (1–6).', 'ceiba') }
+            { includeIds.length ? __('Front-end will render selected testimonials.', 'ceiba') : __('Tick testimonials in the sidebar.', 'ceiba') }
           </div>
         </div>
       </div>
     </Fragment>
   );
 }
+

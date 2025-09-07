@@ -1,0 +1,21 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/insights-grid",
+  "title": "Insights Grid",
+  "category": "widgets",
+  "icon": "grid-view",
+  "description": "Manual selection of blog posts displayed in a responsive grid; mobile renders as a carousel.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "padding": true, "margin": true }
+  },
+  "attributes": {
+    "includeIds": { "type": "array", "items": { "type": "number" }, "default": [] }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "script": "file:./view.js",
+  "render": "file:./render.php"
+}
+

@@ -54,7 +54,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
           />
           {isShort && (
             <Notice status="info" isDismissible={ false }>
-              { __('Short links embed. For exact focus paste the “Embed a map” URL (…/maps/embed?pb=…).', 'ceiba') }
+              { __('Short links will embed. For exact map focus, paste the "Embed a map" URL (/maps/embed?pb=...).', 'ceiba') }
             </Notice>
           )}
         </PanelBody>
@@ -71,7 +71,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
               title="Map"
               style={{ pointerEvents: interact ? 'auto' : 'none' }}
             />
-            { !interact && <div className="cb-mapembed__overlay">{ __('Map preview locked • Use toolbar to enable', 'ceiba') }</div> }
+            { !interact && <div className="cb-mapembed__overlay">{ __('Map preview locked — use toolbar to enable', 'ceiba') }</div> }
           </>
         ) : (
           <div className="cb-mapembed__placeholder">{ __('Add a Google Maps Share URL in the sidebar', 'ceiba') }</div>
@@ -80,3 +80,4 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     </>
   );
 }
+
