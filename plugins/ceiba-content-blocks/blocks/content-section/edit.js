@@ -29,6 +29,7 @@ const disallowTestimonials = (link) =>
 
 export default function Edit({ attributes, setAttributes }) {
   const {
+    width, // "constrained" | "full" (UI helper; align is the source of truth for full-bleed)
     title, /* content (legacy, unused) */
     imageId, imageUrl, imageAlt, imageSide, imageFit, focalPoint,
     enablePrimary, primaryLabel, primaryLink,
@@ -38,6 +39,8 @@ export default function Edit({ attributes, setAttributes }) {
   const alignClass = imageSide === 'right' ? 'has-media-right' : 'has-media-left';
   const blockProps = useBlockProps({ className: `ceiba-csct ${alignClass}` });
   const [ctaOpen, setCtaOpen] = useState(false);
+  // Derive width from align to mirror core behavior: align 'full' => full width; otherwise constrained
+  const derivedWidth = attributes?.align === 'full' ? 'full' : (width || 'constrained');
 
   useSelect(
     (select) => (imageId ? select(coreStore).getMedia(imageId) : null),
@@ -105,6 +108,20 @@ export default function Edit({ attributes, setAttributes }) {
       </BlockControls>
 
       <InspectorControls>
+        <PanelBody title={__('Width', 'ceiba')} initialOpen>
+          <SelectControl
+            label={__('Section width', 'ceiba')}
+            value={derivedWidth}
+            options={[
+              { label: __('Constrained', 'ceiba'), value: 'constrained' },
+              { label: __('Full width', 'ceiba'), value: 'full' }
+            ]}
+            onChange={(v) => {
+              // Keep a local width attribute for clarity, but set core align so theme/styles handle full-bleed
+              setAttributes({ width: v, align: v === 'full' ? 'full' : undefined });
+            }}
+          />
+        </PanelBody>
         <PanelBody title={__('Media', 'ceiba')} initialOpen>
           <MediaUploadCheck>
             <MediaUpload
@@ -237,17 +254,9 @@ export default function Edit({ attributes, setAttributes }) {
           )}
 
           <div className="ceiba-csct__col ceiba-csct__col--body">
-            <RichText
-              tagName="h2"
-              placeholder={__('Add title…', 'ceiba')}
-              value={title}
-              allowedFormats={[]}
-              onChange={(v) => setAttributes({ title: v })}
-              className="ceiba-csct__title"
-            />
             <div className="ceiba-csct__content">
               <InnerBlocks
-                allowedBlocks={['core/heading','core/paragraph','core/list','core/buttons']}
+                allowedBlocks={['core/heading','core/paragraph','core/list','core/buttons','core/image']}
                 templateLock={false}
               />
             </div>
@@ -270,4 +279,3 @@ export default function Edit({ attributes, setAttributes }) {
     </>
   );
 }
-

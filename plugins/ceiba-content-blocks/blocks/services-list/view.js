@@ -27,6 +27,7 @@
         centeredSlides: true,
         slidesPerView: 1.15,
         spaceBetween: 12,
+        pagination: { el: container.querySelector('.swiper-pagination'), clickable: true },
         watchOverflow: true,
         observer: true,
         observeParents: true,

@@ -58,6 +58,7 @@ while ( $q->have_posts() ) {
 
 echo '  </div>'; // .swiper-wrapper
 
+echo '  <div class="swiper-pagination"></div>';
 echo '  <div class="cb-tc__nav swiper-nav">';
 echo '    <button class="cb-tc__navbtn swiper-button-prev" type="button" aria-label="' . esc_attr__( 'Previous', 'ceiba' ) . '"></button>';
 echo '    <button class="cb-tc__navbtn swiper-button-next" type="button" aria-label="' . esc_attr__( 'Next', 'ceiba' ) . '"></button>';

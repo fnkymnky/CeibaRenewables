@@ -19,7 +19,9 @@ $attr = wp_parse_args( $attributes, [
 ] );
 
 $align_class = ( isset($attr['imageSide']) && $attr['imageSide'] === 'right' ) ? 'has-media-right' : 'has-media-left';
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-csct ' . $align_class ] );
+// If editors selected our new "Full width" option but align wasn't explicitly set, mirror core by adding alignfull
+$maybe_alignfull = ( empty( $attributes['align'] ) && isset( $attr['width'] ) && $attr['width'] === 'full' ) ? ' alignfull' : '';
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-csct ' . $align_class . $maybe_alignfull ] );
 
 $fit = in_array( $attr['imageFit'], [ 'cover', 'fill', 'stretch' ], true ) ? $attr['imageFit'] : 'cover';
 $object_fit = $fit === 'cover' ? 'cover' : ( $fit === 'stretch' ? 'fill' : 'contain' );
@@ -78,9 +80,6 @@ ob_start(); ?>
         <?php echo $img_html ?: ''; ?>
       </div>
       <div class="ceiba-csct__col ceiba-csct__col--body">
-        <?php if ( ! empty( $attr['title'] ) ) : ?>
-          <h2 class="ceiba-csct__title"><?php echo esc_html( $attr['title'] ); ?></h2>
-        <?php endif; ?>
         <div class="ceiba-csct__content">
           <?php echo $body_html; ?>
         </div>
@@ -103,9 +102,6 @@ ob_start(); ?>
       </div>
     <?php else : ?>
       <div class="ceiba-csct__col ceiba-csct__col--body">
-        <?php if ( ! empty( $attr['title'] ) ) : ?>
-          <h2 class="ceiba-csct__title"><?php echo esc_html( $attr['title'] ); ?></h2>
-        <?php endif; ?>
         <div class="ceiba-csct__content">
           <?php echo $body_html; ?>
         </div>

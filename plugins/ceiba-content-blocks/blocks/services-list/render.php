@@ -47,5 +47,6 @@ foreach ( $children as $child ) {
     echo '    </article>';
 }
 echo '    </div>';
+echo '    <div class="swiper-pagination"></div>';
 echo '  </div>';
 echo '</section>';

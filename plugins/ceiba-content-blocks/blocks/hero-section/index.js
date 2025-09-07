@@ -6,6 +6,7 @@ import { useSelect } from '@wordpress/data';
 import { store as blockEditorStore } from '@wordpress/block-editor';
 import { PanelBody, RadioControl } from '@wordpress/components';
 import './style.scss';
+import './editor.scss';
 import save from './save';
 
 const ALLOWED_BLOCKS = [ 'core/heading', 'core/paragraph', 'core/buttons', 'core/list', 'core/list-item', 'core/separator' ];

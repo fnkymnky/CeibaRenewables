@@ -21,3 +21,6 @@
 .ceiba-hero::after {
   display: none;
 }
+.ceiba-hero__bottom { 
+  z-index: unset;
+}

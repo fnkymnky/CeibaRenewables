@@ -66,6 +66,7 @@ while ($q->have_posts()) {
 }
 
 $out .= '</div>'; // .swiper-wrapper
+$out .= '<div class="swiper-pagination"></div>';
 
 // Mirror Testimonials: only show arrows when >3 items
 if ($q->post_count > 3) {

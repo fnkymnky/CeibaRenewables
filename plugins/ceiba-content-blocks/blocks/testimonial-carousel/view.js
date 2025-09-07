@@ -1,7 +1,8 @@
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 (function(){
   function init(root){
@@ -12,13 +13,14 @@ import 'swiper/css/navigation';
     const nextEl = root.querySelector('.swiper-button-next');
 
     const s = new Swiper(root, {
-      modules: [Navigation],
+      modules: [Navigation, Pagination],
       // Infinite loop with centered slides and peeking neighbors
       loop: true,
       centeredSlides: true,
       spaceBetween: 16,
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
+      pagination: { el: root.querySelector('.swiper-pagination'), clickable: true },
       breakpoints: {
         0:   { slidesPerView: 1.15 },
         721: { slidesPerView: 3.15 }

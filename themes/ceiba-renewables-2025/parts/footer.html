@@ -1,8 +1,42 @@
-<div class="contact-bar">
-    <div class="contact-bar__inner">
-        <!-- wp:shortcode -->
+<!-- wp:group {"tagName":"footer","className":"site-footer"} -->
+<footer class="wp-block-group site-footer">
+  <!-- wp:group {"className":"footer__inner","layout":{"type":"constrained","contentSize":"1280px"}} -->
+  <div class="wp-block-group footer__inner">
+    <!-- wp:columns {"className":"footer-columns"} -->
+    <div class="wp-block-columns footer-columns">
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <h3>Navigation</h3>
+        <!-- wp:navigation {"overlayMenu":"never","ariaLabel":"Footer navigation","ref":249,"layout":{"type":"flex","orientation":"vertical"}} /-->
+      </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column -->
+        <div class="wp-block-column">
+          <h3>Contact Us</h3>
+          <!-- wp:shortcode -->
             [slm_contact_info]
-        <!-- /wp:shortcode -->
-        <!-- wp:slm/social-links {"brandColors":true} /-->
+          <!-- /wp:shortcode -->  
+          <!-- wp:slm/social-links {"brandColors":true} /-->       
+        </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <h3>More Info</h3>
+        <!-- wp:navigation {"overlayMenu":"never","ariaLabel":"More info navigation","ref":481,"layout":{"type":"flex","orientation":"vertical"}} /-->
+      </div>
+      <!-- /wp:column -->
     </div>
-</div>
+    <!-- /wp:columns -->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"footer-bar","layout":{"type":"constrained","contentSize":"1280px"}} -->
+  <div class="wp-block-group footer-bar">
+    <p>Copyright © 2025 Ceiba Renewables Ltd.</p>
+    <!-- wp:navigation {"overlayMenu":"never","ariaLabel":"Legal links","ref":484,"layout":{"type":"flex","orientation":"horizontal"}} /-->
+  </div>
+  <!-- /wp:group -->
+</footer>
+<!-- /wp:group -->

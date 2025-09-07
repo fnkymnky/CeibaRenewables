@@ -126,4 +126,12 @@
   .ceiba-pl.is-swiper-init .swiper-wrapper { align-items: stretch; }
   .ceiba-pl.is-swiper-init .swiper-slide { transition: transform .2s ease; }
   .ceiba-pl.is-swiper-init .swiper-slide-active { transform: scale(1.0); }
+
+  /* Pagination bullets */
+  .ceiba-pl .swiper-pagination { bottom: -4px !important; }
+  .ceiba-pl .swiper-pagination-bullet {
+    width: 12px; height: 3px; border-radius: 2px;
+    background: color-mix(in srgb, currentColor 35%, transparent); opacity: 1;
+  }
+  .ceiba-pl .swiper-pagination-bullet-active { background: currentColor; }
 }

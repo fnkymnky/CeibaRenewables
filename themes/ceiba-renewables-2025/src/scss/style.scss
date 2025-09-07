@@ -11,16 +11,21 @@ Text Domain: ceiba-child
 // @use 'tokens';
 // @use 'header';
 
-body{
+body {
   font-family: var(--wp--preset--font-family--montserrat);
 }
 
-:where(.wp-site-blocks) > * {
+:where(.wp-site-blocks)>* {
   margin-block-start: 0;
 }
 
 /* Reset margins on headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
@@ -41,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--wp--preset--color--ceiba-green);
   color: #fff;
   font-size: 12px;
-  font-weight:500;
+  font-weight: 500;
   padding: 8px 0;
 
   a {
@@ -52,38 +57,40 @@ h1, h2, h3, h4, h5, h6 {
       text-decoration: underline;
     }
   }
-}
 
-.slm-contact {
-  display: flex;
-}
+  .slm-contact {
+    display: flex;
+  }
 
-.slm-contact__item--phone, .slm-contact__item--email {
-  margin: 0 16px 0 16px;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  height: 12px;
-  line-height: 12px;
-  font-size: 12px;
-  position: relative;
-}
+  .slm-contact__item--phone,
+  .slm-contact__item--email {
+    margin: 0 16px 0 16px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    position: relative;
+  }
 
-.slm-contact__item--phone:before, .slm-contact__item--email:before {
-  // Font Awesome 6 (enqueued in functions.php)
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900; // solid icons
-  left: -16px;
-  position: absolute;
-  font-size: 12px;
-}
+  .slm-contact__item--phone:before,
+  .slm-contact__item--email:before {
+    // Font Awesome 6 (enqueued in functions.php)
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900; // solid icons
+    left: -16px;
+    position: absolute;
+    font-size: 12px;
+  }
 
-.slm-contact__item--phone:before {
-  content: "\f095";
-}
+  .slm-contact__item--phone:before {
+    content: "\f095";
+  }
 
-.slm-contact__item--email:before {
-  content: "\f0e0";
+  .slm-contact__item--email:before {
+    content: "\f0e0";
+  }
 }
 
 .navbar {
@@ -102,18 +109,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Full-bleed blocks inside content (margin-only approach to avoid 100vw scrollbar overflow) */
-.wp-block-post-content > .alignfull,
-.entry-content > .alignfull,
-.wp-site-blocks > .alignfull,
-:where(.is-layout-constrained) > .alignfull {
+.wp-block-post-content>.alignfull,
+.entry-content>.alignfull,
+.wp-site-blocks>.alignfull,
+:where(.is-layout-constrained)>.alignfull {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
+
 /* Prevent horizontal scrollbar caused by full-bleed margins */
-.wp-site-blocks { overflow-x: clip; }
-@supports not (overflow: clip) {
-  .wp-site-blocks { overflow-x: hidden; }
+.wp-site-blocks {
+  overflow-x: clip;
 }
+
+@supports not (overflow: clip) {
+  .wp-site-blocks {
+    overflow-x: hidden;
+  }
+}
+
 /* Ensure the Hero block can truly bleed full-width anywhere it's placed */
 .wp-block-ceiba-hero-section.alignfull {
   margin-left: calc(50% - 50vw);
@@ -121,6 +135,107 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-footer {
-  margin-top:400px; /*REMOVE ME*/
+.site-footer {
+  background: var(--wp--preset--color--ceiba-navy);
+  padding: 24px 0 0;
+  color: var(--wp--preset--color--bg);
+  border-top: 10px solid var(--wp--preset--color--ceiba-green);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  a {
+    font-weight:500;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  a.social-link {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+
+    ul {
+      align-items: center;
+    }
+  }
+
+  .slm-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: var(--wp--preset--font-size--medium);
+    
+    a {
+      color: var(--wp--preset--color--bg);
+    }
+  }
+
+  .social-link {
+    height: 32px;
+    width: 32px;
+  }
+  .social-link__icon {
+    font-size: 20px;
+  }
+}
+
+.footer-bar {
+  background: var(--wp--preset--color--ceiba-green);
+  color: var(--wp--preset--color--bg);
+  padding: 12px;
+  color: var(--wp--preset--color--ceiba-navy);
+  margin-top: 24px;
+  font-size: var(--wp--preset--font-size--medium);
+
+  nav {
+    margin: 8px 0 0;
+
+    ul {
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+@media (min-width: 782px) {
+  .site-footer {
+    padding: 64px 0 0;
+    text-align: left;
+
+    nav {
+      align-items:flex-start;
+
+      ul {
+        align-items: flex-start;
+      }
+    }
+
+    li {
+      text-align: left;
+    }
+
+    .footer-bar {
+      margin-top: 64px;
+      justify-content: space-between;
+      flex-direction: row;
+      display: flex;
+
+        nav {
+          margin: 0;
+
+          ul {
+            justify-content: flex-end;
+          }
+        }
+    }
+  }
 }
