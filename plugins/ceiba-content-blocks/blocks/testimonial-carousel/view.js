@@ -13,14 +13,6 @@ import 'swiper/css';
     const slides = Array.from(container.querySelectorAll('.ceiba-tc__slide'));
     const slideCount = slides.length;
 
-    if (slideCount <= 3) {
-      // Ensure no stray swiper classes are present when not initialized
-      container.classList.remove('swiper');
-      wrapper.classList.remove('swiper-wrapper');
-      slides.forEach((el) => el.classList.remove('swiper-slide'));
-      return;
-    }
-
     // Add swiper classes right before init so Swiper recognizes structure
     container.classList.add('swiper');
     wrapper.classList.add('swiper-wrapper');
@@ -28,24 +20,37 @@ import 'swiper/css';
 
     const prevEl = container.querySelector('.swiper-button-prev');
     const nextEl = container.querySelector('.swiper-button-next');
+    const navWrap = container.querySelector('.swiper-nav');
 
-    new Swiper(container, {
+    const s = new Swiper(container, {
       modules: [Navigation],
       slidesPerView: 3,
-      spaceBetween: 12,
+      spaceBetween: 16,
       centeredSlides: false,
       loop: false,
       grabCursor: true,
       initialSlide: 0,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: 1.15, centeredSlides: true,  slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
-        1025: { slidesPerView: 3,    centeredSlides: false, slidesOffsetBefore: 0,  slidesOffsetAfter: 0 }
+        0:    { slidesPerView: 1.15, centeredSlides: true, spaceBetween: 12 },
+        768:  { slidesPerView: 2, centeredSlides: true, spaceBetween: 16 },
+        1025: { slidesPerView: 3, centeredSlides: false, spaceBetween: 16 }
       },
       watchOverflow: true,
       observer: true,
       observeParents: true,
     });
+
+    function updateNavVisibility(){
+      if (!navWrap) return;
+      const spv = typeof s.params.slidesPerView === 'number' ? s.params.slidesPerView : 1;
+      const show = slideCount > spv;
+      navWrap.style.display = show ? '' : 'none';
+    }
+    s.on('init', updateNavVisibility);
+    s.on('breakpoint', updateNavVisibility);
+    s.on('resize', updateNavVisibility);
+    updateNavVisibility();
   }
 
   function boot(){ document.querySelectorAll('.wp-block-ceiba-testimonial-carousel .ceiba-tc__inner').forEach(init); }

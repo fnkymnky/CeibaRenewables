@@ -1,94 +1,118 @@
-/* Distinct visual for Case Studies (Carousel) */
-.wp-block-ceiba-case-studies-carousel {
-  /* Optional canvas padding controlled by block supports */
+.wp-block-ceiba-case-studies-carousel .ceiba-ic__inner {
+  margin: 32px 0;
+
+  &.swiper {
+    // overflow: visible;
+  }
 }
 
-.ceiba-cs { position: relative; }
-
-/* Swiper container tweaks just for case studies */
-.ceiba-cs .swiper { overflow: hidden; padding-bottom: 44px; }
-
-.ceiba-cs-card {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  background: var(--wp--preset--color--base, #0f1320);
-  color: var(--wp--preset--color--contrast, #e9edf4);
-  border-radius: var(--wp--custom--radius-lg, 16px);
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 6px 24px rgba(3,8,20,.25);
-  overflow: clip;
-  transform: translateZ(0);
+@media (min-width: 1025px) {
+  .wp-block-ceiba-case-studies-carousel .ceiba-ic__inner { margin: 64px 0; }
 }
 
-.ceiba-cs-card__media {
-  aspect-ratio: 3 / 2;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wp-block-ceiba-case-studies-carousel .ceiba-ic__slide {
+  border-radius: 64px;
+  overflow: hidden;
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.2s;
+
+  &__backdrop {
+    content: '';
+    background: var(--wp--preset--color--ceiba-navy);
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:hover {
+    transition: transform 0.2s;
+    transform: scale(0.95);
+  }
 }
 
-.ceiba-cs-card__body {
-  padding: clamp(16px, 2vw, 22px);
-  display: grid; gap: 10px;
+.wp-block-ceiba-case-studies-carousel .ceiba-insight-card__body {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 40px 40px 40px;
 }
 
-.ceiba-cs-card__title {
-  margin: 0;
-  font-size: clamp(18px, 2.1vw, 22px);
-  line-height: 1.2;
-  a { color: inherit; text-decoration: none; }
-  a:hover, a:focus { text-decoration: underline; text-underline-offset: 3px; }
+.wp-block-ceiba-case-studies-carousel .ceiba-insight-card__label {
+  margin: 0 0 6px;
+  font-size: var(--wp--preset--font-size--large);
+  color: var(--wp--preset--color--ceiba-green, #45ad58);
+  font-weight: 700;
 }
 
-.ceiba-cs-card__excerpt {
-  margin: 0;
-  color: color-mix(in srgb, currentColor 78%, transparent);
+.wp-block-ceiba-case-studies-carousel .ceiba-insight-card__title {
+  color: var(--wp--preset--color--bg);
+  font-size: var(--wp--preset--font-size--large);
+
+  a {
+    position: static;
+    color: var(--wp--preset--color--bg);
+    text-decoration: none;
+
+    &:after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+  }
 }
 
-.ceiba-cs-card__more { margin: 0; }
-.ceiba-cs-card__link {
-  display: inline-block;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: var(--wp--preset--color--primary, #59ffa8);
-  color: #07120c;
-  transition: transform .12s ease;
-}
-.ceiba-cs-card__link:hover { transform: translateY(-1px); }
-
-/* Swiper controls styled differently from Testimonials */
-.ceiba-cs .swiper-pagination {
-  bottom: 8px !important;
-}
-.ceiba-cs .swiper-pagination-bullet {
-  width: 18px; height: 3px; border-radius: 2px;
-  background: color-mix(in srgb, currentColor 35%, transparent); opacity: 1;
-}
-.ceiba-cs .swiper-pagination-bullet-active {
-  background: currentColor;
+/* Use same nav container styles as insights/testimonials (inherits Swiper defaults) */
+.wp-block-ceiba-case-studies-carousel .swiper-nav {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 0;
 }
 
-.ceiba-cs .swiper-button-prev,
-.ceiba-cs .swiper-button-next {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(6px);
-  color: #fff;
-}
-.ceiba-cs .swiper-button-prev:after,
-.ceiba-cs .swiper-button-next:after {
-  font-size: 16px; font-weight: 800;
+.wp-block-ceiba-case-studies-carousel .swiper-button-nav {
+  border: 2px solid var(--wp--preset--color--ceiba-green, #45ad58);
+  display: block;
+  border-radius: 9999px;
+  font-size: 0;
+  padding: 8px;
+  background: #fff;
+  margin: 0 8px 8px 0;
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .ceiba-cs-card__link { transition: none; }
+.wp-block-ceiba-case-studies-carousel .swiper-button-nav:after {
+  background: url(./assets/carousel-arrow.svg) no-repeat center center;
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
+.wp-block-ceiba-case-studies-carousel .swiper-button-nav:hover {
+  cursor: pointer;
+}
 
-.ceiba-cs-carousel__placeholder {
-  padding: 16px;
-  border: 1px dashed rgba(0,0,0,.15);
-  border-radius: 8px;
+.wp-block-ceiba-case-studies-carousel .swiper-button-nav.swiper-button-disabled {
+  opacity: .30;
+}
+
+.wp-block-ceiba-case-studies-carousel .swiper-button-prev:after {
+  transform: rotate(180deg);
+  margin-right: 2px;
+}
+
+.wp-block-ceiba-case-studies-carousel .swiper-button-next:after {
+  margin-left: 2px;
 }

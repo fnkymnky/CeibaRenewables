@@ -50,12 +50,10 @@ ob_start(); ?>
         </article>
       <?php endwhile; wp_reset_postdata(); ?>
     </div>
-    <?php if ($count > 3) : ?>
-      <div class="swiper-nav">
-        <button type="button" class="swiper-button-nav swiper-button-prev" aria-label="<?php echo esc_attr__('Previous','ceiba'); ?>">Previous</button>
-        <button type="button" class="swiper-button-nav swiper-button-next" aria-label="<?php echo esc_attr__('Next','ceiba'); ?>">Next</button>
-      </div>
-    <?php endif; ?>
+    <div class="swiper-nav">
+      <button type="button" class="swiper-button-nav swiper-button-prev" aria-label="<?php echo esc_attr__('Previous','ceiba'); ?>">Previous</button>
+      <button type="button" class="swiper-button-nav swiper-button-next" aria-label="<?php echo esc_attr__('Next','ceiba'); ?>">Next</button>
+    </div>
   </div>
 <?php
 echo sprintf('<section %s>%s</section>', $wrapper, ob_get_clean());

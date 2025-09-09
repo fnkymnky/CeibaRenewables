@@ -1,21 +1,9 @@
-/* Minimal styles; relies on Swiper default CSS */
-/* Add any desktop/tablet visuals here if needed */
-
-/* Front-end tweaks for peeking slides and spacing */
-// .cb-tc.swiper {
-//   overflow: visible; /* let neighbors peek */
-//   padding-left: 16px;
-//   padding-right: 16px;
-// }
-
-// @media (min-width: 1025px) {
-//     .wp-block-ceiba-testimonial-carousel .swiper-wrapper {
-//         padding: 0 24px;
-//     }
-// }
-
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
     margin: 32px 0;
+
+    &.swiper {
+        // overflow: visible;
+    }
 }
 
 @media (min-width: 1025px) {

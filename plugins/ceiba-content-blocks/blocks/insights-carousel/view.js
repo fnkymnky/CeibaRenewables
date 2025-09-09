@@ -3,10 +3,10 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 
 (function(){
-  function init(container){
-    if (!container || container.dataset.cbTcInit) return;
-    container.dataset.cbTcInit = '1';
-
+  function init(root){
+    if (!root || root.dataset.icInit) return;
+    root.dataset.icInit = '1';
+    const container = root; // swiper container on inner wrapper
     const wrapper = container.querySelector('.ceiba-ic__track');
     if (!wrapper) return;
 
@@ -28,8 +28,8 @@ import 'swiper/css';
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: 1.15, centeredSlides: true,  slidesOffsetBefore: 0, slidesOffsetAfter: 0, spaceBetween: 12 },
-        768:  { slidesPerView: 2,    centeredSlides: true,  slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 },
+        0:    { slidesPerView: 1.15, centeredSlides: true, slidesOffsetBefore: 0, slidesOffsetAfter: 0, spaceBetween: 12 },
+        768:  { slidesPerView: 2,    centeredSlides: true, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 },
         1025: { slidesPerView: 3,    centeredSlides: false, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
       },
       watchOverflow: true,
@@ -52,9 +52,7 @@ import 'swiper/css';
     updateNavVisibility();
   }
 
-  function boot(){ document.querySelectorAll('.wp-block-ceiba-case-studies-carousel .ceiba-ic__inner').forEach(init); }
+  function boot(){ document.querySelectorAll('.wp-block-ceiba-insights-carousel .ceiba-ic__inner').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   new MutationObserver(boot).observe(document.documentElement, { childList: true, subtree: true });
 })();
-
-import './view.scss';

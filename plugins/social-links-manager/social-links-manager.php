@@ -1,12 +1,9 @@
 <?php
 /*
 Plugin Name: Social Links Manager
-Description: A plugin to manage social links and display them via a shortcode. Links left empty will not display on the frontend.
+Description: Plugin to manage social media links and contact details via settings menu.
 Version: 1.0.1
 Author: Steven McCurrach
-License: GPL2
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: social-links-manager
 */
 
 // Prevent direct access

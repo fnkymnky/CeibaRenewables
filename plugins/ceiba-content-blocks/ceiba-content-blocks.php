@@ -1,8 +1,9 @@
 <?php
 /**
  * Plugin Name: Ceiba Content Blocks
- * Description: Custom blocks and content types for Ceiba.
- * Version: 1.0.0
+ * Description: Custom blocks and content types for Ceiba Renewables 2025.
+ * Version: 1.0.1
+ * Author: Steven McCurrach
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
