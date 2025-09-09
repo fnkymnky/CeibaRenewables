@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action('after_setup_theme', function(){
     add_theme_support('post-thumbnails');
     // Square crops for page list cards
+	add_image_size('page-list-660', 660, 660, true);
     add_image_size('page-list-360', 360, 360, true);
     add_image_size('page-list-320', 320, 320, true);
     // 16:9 mobile hero background (used in CSS @media)

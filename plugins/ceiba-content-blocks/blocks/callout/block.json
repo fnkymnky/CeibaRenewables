@@ -1,0 +1,23 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/callout",
+  "title": "Callout",
+  "category": "layout",
+  "icon": "align-pull-left",
+  "description": "Two-column callout with text and image, supports background color and column order.",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "padding": true, "margin": true },
+    "color": { "background": true }
+  },
+  "attributes": {
+    "imageId": { "type": "number", "default": 0 },
+    "imageSize": { "type": "string", "default": "large" },
+    "imageLeft": { "type": "boolean", "default": false }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
+

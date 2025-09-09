@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){function e(e){e&&!e.dataset.csSingleInit&&(e.dataset.csSingleInit="1")}function t(){document.querySelectorAll(".wp-block-ceiba-case-study").forEach(e)}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",t):t(),new MutationObserver(t).observe(document.documentElement,{childList:!0,subtree:!0})}()})();

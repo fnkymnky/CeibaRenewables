@@ -14,6 +14,11 @@ body {
   margin-block-start: 0;
 }
 
+:root :where(.is-layout-flow) > * {
+  margin-block-start: 32px;
+  margin-block-end: 32px;
+}
+
 /* Reset margins on headings */
 h1,
 h2,
@@ -186,6 +191,10 @@ h6 {
   }
 }
 @media (min-width: 782px) {
+  :root :where(.is-layout-flow) > * {
+    margin-block-start: 64px;
+    margin-block-end: 64px;
+  }
   .site-footer {
     padding: 64px 0 0;
     text-align: left;

@@ -153,62 +153,61 @@
     }
   }
   
-    /* GREEN SECTION */
-    &.has-ceiba-green-background-color {
+  /* GREEN SECTION */
+  &.has-ceiba-green-background-color {
+    position: relative;
+
+    .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;
 
-      .ceiba-csct__col.ceiba-csct__col--media {
-        position: relative;
-
-        &:after {
-          content: '';
-          width: 210px;
-          height: 210px;
-          background: url(./assets/single-white-ring.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          display: block;
-          bottom:-150px; left:-16px;
-          position: absolute;      
-        }  
-      }
+      &:after {
+        content: '';
+        width: 210px;
+        height: 210px;
+        background: url(./assets/single-white-ring.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        bottom:-150px; left:-16px;
+        position: absolute;      
+      }  
     }
+  }
 
-    /* WHITE SECTION */
-    &.has-bg-background-color {
+  /* WHITE SECTION */
+  &.has-bg-background-color {
+    position: relative;
+
+    .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;
 
-      .ceiba-csct__col.ceiba-csct__col--media {
-        position: relative;
-
-        &:after {
-          content: '';
-          width: 210px;
-          height: 210px;
-          background: url(./assets/green-blue-rings.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          display: block;
-          bottom:-64px; left:16px;
-          position: absolute;      
-        } 
-        &:before {
-          content: '';
-          width: 210px;
-          height: 210px;
-          background: url(./assets/white-blue-rings.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          display: block;
-          top:-16px; right:-64px;
-          position: absolute;   
-          z-index:1;   
-        }         
-      }
-    }    
+      &:after {
+        content: '';
+        width: 210px;
+        height: 210px;
+        background: url(./assets/green-blue-rings.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        bottom:-64px; left:16px;
+        position: absolute;      
+      } 
+      &:before {
+        content: '';
+        width: 210px;
+        height: 210px;
+        background: url(./assets/white-blue-rings.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        top:-16px; right:-64px;
+        position: absolute;   
+        z-index:1;   
+      }         
+    }
+  }    
 }
 
-/* Alignment helper classes on root for easy targeting */
 .wp-block-ceiba-content-section.has-media-left {
   .ceiba-csct__col--media img {
     border-radius: 0 9999px 9999px 0;
@@ -222,7 +221,6 @@
   }
 }
 
-/* Grid order is controlled by DOM; no flipping required */
 
 .ceiba-csct__col--media .ceiba-csct__img {
   width: 100%;
@@ -259,6 +257,24 @@
 
 @media (min-width:1295px) {
   .wp-block-ceiba-content-section {
-    border-radius: 16px;
+    border-radius: 64px;
+
+    /* Can be removed if we don't want the images to escape the container and be fully rounded */
+    .ceiba-csct__col.ceiba-csct__col--media .ceiba-csct__img {
+      width: 120%;
+      border-radius: 9999px 9999px 9999px 9999px;
+    } 
+    &.has-media-right {
+      .ceiba-csct__col.ceiba-csct__col--media {
+        transform: translate(100px, 0px)
+      }
+    }
+    &.has-media-left {
+      .ceiba-csct__col.ceiba-csct__col--media {
+        transform: translate(-100px, 0px)
+      }
+    }
+
   }
+
 }

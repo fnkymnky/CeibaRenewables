@@ -28,9 +28,9 @@ import 'swiper/css';
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: 1.15, centeredSlides: true,  slidesOffsetBefore: 0, slidesOffsetAfter: 0, spaceBetween: 12 },
-        768:  { slidesPerView: 2,    centeredSlides: true,  slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 },
-        1025: { slidesPerView: 3,    centeredSlides: false, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
+        0:    { slidesPerView: 1.15, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
+        768:  { slidesPerView: 2.15, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
+        1025: { slidesPerView: 3, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
       },
       watchOverflow: true,
       autoHeight: true,

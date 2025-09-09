@@ -28,13 +28,12 @@ import 'swiper/css';
       spaceBetween: 16,
       centeredSlides: false,
       loop: false,
-      grabCursor: true,
       initialSlide: 0,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: 1.15, centeredSlides: true, spaceBetween: 12 },
-        768:  { slidesPerView: 2, centeredSlides: true, spaceBetween: 16 },
-        1025: { slidesPerView: 3, centeredSlides: false, spaceBetween: 16 }
+        0:    { slidesPerView: 1.15, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
+        768:  { slidesPerView: 2.15, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
+        1025: { slidesPerView: 3, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
       },
       watchOverflow: true,
       observer: true,

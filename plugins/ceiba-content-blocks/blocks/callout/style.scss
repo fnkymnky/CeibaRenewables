@@ -1,0 +1,92 @@
+.wp-block-ceiba-callout {
+  padding: 32px;
+  border-radius: 32px;
+  margin: 0 16px;
+}
+
+.ceiba-callout {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__media {}
+
+  &__media__frame {}
+
+  &__img {}
+
+  &__media__img {
+    /* Deprecated: previously used for background-image based preview */
+  }
+
+  &__content {}
+
+  /* GREEN SECTION */
+  &.has-ceiba-green-background-color {
+    .ceiba-callout__content {
+      color: var(--wp--preset--color--bg, #fff);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--wp--preset--color--bg, #fff);
+      }
+
+    }
+  }
+
+  /* BLUE SECTION */
+  &.has-ceiba-navy-background-color {
+    .ceiba-callout__content {
+      color: var(--wp--preset--color--bg, #fff);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--wp--preset--color--bg, #fff);
+      }
+
+    }
+  }
+
+  /* WHITE SECTION */
+  &.has-bg-background-color {
+    border: 1px solid #ccc;
+  }
+}
+
+@media (min-width: 720px) {
+  .wp-block-ceiba-callout {
+    padding: 32px 48px;
+    border-radius: 64px;
+    margin: 0;
+  } 
+  .ceiba-callout {
+    &.is-image-left .ceiba-callout__media {
+      order: 0;
+    }
+
+    &.is-image-left .ceiba-callout__content {
+      order: 1;
+      margin-left: 96px;
+    }
+
+    &.is-image-right .ceiba-callout__media {
+      order: 1;
+    }
+
+    &.is-image-right .ceiba-callout__content {
+      order: 0;
+      margin-right: 96px;
+    }    
+  }
+}

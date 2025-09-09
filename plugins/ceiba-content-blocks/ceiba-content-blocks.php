@@ -60,14 +60,12 @@ add_action('init', function () {
         'auth_callback' => function(){ return current_user_can('edit_posts'); }
     ]);
 
-    // Prefer built blocks (compiled assets)
     $built = __DIR__ . '/build';
     $registry = WP_Block_Type_Registry::get_instance();
     foreach ( glob( $built . '/*/block.json' ) as $json ) {
         register_block_type_from_metadata( dirname( $json ) );
     }
 
-    // Also allow registering blocks from source folder if not built yet
     $src = __DIR__ . '/blocks';
     foreach ( glob( $src . '/*/block.json' ) as $json ) {
         $data = json_decode( file_get_contents( $json ), true );
@@ -109,7 +107,7 @@ add_filter('enter_title_here', function($text, $post){
     return $text;
 }, 10, 2);
 
-// Robust allow-list for Case Studies (supports both old/new filter signatures)
+// Allow-list for Case Studies (supports both old/new filter signatures)
 function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
     $post_type = null;
 
@@ -147,4 +145,3 @@ function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
 
 // Ensure the allow-list actually applies in the editor
 add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
-// Swiper is bundled via block view scripts (npm dependency) — no CDN enqueue needed.
