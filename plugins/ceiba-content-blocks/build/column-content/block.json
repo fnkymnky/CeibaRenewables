@@ -1,0 +1,39 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/column-content",
+  "title": "Column Content Block",
+  "category": "layout",
+  "icon": "columns",
+  "description": "Heading, intro, a group of 1–4 custom columns, outro, and buttons.",
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "gradients": false,
+      "text": true,
+      "link": false
+    }
+  },
+  "attributes": {
+    "columnsCount": {
+      "type": "number",
+      "default": 3
+    },
+    "layoutMode": {
+      "type": "string",
+      "default": "full"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

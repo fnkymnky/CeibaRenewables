@@ -41,8 +41,10 @@ export default function Edit({ attributes, setAttributes }) {
       ? { ...emptyLink, ...primaryLink }
       : { ...emptyLink };
 
+  const hasBg = !!attributes?.backgroundColor || !!attributes?.style?.color?.background || !!attributes?.style?.color?.gradient;
+  const alignSuffix = hasBg ? ' alignfull' : (attributes?.align ? ` align${attributes.align}` : '');
   const blockProps = useBlockProps({
-    className: `ceiba-mcols is-edit cols-${columnsCount}`,
+    className: `ceiba-mcols is-edit cols-${columnsCount}${alignSuffix}`,
   });
 
   // Ensure we always have 4 column slots stored, but only render 1..columnsCount
@@ -172,6 +174,7 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
+        <section className="ceiba-mcols__inner" style={{ maxWidth: 'var(--wp--style--global--content-size)', width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
         <div className="ceiba-mcols__head">
           <RichText
             tagName="h2"
@@ -228,6 +231,7 @@ export default function Edit({ attributes, setAttributes }) {
             <Button variant="primary">{primaryLabel || __('Primary', 'ceiba')}</Button>
           </div>
         )}
+        </section>
       </div>
     </>
   );

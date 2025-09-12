@@ -61,12 +61,29 @@ add_action('init', function () {
     ]);
 
     $built = __DIR__ . '/build';
+    $src   = __DIR__ . '/blocks';
     $registry = WP_Block_Type_Registry::get_instance();
+
+    // Register built blocks for assets; if a source render.php exists, wire it as the render callback
     foreach ( glob( $built . '/*/block.json' ) as $json ) {
-        register_block_type_from_metadata( dirname( $json ) );
+        $build_dir = dirname( $json );
+        $slug      = basename( $build_dir );
+        $src_dir   = $src . '/' . $slug;
+
+        if ( file_exists( $src_dir . '/render.php' ) ) {
+            register_block_type_from_metadata( $build_dir, [
+                'render_callback' => function( $attributes = [], $content = '', $block = null ) use ( $src_dir ) {
+                    ob_start();
+                    include $src_dir . '/render.php';
+                    return ob_get_clean();
+                }
+            ] );
+        } else {
+            register_block_type_from_metadata( $build_dir );
+        }
     }
 
-    $src = __DIR__ . '/blocks';
+    // Also register any source blocks that don't yet have a built artifact
     foreach ( glob( $src . '/*/block.json' ) as $json ) {
         $data = json_decode( file_get_contents( $json ), true );
         $name = is_array( $data ) && isset( $data['name'] ) ? $data['name'] : null;
