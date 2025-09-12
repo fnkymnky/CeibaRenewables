@@ -3,3 +3,64 @@
   border: 1px dashed rgba(0,0,0,.15);
   border-radius: 8px;
 }
+
+.wp-block-ceiba-testimonial  {
+  margin: 32px 16px;
+  padding: 32px 16px;
+  border-top: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
+  border-bottom: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
+
+  .cb-tc-card__quote {
+    font-size: 20px;
+    color: var(--wp--preset--color--ceiba-navy, #333);
+    margin: 0 0 16px 0;
+    padding: 0;
+
+    &:before, &:after {
+      content: '"';
+    }
+  }
+
+  .cb-tc-card__meta {
+    font-size: 16px;
+    color: var(--wp--preset--color--ceiba-green, #45ad58);
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .wp-block-ceiba-testimonial  {
+    margin: 64px 32px;
+    padding: 64px 32px;
+
+    .cb-tc-card__quote {
+      font-size: 24px;
+      margin: 0 0 20px 0;
+    }
+
+    .cb-tc-card__meta {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (min-width:1024px) {
+  .wp-block-ceiba-testimonial  {
+    margin: 64px 64px;
+    padding: 64px 32px;
+
+    .cb-tc-card {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cb-tc-card__quote {
+      font-size: 28px;
+      margin: 0 0 32px 0;
+    }
+
+    .cb-tc-card__meta {
+      font-size: 20px;
+    }
+  }
+}

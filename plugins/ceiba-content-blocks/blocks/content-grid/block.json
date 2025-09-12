@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/content-grid",
   "title": "Content Grid Section",
-  "category": "layout",
+  "category": "ceiba-blocks",
   "icon": "screenoptions",
   "description": "Displays a grid of pages, with the featured image and page title.",
   "supports": {

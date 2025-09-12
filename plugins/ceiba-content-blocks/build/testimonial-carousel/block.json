@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/testimonial-carousel",
   "title": "Testimonial Carousel",
-  "category": "widgets",
+  "category": "ceiba-blocks",
   "icon": "format-quote",
   "description": "Manual selection of Testimonials displayed as a 3-up carousel (activates when more than 3 items).",
   "supports": {

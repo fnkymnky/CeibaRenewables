@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/image-frame",
   "title": "Image Frame",
-  "category": "media",
+  "category": "ceiba-blocks",
   "icon": "format-image",
   "supports": {
     "anchor": true,

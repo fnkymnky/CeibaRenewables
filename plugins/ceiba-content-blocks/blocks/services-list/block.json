@@ -3,7 +3,7 @@
   "name": "ceiba/page-list",
   "version": "1.0.0",
   "title": "Page List",
-  "category": "widgets",
+  "category": "ceiba-blocks",
   "icon": "grid-view",
   "description": "Displays direct child pages (title + featured image) of a selected parent page in a 3-column grid.",
   "supports": {

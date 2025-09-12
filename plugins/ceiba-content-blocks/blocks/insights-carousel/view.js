@@ -30,7 +30,8 @@ import 'swiper/css';
       breakpoints: {
         0:    { slidesPerView: 1.15, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
         768:  { slidesPerView: 2.15, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
-        1025: { slidesPerView: 3, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
+        1025: { slidesPerView: 3, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
+        1300: { slidesPerView: 3, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
       },
       watchOverflow: true,
       autoHeight: true,

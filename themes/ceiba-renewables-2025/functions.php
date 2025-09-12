@@ -1,6 +1,71 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+add_action('init', function () {
+	// Define button variant styles avialable in the editor view
+	register_block_style('core/button', ['name' => 'ceiba-green',    'label' => 'Ceiba Green','is_default' => true,]);
+	register_block_style('core/button', ['name' => 'ceiba-navy',   'label' => 'Ceiba Navy']);
+	register_block_style('core/button', ['name' => 'white',   'label' => 'White']);
+
+	// Remove block patterns frome editor
+	remove_theme_support( 'core-block-patterns' );
+
+	// Remove specific block patterns from editor
+	unregister_block_pattern('core/query-standard-posts');
+	unregister_block_pattern('core/query-medium-posts');
+	unregister_block_pattern('core/query-small-posts');
+	unregister_block_pattern('core/query-grid-posts');
+	unregister_block_pattern('core/query-large-title-posts');
+	unregister_block_pattern('core/query-offset-posts');  
+}, 20);
+
+
+/* Control What's Shown In The Editor and Unregister Blocks In One Place */
+// Enqueue JavaScript for block editor
+add_action('enqueue_block_editor_assets', function () {
+    wp_enqueue_script(
+        'unregister-core-blocks',
+        get_stylesheet_directory_uri() . '/js/unregister-blocks.js',
+        ['wp-blocks', 'wp-dom-ready', 'wp-edit-post'],
+        null,
+        true
+    );
+});
+
+/******/
+
+/* Force button variant styles to work */
+add_action('wp_enqueue_scripts', function () {
+  wp_enqueue_style(
+    'child-button-variants',
+    get_stylesheet_directory_uri() . '/buttons.css',
+    ['global-styles'],
+    filemtime(get_stylesheet_directory() . '/buttons.css')
+  );
+}, 100);
+
+add_action('enqueue_block_editor_assets', function () {
+  wp_enqueue_style(
+	'child-editor-button-variants',
+	get_stylesheet_directory_uri() . '/buttons.css',
+	[],
+	filemtime(get_stylesheet_directory() . '/buttons.css')
+  );
+});
+
+add_action('after_setup_theme', function () {
+  add_theme_support('editor-styles');
+  add_editor_style('buttons.css');
+});
+
+add_action('enqueue_block_editor_assets', function () {
+  // Editor-only CSS to hide the Styles panel for Button blocks
+  wp_add_inline_style(
+    'wp-edit-blocks',
+    '.edit-post-sidebar .block-editor-block-styles { display:none !important; }'
+  );
+});
+
 
 
 // Media: ensure featured images and custom sizes for page list cards
@@ -92,17 +157,27 @@ add_action('init', function () {
 		]);
 	}
 });
-			
 
-add_action( 'init', function() {
-	remove_theme_support( 'core-block-patterns' );
-});
 
-add_action('init', function() {
-    unregister_block_pattern('core/query-standard-posts');
-	unregister_block_pattern('core/query-medium-posts');
-	unregister_block_pattern('core/query-small-posts');
-	unregister_block_pattern('core/query-grid-posts');
-	unregister_block_pattern('core/query-large-title-posts');
-	unregister_block_pattern('core/query-offset-posts');
-});
+/* Add New Ceiba Category For Custom Blocks */
+add_filter( 'block_categories_all', 'add_order_block_category', 10, 2 );
+
+function add_order_block_category( $categories ) {
+    $custom_category = array(
+        'slug'     => 'ceiba-blocks',
+        'title'    => __( 'Ceiba Blocks', 'ceiba' ),
+        'icon'     => null,
+        'position' => 1,
+    );
+
+    // Extract position from the custom category array.
+    $position = $custom_category['position'];
+
+    // Remove position from the custom category array.
+    unset( $custom_category['position'] );
+
+    // Insert the custom category at the desired position.
+    array_splice( $categories, $position, 0, array( $custom_category ) );
+
+    return $categories;
+}

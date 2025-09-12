@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/callout",
   "title": "Callout",
-  "category": "layout",
+  "category": "ceiba-blocks",
   "icon": "align-pull-left",
   "description": "Two-column callout with text and image, supports background color and column order.",
   "supports": {

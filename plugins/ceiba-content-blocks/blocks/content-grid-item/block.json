@@ -3,7 +3,7 @@
   "name": "ceiba/content-grid-item",
   "title": "Content Grid Item",
   "parent": [ "ceiba/content-grid" ],
-  "category": "layout",
+  "category": "ceiba-blocks",
   "icon": "index-card",
   "description": "Card used inside Content Grid Section.",
   "supports": { "html": false, "reusable": false },

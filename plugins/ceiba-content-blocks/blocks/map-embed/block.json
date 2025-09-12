@@ -3,7 +3,7 @@
   "name": "ceiba/map-embed",
   "version": "1.0.0",
   "title": "Ceiba Map Embed",
-  "category": "embed",
+  "category": "ceiba-blocks",
   "icon": "location-alt",
   "description": "Embed a Google Map using a Share URL.",
   "supports": {

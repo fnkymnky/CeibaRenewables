@@ -25,8 +25,8 @@ body {
 }
 
 :root :where(.is-layout-flow) > * {
-  margin-block-start: 0;
-  margin-block-end: 0;
+  // margin-block-start: 0;
+  // margin-block-end: 0;
 }
 
 /* Reset margins on headings */
@@ -42,6 +42,16 @@ h6 {
 /* Reset the padding for content area to 0 and set on individual components */
 .has-global-padding {
   padding: 0;
+}
+
+/* BUTTONS */
+.wp-block-button__link {
+
+  &.has-ceiba-navy-background-color {
+    &:hover {
+      background-color: #000;
+    }
+  }
 }
 
 .contact-bar__inner,
@@ -128,6 +138,10 @@ h6 {
   margin-right: calc(50% - 50vw);
 }
 
+.has-global-padding > .alignfull {
+  margin: 0;
+}
+
 /* Prevent horizontal scrollbar caused by full-bleed margins */
 .wp-site-blocks {
   overflow-x: clip;
@@ -141,6 +155,12 @@ h6 {
 
 /* Ensure the Hero block can truly bleed full-width anywhere it's placed */
 .wp-block-ceiba-hero-section.alignfull {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Ensure Team Grid can bleed full-width anywhere it's placed */
+.wp-block-ceiba-team-grid.alignfull {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
@@ -225,8 +245,8 @@ h6 {
 
 @media (min-width: 782px) {
   :root :where(.is-layout-flow) > * {
-    margin-block-start: 0;
-    margin-block-end: 0;
+    // margin-block-start: 0;
+    // margin-block-end: 0;
   }  
 
   .site-footer {

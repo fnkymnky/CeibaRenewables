@@ -1,8 +1,8 @@
 {
   "apiVersion": 3,
   "name": "ceiba/column-content",
-  "title": "Column Content Block",
-  "category": "layout",
+  "title": "Multi-Column Section",
+  "category": "ceiba-blocks",
   "icon": "columns",
   "description": "Heading, intro, a group of 1–4 custom columns, outro, and buttons.",
   "supports": {

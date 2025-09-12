@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/content-section",
   "title": "Content Section (2-Col)",
-  "category": "layout",
+  "category": "ceiba-blocks",
   "icon": "align-pull-right",
   "description": "Two-column section with background, image left/right, rich text, and up to two CTAs.",
   "textdomain": "ceiba",

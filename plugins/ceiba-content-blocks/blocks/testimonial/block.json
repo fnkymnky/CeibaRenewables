@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/testimonial",
   "title": "Testimonial (Single)",
-  "category": "widgets",
+  "category": "ceiba-blocks",
   "icon": "format-quote",
   "supports": { "anchor": true, "align": ["wide", "full"] },
   "attributes": { "postId": { "type": "number", "default": 0 } },

@@ -3,7 +3,7 @@
   "name": "ceiba/content-card",
   "version": "1.0.0",
   "title": "Content Card (Ceiba)",
-  "category": "design",
+  "category": "ceiba-blocks",
   "icon": "feedback",
   "description": "Title, body (WYSIWYG), link, image, and layout options.",
   "supports": {

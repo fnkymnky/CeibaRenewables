@@ -8,7 +8,8 @@
         { "slug": "ceiba-green", "name": "Ceiba Green", "color": "#45ad58" },
         { "slug": "bg",          "name": "Background",  "color": "#ffffff" },
         { "slug": "ink",         "name": "Ink",         "color": "#333333" },
-        { "slug": "black",       "name": "Black",       "color": "#000000" }
+        { "slug": "black",       "name": "Black",       "color": "#000000" },
+        { "slug": "white",       "name": "White",       "color": "#FFFFFF" }
       ],
       "background": true,
       "text": true
@@ -64,6 +65,7 @@
 			]
     },
     "spacing": {
+      "blockGap": null,
       "scale": "fluid",
       "spacingSizes": [
         { "slug": "xs", "size": "0.5rem" },

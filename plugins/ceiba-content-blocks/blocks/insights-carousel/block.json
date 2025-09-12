@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/insights-carousel",
   "title": "Insights Carousel",
-  "category": "widgets",
+  "category": "ceiba-blocks",
   "icon": "slides",
   "description": "Manual selection of blog posts displayed in a carousel across all breakpoints.",
   "supports": {

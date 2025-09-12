@@ -1,7 +1,7 @@
 .wp-block-ceiba-callout {
   padding: 32px;
   border-radius: 32px;
-  margin: 0 16px;
+  margin: 32px 16px;
 }
 
 .ceiba-callout {
@@ -70,7 +70,7 @@
   .wp-block-ceiba-callout {
     padding: 32px 48px;
     border-radius: 64px;
-    margin: 0;
+    margin: 64px 24px;
   } 
   .ceiba-callout {
 
@@ -102,5 +102,11 @@
       order: 0;
       margin-right: 96px;
     }    
+  }
+}
+
+@media (min-width: 1300px) {
+  .wp-block-ceiba-callout {
+    margin: 64px 0;
   }
 }

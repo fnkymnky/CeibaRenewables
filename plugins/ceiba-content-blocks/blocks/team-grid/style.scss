@@ -1,5 +1,14 @@
 .wp-block-ceiba-team-grid {
   --gap: clamp(16px, 3vw, 32px);
+  padding: 32px 16px;
+
+
+  .ceiba-team-grid__inner {
+    max-width: var(--wp--style--global--content-size);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .ceiba-team-grid__head {
     margin-bottom: 1rem;
@@ -34,28 +43,18 @@
     grid-template-columns: 260px 1fr;
     gap: var(--gap);
   }
-
-  .headshot-placeholder {
-    width: 160px; height: 160px; border-radius: 12px;
-    border: 1px dashed rgba(0,0,0,.2);
-    background: rgba(0,0,0,.04);
-    margin-top: 8px;
-  }
-
-  .headshot-preview img {
-    width: 160px; height: 160px; object-fit: cover; border-radius: 12px; display: block; margin-top: 8px;
-  }
 }
 
-/* Front-end helpers */
-/* Front-end layout */
+
 .ceiba-team-grid {
   --gap: clamp(16px, 3vw, 32px);
+  .ceiba-team-grid__inner {
+    max-width: var(--wp--style--global--content-size);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-  .ceiba-team-grid__title { margin: 0 0 .5rem; }
-  .ceiba-team-grid__intro { margin: 0 0 1rem; }
-
-  /* Max 4 columns, step down responsively */
   .ceiba-team-grid__grid {
     display: grid;
     gap: var(--gap);
@@ -71,25 +70,68 @@
   @media (min-width: 1200px) {
     .ceiba-team-grid__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } /* cap at 4 */
   }
+}
 
-  .ceiba-team-grid__item { text-align: left; }
-  .ceiba-team-grid__media { margin-bottom: .5rem; }
-  .ceiba-team-grid__img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 12px;
-    display: block;
-  }
-  .ceiba-team-grid__name { margin: 0 0 .125rem; font-size: 1.1rem; }
-  .ceiba-team-grid__role { margin: 0 0 .5rem; font-weight: 500; color: #555; }
 
-  .ceiba-team-grid__bio summary {
-    cursor: pointer;
-    list-style: none;
+/* INDIVIDUAL MEMBER */
+.ceiba-team-grid__item {
+  margin-top: 24px;
+
+  .ceiba-team-grid__media {
+    text-align: center;
+    margin-bottom: 16px;
+
+    img {
+      max-height: 210px;
+      max-width: 210px;
+      border-radius: 32px;
+    }
   }
-  .ceiba-team-grid__bio summary::-webkit-details-marker { display: none; }
-  .ceiba-team-grid__bio-toggle { text-decoration: underline; }
-  .ceiba-team-grid__bio-content { margin-top: .5rem; }
+
+  .ceiba-team-grid__name {
+    color: var(--wp--preset--color--bg, #fff);
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .ceiba-team-grid__role {
+    font-weight: bold;
+  }
+
+  .ceiba-team-grid__bio {
+    margin-top: 12px;
+    border-bottom: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
+
+    summary {
+      font-size: 12px;
+      color: var(--wp--preset--color--ceiba-green, #45ad58);
+      font-weight: 500;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border-radius: 9999px;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .ceiba-team-grid__bio-content {
+      color: var(--wp--preset--color--bg, #fff);
+      font-size: 16px;
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
+  }
+}
+
+
+@media (min-width: 720px) {
+  .wp-block-ceiba-team-grid {
+    padding: 64px 24px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .wp-block-ceiba-team-grid {
+    padding: 64px 0;
+  }
 }

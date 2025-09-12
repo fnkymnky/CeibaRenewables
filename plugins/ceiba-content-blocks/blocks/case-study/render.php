@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $attrs = wp_parse_args( $attributes, [ 'postId' => 0 ] );
 
-$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'wp-block-ceiba-case-study' ] );
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'wp-block-ceiba-case-study alignfull' ] );
 
 $pid = absint( $attrs['postId'] );
 if ( ! $pid ) {
@@ -32,19 +32,28 @@ $excerpt = has_excerpt( $pid )
 ob_start();
 
 $img = get_the_post_thumbnail_url( $pid, 'large' );
-$bg  = $img ? ' style="background-image:url(' . esc_url( $img ) . ')"' : '';
+// Move background to the wrapper container instead of the inner article
+$bg_style = $img ? 'background-image:url(' . esc_url( $img ) . ');background-size:cover;background-position:center;' : '';
+// Recompute wrapper attributes to include background style for the main output
+$wrapper_attributes = get_block_wrapper_attributes( [
+    'class' => 'wp-block-ceiba-case-study alignfull',
+    'style' => $bg_style,
+] );
 ?>
 
-<article class="ceiba-ic__slide ceiba-ic__slide--single"<?php echo $bg; ?>>
-    <div class="ceiba-ic__slide__backdrop" aria-hidden="true"></div>
+
+<article class="ceiba-ic__inner">
     <div class="ceiba-insight-card__body">
         <h5 class="ceiba-insight-card__label"><?php echo esc_html__('Case Study','ceiba'); ?></h5>
         <?php if ( $title ) : ?>
-            <h3 class="ceiba-insight-card__title"><a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $title ); ?></a></h3>
+            <h2 class="ceiba-insight-card__title"><?php echo esc_html( $title ); ?></h3>
         <?php endif; ?>
         <?php if ( $excerpt ) : ?>
             <p class="ceiba-insight-card__excerpt"><?php echo esc_html( $excerpt ); ?></p>
         <?php endif; ?>
+        <div class="wp-block-button">
+            <a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link has-bg-color has-ceiba-green-background-color has-text-color has-background has-link-color wp-element-button">Read Case Study</a>
+        </div>
     </div>
 </article>
 <?php

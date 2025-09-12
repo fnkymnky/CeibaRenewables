@@ -1,6 +1,6 @@
 .wp-block-ceiba-column-content {
   --gap: clamp(16px, 3vw, 32px);
-  padding: 32px 0;
+  padding: 32px 16px;
 
   .ccb__inner { width: 100%; }
 
@@ -23,7 +23,21 @@
 
 @media (min-width: 720px) {
   .wp-block-ceiba-column-content {
-    padding: 64px 0;
+    padding: 64px 24px;
+
+  &.has-ceiba-green-background-color {
+    position: relative;
+    &:before {
+      content: '';
+      background: url(./assets/white-blue-rings.svg) no-repeat;
+      display: block;
+      position: absolute;
+      top: -24px;
+      right: -64px;
+      height: 200px;
+      width: 200px;
+    }
+  }
 
     .ccb__top {
       margin-bottom: 64px;
@@ -65,9 +79,25 @@
 
 @media (min-width: 1024px) {
   .wp-block-ceiba-column-content {
+
     &.cols-1 .ccb__columns { grid-template-columns: 1fr; }
     &.cols-2 .ccb__columns { grid-template-columns: repeat(2, 1fr); }
     &.cols-3 .ccb__columns { grid-template-columns: repeat(3, 1fr); }
-    &.cols-4 .ccb__columns { grid-template-columns: repeat(4, 1fr); }    
+    &.cols-4 .ccb__columns { grid-template-columns: repeat(4, 1fr); }   
+
+  &.has-ceiba-green-background-color {
+    &:before {
+      top: 0;
+      right: 0;
+      transform: scale(1.5)
+    }
+  }
+
+  }
+}
+
+@media (min-width: 1300px) {
+  .wp-block-ceiba-column-content {
+    padding: 64px 0; 
   }
 }

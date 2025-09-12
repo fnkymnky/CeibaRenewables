@@ -1,0 +1,14 @@
+{
+  "apiVersion": 3,
+  "name": "ceiba/team-grid-item",
+  "title": "Team Grid Item",
+  "parent": ["ceiba/team-grid"],
+  "category": "ceiba-blocks",
+  "icon": "id",
+  "description": "A single team member card used inside Team Grid.",
+  "supports": { "html": false, "reusable": false },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
+

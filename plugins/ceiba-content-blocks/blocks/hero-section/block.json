@@ -3,7 +3,7 @@
   "name": "ceiba/hero-section",
   "version": "1.0.0",
   "title": "Hero Section",
-  "category": "layout",
+  "category": "ceiba-blocks",
   "icon": "cover-image",
   "description": "Full-width hero with title, rich content, and background image.",
   "supports": {

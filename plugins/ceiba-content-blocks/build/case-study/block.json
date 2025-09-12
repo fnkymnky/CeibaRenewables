@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "ceiba/case-study",
   "title": "Case Study (Single)",
-  "category": "widgets",
+  "category": "ceiba-blocks",
   "icon": "media-document",
   "description": "Render a single Case Study card.",
   "textdomain": "ceiba",
