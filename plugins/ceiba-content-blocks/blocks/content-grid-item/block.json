@@ -5,7 +5,7 @@
   "parent": [ "ceiba/content-grid" ],
   "category": "layout",
   "icon": "index-card",
-  "description": "Card item used inside Content Grid.",
+  "description": "Card used inside Content Grid Section.",
   "supports": { "html": false, "reusable": false },
   "attributes": {
     "mediaID": { "type": "number" },

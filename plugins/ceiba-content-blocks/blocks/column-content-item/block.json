@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "ceiba/column-content-item",
-  "title": "Column Content Item",
+  "title": "Multi-Column Section Item",
   "category": "widgets",
   "parent": ["ceiba/column-content"],
   "icon": "screenoptions",

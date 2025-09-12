@@ -1,10 +1,10 @@
 {
   "apiVersion": 3,
   "name": "ceiba/content-grid",
-  "title": "Content Grid",
+  "title": "Content Grid Section",
   "category": "layout",
   "icon": "screenoptions",
-  "description": "Grid container for content-grid-item blocks.",
+  "description": "Displays a grid of pages, with the featured image and page title.",
   "supports": {
     "html": false,
     "align": ["wide", "full"],
