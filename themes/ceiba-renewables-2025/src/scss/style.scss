@@ -7,11 +7,6 @@ Text Domain: ceiba-child
 Author: Steven McCurrach
 */
 
-// You can @use or @import additional partials here.
-// Example:
-// @use 'tokens';
-// @use 'header';
-
 html {
   font-size: 16px /* 1rem */
 }
@@ -22,11 +17,6 @@ body {
 
 :where(.wp-site-blocks)>* {
   margin-block-start: 0;
-}
-
-:root :where(.is-layout-flow) > * {
-  // margin-block-start: 0;
-  // margin-block-end: 0;
 }
 
 /* Reset margins on headings */
@@ -97,7 +87,6 @@ h6 {
 
   .slm-contact__item--phone:before,
   .slm-contact__item--email:before {
-    // Font Awesome 6 (enqueued in functions.php)
     font-family: 'Font Awesome 6 Free';
     font-weight: 900; // solid icons
     left: -16px;
@@ -244,17 +233,12 @@ h6 {
 }
 
 @media (min-width: 782px) {
-  :root :where(.is-layout-flow) > * {
-    // margin-block-start: 0;
-    // margin-block-end: 0;
-  }  
-
   .site-footer {
     padding: 64px 0 0;
     text-align: left;
 
     nav {
-      align-items:flex-start;
+      align-items:center;
 
       ul {
         align-items: flex-start;

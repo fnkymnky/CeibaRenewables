@@ -13,7 +13,7 @@
 
 /* Card styling (maintain featured image, heading and title format) */
 .wp-block-ceiba-insights-carousel .ceiba-ic__slide {
-  border-radius: 64px;
+  border-radius: 32px;
   overflow: hidden;
   position: relative;
   background-position: center center;
@@ -45,17 +45,17 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin: 0 40px 40px 40px;
+  margin: 0 24px 24px 24px;
 }
 .wp-block-ceiba-insights-carousel .ceiba-insight-card__label {
   margin: 0 0 6px; 
-  font-size: var(--wp--preset--font-size--large);
+  font-size: 14px;
   color: var(--wp--preset--color--ceiba-green, #45ad58);
   font-weight: 700;
 }
 .wp-block-ceiba-insights-carousel .ceiba-insight-card__title {
   color: var(--wp--preset--color--bg);
-  font-size: var(--wp--preset--font-size--large);
+  font-size: 18px;
 
   a {
     position: static;
@@ -88,3 +88,18 @@
 .wp-block-ceiba-insights-carousel .swiper-button-nav.swiper-button-disabled { opacity: 0.30; }
 .wp-block-ceiba-insights-carousel .swiper-button-prev:after { transform: rotate(180deg); margin-right: 2px; }
 .wp-block-ceiba-insights-carousel .swiper-button-next:after { margin-left: 2px; }
+
+@media (min-width: 1024px) {
+  .wp-block-ceiba-insights-carousel .ceiba-ic__slide {
+    border-radius: 64px;
+  }
+  .wp-block-ceiba-insights-carousel .ceiba-insight-card__body {
+    margin: 0 40px 40px 40px;
+  }
+  .wp-block-ceiba-insights-carousel .ceiba-insight-card__label { 
+    font-size: 18px;
+  }
+  .wp-block-ceiba-insights-carousel .ceiba-insight-card__title {
+    font-size: 24px;
+  }
+}

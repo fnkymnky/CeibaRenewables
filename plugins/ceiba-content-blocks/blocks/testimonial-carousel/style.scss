@@ -15,10 +15,10 @@
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__slide.swiper-slide { 
     background: var(--wp--preset--color--ceiba-navy);
     color: var(--wp--preset--color--bg);
-    border-radius: 64px;
+    border-radius: 32px;
 
     blockquote {
-        margin:0; padding: 40px;
+        margin:0; padding: 24px;
     }
 
     p {
@@ -36,7 +36,7 @@ cite {
     color: var(--wp--preset--color--ceiba-green);
     font-weight: bold;
     font-style: normal;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* ARROW BUTTONS */
@@ -88,3 +88,13 @@ cite {
 
 
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__slide.swiper-slide.swiper-slide-active {}
+
+@media (min-width: 1024px) {
+    .wp-block-ceiba-testimonial-carousel .ceiba-tc__slide.swiper-slide { 
+        border-radius: 64px;
+     
+        blockquote {
+            padding: 40px;
+        }
+    }
+}

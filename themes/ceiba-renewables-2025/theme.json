@@ -77,7 +77,37 @@
       ]
     },
     "blocks": {
-      "core/button": { "border": { "radius": "999px" } },
+      "core/button": { 
+        "border": { 
+          "radius": false,
+          "width": false,
+          "color": false,
+          "radiusSizes": [],
+          "style": false
+        },
+        "color": {
+          "background": false,
+          "text": false
+        },
+        "typography": {
+          "defaultFontSizes": false,
+          "customFontSize": false,
+          "lineHeight": false,
+          "dropCap": false,
+          "fluid": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "fontSizes": [],
+          "fontFamilies": []
+        },
+        "spacing":{
+          "margin": false,
+          "padding": false
+        }
+      },
       "core/image":  { "border": { "radius": "8px" } },
       "core/group":  { "background": true }
     },

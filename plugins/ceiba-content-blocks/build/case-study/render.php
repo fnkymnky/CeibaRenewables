@@ -43,16 +43,16 @@ $wrapper_attributes = get_block_wrapper_attributes( [
 
 
 <article class="ceiba-ic__inner">
-    <div class="ceiba-insight-card__body">
-        <h5 class="ceiba-insight-card__label"><?php echo esc_html__('Case Study','ceiba'); ?></h5>
+    <div class="ceiba-casestudy__body">
+        <h5 class="ceiba-casestudy__label"><?php echo esc_html__('Case Study','ceiba'); ?></h5>
         <?php if ( $title ) : ?>
-            <h2 class="ceiba-insight-card__title"><?php echo esc_html( $title ); ?></h3>
+            <h2 class="ceiba-casestudy__title"><?php echo esc_html( $title ); ?></h3>
         <?php endif; ?>
         <?php if ( $excerpt ) : ?>
-            <p class="ceiba-insight-card__excerpt"><?php echo esc_html( $excerpt ); ?></p>
+            <p class="ceiba-casestudy__excerpt"><?php echo esc_html( $excerpt ); ?></p>
         <?php endif; ?>
-        <div class="wp-block-button">
-            <a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link has-bg-color has-ceiba-green-background-color has-text-color has-background has-link-color wp-element-button">Read Case Study</a>
+        <div class="wp-block-button is-style-ceiba-green">
+            <a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link wp-element-button">Read Case Study</a>
         </div>
     </div>
 </article>

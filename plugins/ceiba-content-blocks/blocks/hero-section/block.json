@@ -1,7 +1,6 @@
 {
   "apiVersion": 3,
   "name": "ceiba/hero-section",
-  "version": "1.0.0",
   "title": "Hero Section",
   "category": "ceiba-blocks",
   "icon": "cover-image",

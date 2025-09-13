@@ -38,7 +38,7 @@ ob_start(); ?>
         <article class="ceiba-ic__slide"<?php echo $bg_style; ?>>
           <div class="ceiba-ic__slide__backdrop" aria-hidden="true"></div>
           <div class="ceiba-insight-card__body">
-            <h5 class="ceiba-insight-card__label"><?php echo esc_html__('Insights','ceiba'); ?></h5>
+            <p class="ceiba-insight-card__label"><?php echo esc_html__('Insights','ceiba'); ?></p>
             <h3 class="ceiba-insight-card__title"><a href="<?php echo esc_url($url); ?>"><span><?php echo esc_html($title); ?></span></a></h3>
           </div>
         </article>

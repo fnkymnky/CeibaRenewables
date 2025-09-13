@@ -5,7 +5,6 @@
   "category": "ceiba-blocks",
   "icon": "align-pull-right",
   "description": "Two-column section with background, image left/right, rich text, and up to two CTAs.",
-  "textdomain": "ceiba",
   "supports": {
     "anchor": true,
     "align": [

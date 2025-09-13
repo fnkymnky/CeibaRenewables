@@ -1,26 +1,71 @@
 /* Ceiba Green Button */
-.is-style-ceiba-green .wp-block-button__link{
-    background: var(--wp--preset--color--ceiba-green) !important;
-    color: var(--wp--preset--color--white, #fff);
-}
-.is-style-ceiba-green .wp-block-button__link:hover{
-    background: color-mix(in srgb, var(--wp--preset--color--ceiba-green) 85%, black) !important;
-}
+.wp-block-button {
 
-/* Ceiba Navy Button */
-.is-style-ceiba-navy .wp-block-button__link{
-    background: var(--wp--preset--color--ceiba-navy) !important; 
-    color: var(--wp--preset--color--white, #fff);
-}
-.is-style-ceiba-navy .wp-block-button__link:hover{
-    background: color-mix(in srgb, var(--wp--preset--color--ceiba-navy) 85%, black) !important;
-}
+    .wp-block-button__link {
+        padding: 12px 24px;
+        transition: transform 0.1s ease-out;
 
-/* White Button */
-.is-style-white .wp-block-button__link{
-    background: var(--wp--preset--color--white) !important; 
+        &:hover {
+            transition: transform 0.2s ease-out;
+            transform: scale(1.05);
+        }
+    }
+
+    /* GREEN BUTTON */
+    &.is-style-ceiba-green .wp-block-button__link {
+    background: var(--wp--preset--color--ceiba-green);
+    color: var(--wp--preset--color--white, #fff);
+
+        &:hover {
+            background: color-mix(in srgb, var(--wp--preset--color--ceiba-green) 85%, black);
+        }
+
+        &:active {
+            background: color-mix(in srgb, var(--wp--preset--color--ceiba-green) 70%, black);
+        }
+
+        &:focus {
+            outline-color: color-mix(in srgb, var(--wp--preset--color--ceiba-green) 30%, white);
+            outline-width: 3px;
+        }
+    }
+
+    /* NAVY BUTTON */
+    &.is-style-ceiba-navy .wp-block-button__link {
+    background: var(--wp--preset--color--ceiba-navy);
+    color: var(--wp--preset--color--white, #fff);
+
+        &:hover {
+            background: color-mix(in srgb, var(--wp--preset--color--ceiba-navy) 85%, black);
+        }
+
+        &:active {
+            background: color-mix(in srgb, var(--wp--preset--color--ceiba-navy) 70%, black);
+        }
+
+        &:focus {
+            outline-color: color-mix(in srgb, var(--wp--preset--color--ceiba-navy) 30%, white);
+            outline-width: 3px;
+        }
+    }  
+    
+    /* WHITE BUTTON */
+    &.is-style-white .wp-block-button__link {
+    background: var(--wp--preset--color--white);
     color: var(--wp--preset--color--ceiba-navy);
-}
-.is-style-white .wp-block-button__link:hover{
-    background: color-mix(in srgb, var(--wp--preset--color--white) 85%, black) !important;
+
+        &:hover {
+            background: color-mix(in srgb, var(--wp--preset--color--white) 90%, black);
+        }
+
+        &:active {
+            background: color-mix(in srgb, var(--wp--preset--color--white) 80%, black);
+        }
+
+        &:focus {
+            outline-color: color-mix(in srgb, var(--wp--preset--color--white) 30%, black);
+            outline-width: 3px;
+        }
+    }      
+
 }

@@ -38,35 +38,20 @@ add_action('enqueue_block_editor_assets', function () {
 add_action('wp_enqueue_scripts', function () {
   wp_enqueue_style(
     'child-button-variants',
-    get_stylesheet_directory_uri() . '/buttons.css',
+    get_stylesheet_directory_uri() . '/assets/buttons.css',
     ['global-styles'],
-    filemtime(get_stylesheet_directory() . '/buttons.css')
+    filemtime(get_stylesheet_directory() . '/assets/buttons.css')
   );
 }, 100);
 
 add_action('enqueue_block_editor_assets', function () {
   wp_enqueue_style(
 	'child-editor-button-variants',
-	get_stylesheet_directory_uri() . '/buttons.css',
+	get_stylesheet_directory_uri() . '/assets/buttons.css',
 	[],
-	filemtime(get_stylesheet_directory() . '/buttons.css')
+	filemtime(get_stylesheet_directory() . '/assets/buttons.css')
   );
 });
-
-add_action('after_setup_theme', function () {
-  add_theme_support('editor-styles');
-  add_editor_style('buttons.css');
-});
-
-add_action('enqueue_block_editor_assets', function () {
-  // Editor-only CSS to hide the Styles panel for Button blocks
-  wp_add_inline_style(
-    'wp-edit-blocks',
-    '.edit-post-sidebar .block-editor-block-styles { display:none !important; }'
-  );
-});
-
-
 
 // Media: ensure featured images and custom sizes for page list cards
 add_action('after_setup_theme', function(){
