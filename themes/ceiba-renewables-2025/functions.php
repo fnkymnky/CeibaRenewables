@@ -66,9 +66,12 @@ add_action('after_setup_theme', function(){
 
 /* Load design tokens in front-end and editor */
 add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', wp_get_theme()->get('Version'));
-	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), ['twentytwentyfive-style'], wp_get_theme()->get('Version'));
-	wp_enqueue_style('ceiba-header', get_stylesheet_directory_uri() . '/assets/header.css',	wp_get_theme()->get('Version'));
+	$ver = wp_get_theme()->get('Version') ?: null;
+	wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', [], $ver);
+	// Load the child theme stylesheet explicitly; don't depend on parent handle
+	$style_path = get_stylesheet_directory() . '/style.css';
+	$style_ver  = file_exists($style_path) ? filemtime($style_path) : $ver;
+	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), [], $style_ver);
 	wp_enqueue_style('ceiba-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1');
 	wp_enqueue_style('ceiba-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap', [], null);
 }, 20);
@@ -77,6 +80,12 @@ add_action('enqueue_block_editor_assets', function () {
 	wp_enqueue_style('ceiba-tokens-editor', get_stylesheet_directory_uri() . '/assets/tokens.css', [], '1.0');
 	// Load Montserrat in editor as well
 	wp_enqueue_style('ceiba-google-fonts-editor', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap', [], null);
+});
+
+// Ensure theme stylesheet also loads in the editor
+add_action('after_setup_theme', function(){
+    add_theme_support('editor-styles');
+    add_editor_style('style.css');
 });
 
 // /* Curate allowed blocks */
@@ -165,4 +174,38 @@ function add_order_block_category( $categories ) {
     array_splice( $categories, $position, 0, array( $custom_category ) );
 
     return $categories;
+}
+
+add_action( 'enqueue_block_editor_assets', 'ceiba_hide_template_parts_editor_script' );
+function ceiba_hide_template_parts_editor_script() {
+	// defensive checks
+	if ( ! function_exists( 'get_current_screen' ) ) {
+		return;
+	}
+
+	$screen = get_current_screen();
+	if ( ! $screen ) {
+		return;
+	}
+
+	// only when in the block editor (post.php / post-new.php)
+	if ( ! method_exists( $screen, 'is_block_editor' ) || ! $screen->is_block_editor() ) {
+		return;
+	}
+
+	// OPTIONAL: restrict to specific post types you edit (pages only by default)
+	$allowed = array( 'page', 'post' ); // change/add custom post types if needed, e.g. 'case_study'
+	if ( ! in_array( $screen->post_type, $allowed, true ) ) {
+		return;
+	}
+
+	// Register and enqueue the editor script (create the file below)
+	wp_register_script(
+		'ceiba-hide-template-parts',
+		get_stylesheet_directory_uri() . '/js/hide-template-parts.js',
+		array( 'wp-hooks', 'wp-compose', 'wp-element' ),
+		filemtime( get_stylesheet_directory() . '/js/hide-template-parts.js' ),
+		true
+	);
+	wp_enqueue_script( 'ceiba-hide-template-parts' );
 }
