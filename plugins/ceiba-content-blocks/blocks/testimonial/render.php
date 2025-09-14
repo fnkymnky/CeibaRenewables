@@ -28,8 +28,8 @@ if ( $quote ) {
     echo '    <blockquote class="cb-tc-card__quote">' . wp_kses_post($quote) . '</blockquote>';
 }
 echo '    <div class="cb-tc-card__meta">';
-if ( $title ) echo '      <div class="cb-tc-card__company">' . esc_html($title) . '</div>';
 if ( $role )  echo '      <div class="cb-tc-card__person">'  . esc_html($role)  . '</div>';
+if ( $title ) echo '      <div class="cb-tc-card__company">' . esc_html($title) . '</div>';
 echo '    </div>';
 echo '  </article>';
 echo '</div>';

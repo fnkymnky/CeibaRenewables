@@ -124,41 +124,41 @@ add_filter('enter_title_here', function($text, $post){
     return $text;
 }, 10, 2);
 
-// Allow-list for Case Studies (supports both old/new filter signatures)
-function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
-    $post_type = null;
+// // Allow-list for Case Studies (supports both old/new filter signatures)
+// function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
+//     $post_type = null;
 
-    if ( is_array( $context ) && isset( $context['post_type'] ) ) {
-        $post_type = $context['post_type'];
-    } elseif ( is_object( $context ) && isset( $context->post ) && $context->post ) {
-        $post_type = $context->post->post_type;
-    } elseif ( is_object( $context ) && isset( $context->postType ) ) {
-        $post_type = $context->postType;
-    }
+//     if ( is_array( $context ) && isset( $context['post_type'] ) ) {
+//         $post_type = $context['post_type'];
+//     } elseif ( is_object( $context ) && isset( $context->post ) && $context->post ) {
+//         $post_type = $context->post->post_type;
+//     } elseif ( is_object( $context ) && isset( $context->postType ) ) {
+//         $post_type = $context->postType;
+//     }
 
-    if ( $post_type !== 'case_study' ) {
-        return $allowed; // don't touch other post types
-    }
+//     if ( $post_type !== 'case_study' ) {
+//         return $allowed; // don't touch other post types
+//     }
 
-    // IMPORTANT: include both core/list and core/list-item
-    return array(
-        'core/paragraph',
-        'core/heading',
-        'core/list',
-        'core/list-item',
-        'core/quote',
-        'core/image',
-        'core/gallery',
-        'core/separator',
-        'core/buttons',
-        'core/columns',
-        'core/column',
-        'core/embed',
-        'core/spacer',
-        'ceiba/map-embed',
-        'ceiba/testimonial',
-    );
-}
+//     // IMPORTANT: include both core/list and core/list-item
+//     return array(
+//         'core/paragraph',
+//         'core/heading',
+//         'core/list',
+//         'core/list-item',
+//         'core/quote',
+//         'core/image',
+//         'core/gallery',
+//         'core/separator',
+//         'core/buttons',
+//         'core/columns',
+//         'core/column',
+//         'core/embed',
+//         'core/spacer',
+//         'ceiba/map-embed',
+//         'ceiba/testimonial',
+//     );
+// }
 
-// Ensure the allow-list actually applies in the editor
-add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
+// // Ensure the allow-list actually applies in the editor
+// add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);

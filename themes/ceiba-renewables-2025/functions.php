@@ -6,6 +6,9 @@ add_action('init', function () {
 	register_block_style('core/button', ['name' => 'ceiba-green',    'label' => 'Ceiba Green','is_default' => true,]);
 	register_block_style('core/button', ['name' => 'ceiba-navy',   'label' => 'Ceiba Navy']);
 	register_block_style('core/button', ['name' => 'white',   'label' => 'White']);
+	
+	// Custom rounded style for image block
+	register_block_style('core/image', ['name' => 'partial-rounded',   'label' => 'Partially Rounded']);
 
 	// Remove block patterns frome editor
 	remove_theme_support( 'core-block-patterns' );
@@ -44,14 +47,6 @@ add_action('wp_enqueue_scripts', function () {
   );
 }, 100);
 
-add_action('enqueue_block_editor_assets', function () {
-  wp_enqueue_style(
-	'child-editor-button-variants',
-	get_stylesheet_directory_uri() . '/assets/buttons.css',
-	[],
-	filemtime(get_stylesheet_directory() . '/assets/buttons.css')
-  );
-});
 
 // Media: ensure featured images and custom sizes for page list cards
 add_action('after_setup_theme', function(){
@@ -60,11 +55,43 @@ add_action('after_setup_theme', function(){
 	add_image_size('page-list-660', 660, 660, true);
     add_image_size('page-list-360', 360, 360, true);
     add_image_size('page-list-320', 320, 320, true);
+	// Case study and Blog Post header sizes
+	add_image_size('page-header-desktop', 1280, 360, true);
+	add_image_size('page-header-tablet',   768, 216, true);
+	add_image_size('page-header-mobile',   420, 118, true);
     // 16:9 mobile hero background (used in CSS @media)
     add_image_size('hero-mobile', 768, 432, true);
+	
+    add_theme_support('editor-styles');
+    add_editor_style([
+        'assets/buttons.css',   // add your buttons here
+        'assets/tokens.css',    // any other theme CSS you want mirrored
+    ]);	
 });
 
-/* Load design tokens in front-end and editor */
+// Set sizes used for srcset for case study and blog post featured images
+add_filter('render_block_core/post-featured-image', function ($html, $block) {
+  if ( ! is_singular('case_study') ) return $html;
+
+  $class = $block['attrs']['className'] ?? '';
+  if (strpos($class, 'cs-hero') === false) return $html;
+
+  // Tune these to your layout’s actual slot widths
+  $sizes = '(min-width: 1200px) 1280px, (min-width: 768px) 768px, 420px';
+
+  if (preg_match('/\s+sizes="/', $html)) {
+    $html = preg_replace('/\s+sizes="[^"]*"/', ' sizes="' . esc_attr($sizes) . '"', $html, 1);
+  } else {
+    $html = preg_replace('/<img\b(?![^>]*\bsizes=)([^>]*?)\/?>/i', '<img$1 sizes="' . esc_attr($sizes) . '"/>', $html, 1);
+  }
+
+  // Optional LCP hint
+  $html = preg_replace('/<img\b/', '<img fetchpriority="high" decoding="async"', $html, 1);
+  return $html;
+}, 10, 2);
+
+
+// Load design tokens in front-end and editor
 add_action('wp_enqueue_scripts', function () {
 	$ver = wp_get_theme()->get('Version') ?: null;
 	wp_enqueue_style('ceiba-tokens', get_stylesheet_directory_uri() . '/assets/tokens.css', [], $ver);

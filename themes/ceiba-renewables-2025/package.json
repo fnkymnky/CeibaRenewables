@@ -5,7 +5,7 @@
   "description": "Build tooling for the Ceiba child theme (SCSS → style.css).",
   "scripts": {
     "build": "sass src/scss/style.scss:style.css src/scss/buttons.scss:assets/buttons.css --style=compressed --no-source-map",
-    "dev": "sass --watch src/scss/style.scss:style.css --style=expanded"
+    "dev": "sass --watch src/scss/style.scss:style.css src/scss/buttons.scss:assets/buttons.css --style=expanded"
   },
   "devDependencies": {
     "sass": "^1.77.0"
