@@ -1,32 +1,52 @@
+<!-- wp:group {"tagName":"header","className":"site-header"} -->
 <header class="site-header">
 
 	<!-- wp:html -->
 	<a class="skip-link screen-reader-text" href="#page-content">Skip to content</a>
 	<!-- /wp:html -->
 
+	<!-- wp:group {"className":"contact-bar","layout":{"type":"constrained","contentSize":"1280px"}} -->
 	<div class="contact-bar">
+		<!-- wp:group {"className":"contact-bar__inner"} -->
 		<div class="contact-bar__inner">
 			<!-- wp:shortcode -->
 				[slm_contact_info]
 			<!-- /wp:shortcode -->
 			<!-- wp:slm/social-links {"brandColors":false} /-->
 		</div>
+		<!-- /wp:group -->
 	</div>
+	<!-- /wp:group -->
 
+	<!-- wp:group {"className":"navbar","layout":{"type":"constrained","contentSize":"1280px"}} -->
 	<div class="navbar">
+		<!-- wp:group {"className":"navbar__inner"} -->
 		<div class="navbar__inner">
+			<!-- wp:group {"className":"logo"} -->
 			<div class="logo">
 				<!-- wp:site-logo {"width":220} /-->
 			</div>
+			<!-- /wp:group -->
+			<!-- wp:group {"className":"menu-and-search"} -->
 			<div class="menu-and-search">
-				<div class="menu">
-					<!-- wp:navigation {"ariaLabel":"Site navigation","ref":242,"__experimentalSubmenuIndicator":true,"style":{"spacing":{"blockGap":"var(--wp--preset--spacing--40)"},"typography":{"fontSize":"var(--wp--preset--font-size--small)"}}} /-->
-				</div>
-				<div class="search">
-					<!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true} /-->
-				</div>
-			</div>
-		</div>
-	</div>
 
+				<!-- wp:group {"className":"search"} -->
+				<!--<div class="search">
+					<!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true} /-->
+				</div>-->
+				<!-- wp:group {"className":"menu"} -->
+				<div class="menu">
+					<!-- wp:navigation {"ariaLabel":"Site navigation","icon":"menu","ref":242,"__experimentalSubmenuIndicator":true,"style":{"spacing":{"blockGap":"var(--wp--preset--spacing--40)"},"typography":{"fontSize":"var(--wp--preset--font-size--small)"}}} /-->
+				</div>
+				<!-- /wp:group -->
+
+				<!-- /wp:group -->
+
+			</div>
+			<!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
 </header>
+<!-- /wp:group -->

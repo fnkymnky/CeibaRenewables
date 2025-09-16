@@ -40,7 +40,7 @@ add_action('init', function () {
         'show_in_rest' => true,
         'menu_icon' => 'dashicons-media-document',
         'supports' => ['title','editor','thumbnail','excerpt'],
-        'has_archive' => false,
+        'has_archive' => true,
         'rewrite' => ['slug' => 'case-studies'],
     ]);
 

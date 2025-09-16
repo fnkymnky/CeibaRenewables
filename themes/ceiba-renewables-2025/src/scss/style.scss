@@ -48,14 +48,6 @@ h6 {
   }
 }
 
-.contact-bar__inner,
-.navbar__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-}
-
 .contact-bar {
   background-color: var(--wp--preset--color--ceiba-green);
   color: #fff;
@@ -117,9 +109,17 @@ h6 {
     .menu-and-search {
       display: flex;
       align-items: center;
-      font-weight: 500;
+      font-weight: 600;
     }
   }
+}
+
+.contact-bar__inner,
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 /* Full-bleed blocks inside content (margin-only approach to avoid 100vw scrollbar overflow) */
@@ -461,10 +461,26 @@ h6 {
   overflow: hidden;
 }
 
+
+@media ( min-width: 1024px ) {
+  .wp-block-navigation__responsive-container-open:not(.always-shown) {
+    display: none !important;
+  }
+  .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+    display: block !important;
+  }
+}
+
 @media (min-width: 600px) {
   .contact-bar {
     display: block;
   }
+  .wp-block-navigation__responsive-container-open:not(.always-shown) {
+    display: flex;
+  }
+  .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+    display: none;
+  }  
 }
 
 @media (min-width: 782px) {
@@ -554,6 +570,51 @@ h6 {
 }
 
 @media (min-width: 1024px) {
+
+  /* PRIMARY NAVIGATION BAR */
+  .menu-and-search {
+    
+    .menu {
+      order: 1;
+
+      ul.wp-block-navigation.wp-block-navigation__container {
+        gap: 4px;
+
+        /* All navbar links */
+        .wp-block-navigation-item {
+
+          a.wp-block-navigation-item__content {
+            padding: 8px 8px;
+            transition: color 0.2s;
+
+            &:hover {
+              text-decoration: none;
+              color: var(--wp--preset--color--ceiba-green, #45ad58);
+              transition: color 0.2s;
+            }
+          }
+
+          .current-menu-item {
+            color: var(--wp--preset--color--ceiba-green, #45ad58);
+          }
+        }
+
+        /* Submenu dropdown */
+        .wp-block-navigation__submenu-container {
+          padding: 8px;
+          background: var(--wp--preset--color--bg, #fff);
+          box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+          border-radius: 12px;
+          z-index: 10;
+        }
+      }
+    }
+
+    .search {
+      order: 2;
+    }
+  }
+
   /* CASE STUDY */
   .case-study-post {
     padding: 0 24px;
@@ -639,6 +700,10 @@ h6 {
 }
 
 @media (min-width: 1300px) {
+  .contact-bar__inner,
+  .navbar__inner {
+    padding: 0;
+  }  
   .site-footer {
     .footer__inner {
       padding: 0;
