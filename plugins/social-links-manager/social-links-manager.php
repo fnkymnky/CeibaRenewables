@@ -242,6 +242,26 @@ add_action( 'init', function() {
         ) );
     }
 } );
+// Register the Gutenberg Contact Info block (server-rendered)
+add_action( 'init', function () {
+
+    wp_register_script(
+        'slm-block-contact-info',
+        plugins_url( 'blocks/contact-info/index.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-server-side-render' ), // <-- the important one
+        filemtime( plugin_dir_path( __FILE__ ) . 'blocks/contact-info/index.js' ),
+        true
+    );
+
+    register_block_type(
+        __DIR__ . '/blocks/contact-info',
+        array(
+            'render_callback' => 'slm_contact_info_shortcode', // must return a string
+        )
+    );
+} );
+
+
 add_shortcode( 'social_links', 'social_links_manager_shortcode' );
 
 // Shortcode to display contact info (phone/email)
@@ -274,4 +294,7 @@ function slm_contact_info_shortcode() {
     return $out;
 }
 add_shortcode( 'slm_contact_info', 'slm_contact_info_shortcode' );
+
+
+
 ?>

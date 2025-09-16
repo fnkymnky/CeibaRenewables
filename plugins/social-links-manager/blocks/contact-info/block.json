@@ -1,0 +1,11 @@
+{
+  "apiVersion": 3,
+  "name": "slm/contact-info",
+  "title": "Contact Info",
+  "category": "widgets",
+  "icon": "id-alt",
+  "description": "Display saved phone and email from Settings → Contact Details.",
+  "supports": { "html": false },
+  "textdomain": "social-links-manager",
+  "editorScript": "slm-block-contact-info"
+}

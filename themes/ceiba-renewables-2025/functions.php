@@ -162,6 +162,14 @@ add_action('init', function () {
 			'post_name'  => 'footer-navigation',
 			'post_title' => 'Footer Navigation',
 		],
+		[
+			'post_name'  => 'more-info',
+			'post_title' => 'More Info',
+		],
+		[
+			'post_name'  => 'legal-links',
+			'post_title' => 'Legal Links',
+		],				
 	];
 	
 	foreach ($menus as $m) {
@@ -174,7 +182,7 @@ add_action('init', function () {
 			'post_status' => 'publish',
 			'post_name'   => $m['post_name'],
 			'post_title'  => $m['post_title'],
-			'post_content'=> '', // links added in admin area
+			'post_content'=> '',
 		]);
 	}
 });
