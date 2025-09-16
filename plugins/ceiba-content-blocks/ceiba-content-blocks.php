@@ -29,20 +29,17 @@ add_action('init', function () {
     ]);
 
     register_post_type('case_study', [
-        'labels' => [
-            'name' => 'Case Studies',
-            'singular_name' => 'Case Study',
-            'add_new_item' => 'Add New Case Study',
-            'edit_item' => 'Edit Case Study'
-        ],
-        'public' => true,
-        'show_ui' => true,
-        'show_in_rest' => true,
-        'menu_icon' => 'dashicons-media-document',
-        'supports' => ['title','editor','thumbnail','excerpt'],
-        'has_archive' => true,
-        'rewrite' => ['slug' => 'case-studies'],
+        'labels'             => [ 'name' => 'Case Studies', 'singular_name' => 'Case Study' ],
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_rest'       => true,
+        'supports'           => ['title','editor','thumbnail','excerpt'],
+        'menu_icon'          => 'dashicons-media-document',
+        'has_archive'        => 'case-studies',
+        'rewrite'            => ['slug' => 'case-studies', 'with_front' => false],
     ]);
+
 
     register_post_meta('testimonial', 'ceiba_quote', [
         'type' => 'string',
@@ -92,6 +89,29 @@ add_action('init', function () {
         }
     }
 });
+
+// Highlight the Case Studies archive menu item on archive and single views.
+add_filter('nav_menu_css_class', function ($classes, $item) {
+    if (is_post_type_archive('case_study') || is_singular('case_study')) {
+        // Target the "Post Type Archive" menu item for this CPT
+        if ($item->type === 'post_type_archive' && $item->object === 'case_study') {
+            $classes[] = 'current-menu-item';
+            $classes[] = 'current_page_item'; // some themes still look for this
+        }
+    }
+    return array_unique($classes);
+}, 10, 2);
+
+// Accessibility nicety: set aria-current on the same item.
+add_filter('nav_menu_link_attributes', function ($atts, $item) {
+    if (is_post_type_archive('case_study') || is_singular('case_study')) {
+        if ($item->type === 'post_type_archive' && $item->object === 'case_study') {
+            $atts['aria-current'] = 'page';
+        }
+    }
+    return $atts;
+}, 10, 2);
+
 
 add_filter('use_block_editor_for_post_type', function($use, $post_type){
     if ($post_type === 'testimonial') return false;
@@ -162,3 +182,55 @@ add_filter('enter_title_here', function($text, $post){
 
 // // Ensure the allow-list actually applies in the editor
 // add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
+
+// Make the Case Studies archive link "current" on archive + singles (block theme Navigation).
+add_filter('render_block', function (string $content, array $block) {
+    if (($block['blockName'] ?? '') !== 'core/navigation-link') {
+        return $content;
+    }
+
+    // Only when viewing the CPT
+    if ( ! ( is_post_type_archive('case_study') || is_singular('case_study') ) ) {
+        return $content;
+    }
+
+    // Get the CPT archive URL (correct function name)
+    $archive_url = get_post_type_archive_link('case_study');
+    if ( ! $archive_url ) {
+        return $content; // no archive -> nothing to do
+    }
+
+    // Does this nav item point to that archive?
+    $item_url = $block['attrs']['url'] ?? '';
+    if ( ! $item_url ) {
+        return $content;
+    }
+
+    // Normalize to compare paths (handles absolute + relative URLs).
+    $to_path = function ($url) {
+        // If it's relative, make it absolute against home_url
+        if (isset($url[0]) && $url[0] === '/') {
+            $url = home_url($url);
+        }
+        $url = strtok($url, '#?'); // drop query/hash
+        return untrailingslashit( wp_parse_url($url, PHP_URL_PATH) ?: '' );
+    };
+
+    if ($to_path($item_url) !== $to_path($archive_url)) {
+        return $content;
+    }
+
+    // Mark as current
+    if (stripos($content, 'aria-current=') === false) {
+        $content = preg_replace('/<a\b/i', '<a aria-current="page"', $content, 1);
+    }
+    if (preg_match('/\bclass=("|\')(.*?)\1/i', $content, $m)) {
+        $q = $m[1];
+        $classes = trim($m[2] . ' current-menu-item current_page_item');
+        $content = preg_replace('/\bclass=("|\')(.*?)\1/i', 'class='.$q.$classes.$q, $content, 1);
+    } else {
+        $content = preg_replace('/<a\b(?![^>]*\bclass=)/i', '<a class="current-menu-item current_page_item"', $content, 1);
+    }
+
+    return $content;
+}, 10, 2);
