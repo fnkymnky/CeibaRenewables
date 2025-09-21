@@ -2,6 +2,7 @@
   position: relative; 
   display: block; 
   width: 100%;
+  margin-top: -24px;
   margin-bottom: 56px;
   /* Controls the concave curve depth (percentage of height) */
   --hero-curve-depth: 18%;
@@ -16,6 +17,7 @@
 }
 
 .ceiba-hero__top {
+  z-index: 1;
   position: relative;
   min-height: 460px;
   background-color: var(--wp--preset--color--contrast, #0a0a0a);
@@ -24,22 +26,18 @@
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  clip-path: var(--curve);
-  z-index: 0; /* sits above the border underlay */
+  clip-path: ellipse(150% 100% at 50% 0%);
 }
 
 /* Green “border” under the curve */
-.ceiba-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+.ceiba-hero__top__green-border {
   background: var(--wp--preset--color--ceiba-green, #45ad58);
-  clip-path: var(--curve);
-  transform-origin: top center; 
-  transform: scale(var(--border-scale-x), var(--border-scale-y));
-  z-index: -1;
-  pointer-events: none;
+  clip-path: ellipse(150% 100% at 50% 0%);
   height: 480px;
+  width: 100%;
+  margin-top: -460px; // Min-height of top section, minus amount to show
+  position: relative;
+  z-index: 0;
 }
 
 .ceiba-hero__backdrop {
@@ -48,13 +46,19 @@
   background: linear-gradient(180deg, rgba(35, 52, 93, 0.7), rgba(35, 52, 93, 0.7));
 }
 
-.ceiba-hero__inner {
+.ceiba-hero__top__inner {
   position: relative;
   z-index: 1;
   max-width: var(--wp--style--global--content-size, 1080px);
   margin: 0 auto;
   text-align: inherit;
-  overflow: hidden;
+}
+
+.ceiba-hero__bottom__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 16px 32px;
+  text-align: inherit;
 }
 
 .ceiba-hero__title {
@@ -67,8 +71,6 @@
 
 .ceiba-hero__bottom { 
   background: var(--wp--preset--color--ceiba-navy, #333); 
-  position: relative;
-  z-index: -1;
   margin-top: -40px; /* Ensures the block sits under the header above */
   padding-top: 55px; /* Offsets block content so it doesn't start under the header above */
 }
@@ -98,5 +100,8 @@
 @media (min-width: 1024px) {
   .ceiba-hero { 
     margin-bottom: 88px;
+  }
+  .ceiba-hero__bottom__inner {
+    padding: 48px 0 64px;
   }
 }

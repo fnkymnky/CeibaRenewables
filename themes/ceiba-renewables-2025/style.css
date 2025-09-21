@@ -28,6 +28,10 @@ h6 {
   margin: 0;
 }
 
+.wp-block-heading {
+  margin-bottom: 16px;
+}
+
 .page-title-header {
   margin-bottom: 32px;
 }
@@ -429,6 +433,7 @@ form textarea {
   margin-bottom: 12px;
   width: 100%;
   box-sizing: border-box;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
 form input[type=text]:active, form input[type=text]:focus,
 form input[type=email]:active,
@@ -635,6 +640,10 @@ form input[type=submit]:focus {
     gap: 4px;
     /* All navbar links */
     /* Submenu dropdown */
+  }
+  .menu-and-search .menu ul.wp-block-navigation.wp-block-navigation__container .wp-block-navigation-item:hover .wp-block-navigation__submenu-icon {
+    transition: color 0.2s;
+    color: var(--wp--preset--color--ceiba-green, #45ad58);
   }
   .menu-and-search .menu ul.wp-block-navigation.wp-block-navigation__container .wp-block-navigation-item a.wp-block-navigation-item__content {
     padding: 8px 8px;

@@ -55,19 +55,20 @@ if ( $bg_url_mobile ) echo '@media (max-width: 768px){#' . esc_attr( $unique_id 
 echo '</style>';
 echo '  <div class="ceiba-hero__top">';
 echo '    <div class="ceiba-hero__backdrop" aria-hidden="true"></div>';
-echo '    <div class="ceiba-hero__inner">';
+echo '    <div class="ceiba-hero__top__inner">';
 if ( ! empty( $attr['title'] ) ) {
   echo '      <h1 class="ceiba-hero__title">' . wp_kses_post( $attr['title'] ) . '</h1>';
 }
 
 echo '    </div>';
 echo '  </div>';
+echo '<div class="ceiba-hero__top__green-border"></div>';
 
 // Bottom: solid background + content (render only if there is content)
 $has_content = trim( (string) $content ) !== '';
 if ( $has_content ) {
   echo '  <div class="ceiba-hero__bottom">';
-  echo '    <div class="ceiba-hero__inner">';
+  echo '    <div class="ceiba-hero__bottom__inner">';
   echo '      <div class="ceiba-hero__content">' . $content . '</div>';
   echo '    </div>';
   echo '  </div>';
