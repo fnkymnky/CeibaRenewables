@@ -3,7 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $attr = wp_parse_args( (array) $attributes, [
   'title' => '',
-  // legacy attributes retained for backward compatibility but ignored for background selection
   'backgroundId' => 0,
   'backgroundUrl' => '',
   'backgroundAlt' => '',
@@ -33,7 +32,6 @@ if ( isset( $attr['align'] ) ) {
 $unique_id = uniqid('ceiba-hero-');
 $wrapper = get_block_wrapper_attributes( [ 'id' => $unique_id, 'class' => 'ceiba-hero' . $align_class ] );
 
-// Prepare responsive background URLs
 $bg_url_full   = $bg_url;
 $bg_url_mobile = $bg_url;
 if ( $featured ) {

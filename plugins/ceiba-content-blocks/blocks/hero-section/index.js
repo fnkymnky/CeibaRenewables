@@ -10,7 +10,7 @@ import './editor.scss';
 import save from './save';
 
 // Explicit list of allowed child blocks for the editor experience
-const ALLOWED_BLOCKS = [ 'core/heading', 'core/paragraph', 'core/buttons', 'core/list', 'core/list-item', 'core/separator' ];
+const ALLOWED_BLOCKS = [ 'core/heading', 'core/paragraph', 'core/buttons', 'core/list', 'core/list-item', 'core/separator', 'core/image', 'core/group' ];
 
 function Edit( props ) {
   const { attributes, setAttributes, clientId } = props;

@@ -32,6 +32,10 @@ strong {
   font-weight: bold;
 }
 
+ol li::marker {
+  font-weight: bold;
+}
+
 .page-title-header {
   margin-bottom: 32px;
 }

@@ -66,7 +66,8 @@ add_action('after_setup_theme', function(){
     add_editor_style([
         'assets/buttons.css',   // add your buttons here
         'assets/tokens.css',    // any other theme CSS you want mirrored
-    ]);	
+    ]);
+    add_post_type_support('page', 'excerpt');	
 });
 
 // Set sizes used for srcset for case study and blog post featured images
@@ -76,7 +77,7 @@ add_filter('render_block_core/post-featured-image', function ($html, $block) {
   $class = $block['attrs']['className'] ?? '';
   if (strpos($class, 'cs-hero') === false) return $html;
 
-  // Tune these to your layout’s actual slot widths
+  // Tune these to your layoutâ€™s actual slot widths
   $sizes = '(min-width: 1200px) 1280px, (min-width: 768px) 768px, 420px';
 
   if (preg_match('/\s+sizes="/', $html)) {
@@ -98,7 +99,7 @@ add_action('wp_enqueue_scripts', function () {
 	// Load the child theme stylesheet explicitly; don't depend on parent handle
 	$style_path = get_stylesheet_directory() . '/style.css';
 	$style_ver  = file_exists($style_path) ? filemtime($style_path) : $ver;
-	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), [], $style_ver);
+	wp_enqueue_style('ceiba-child-style', get_stylesheet_uri(), [], );
 	wp_enqueue_style('ceiba-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1');
 	wp_enqueue_style('ceiba-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap', [], null);
 }, 20);
@@ -228,8 +229,8 @@ function ceiba_hide_template_parts_editor_script() {
 		return;
 	}
 
-	// OPTIONAL: restrict to specific post types you edit (pages only by default)
-	$allowed = array( 'page', 'post' ); // change/add custom post types if needed, e.g. 'case_study'
+
+	$allowed = array( 'page', 'post' );
 	if ( ! in_array( $screen->post_type, $allowed, true ) ) {
 		return;
 	}
@@ -244,3 +245,4 @@ function ceiba_hide_template_parts_editor_script() {
 	);
 	wp_enqueue_script( 'ceiba-hide-template-parts' );
 }
+

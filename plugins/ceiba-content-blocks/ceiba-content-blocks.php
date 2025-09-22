@@ -31,13 +31,12 @@ add_action('init', function () {
     register_post_type('case_study', [
         'labels'             => [ 'name' => 'Case Studies', 'singular_name' => 'Case Study' ],
         'public'             => true,
-        'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_rest'       => true,
-        'supports'           => ['title','editor','thumbnail','excerpt'],
         'menu_icon'          => 'dashicons-media-document',
-        'has_archive'        => 'case-studies',
-        'rewrite'            => ['slug' => 'case-studies', 'with_front' => false],
+        'supports'           => ['title','editor','thumbnail','excerpt'],
+        'has_archive'        => false,
+        'rewrite' => ['slug' => 'case-studies'],
     ]);
 
 
@@ -184,53 +183,167 @@ add_filter('enter_title_here', function($text, $post){
 // add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
 
 // Make the Case Studies archive link "current" on archive + singles (block theme Navigation).
-add_filter('render_block', function (string $content, array $block) {
-    if (($block['blockName'] ?? '') !== 'core/navigation-link') {
-        return $content;
-    }
+// add_filter('render_block', function (string $content, array $block) {
+//     if (($block['blockName'] ?? '') !== 'core/navigation-link') {
+//         return $content;
+//     }
 
-    // Only when viewing the CPT
-    if ( ! ( is_post_type_archive('case_study') || is_singular('case_study') ) ) {
-        return $content;
-    }
+//     // Only when viewing the CPT
+//     if ( ! ( is_post_type_archive('case_study') || is_singular('case_study') ) ) {
+//         return $content;
+//     }
 
-    // Get the CPT archive URL (correct function name)
-    $archive_url = get_post_type_archive_link('case_study');
-    if ( ! $archive_url ) {
-        return $content; // no archive -> nothing to do
-    }
+//     // Get the CPT archive URL (correct function name)
+//     $archive_url = get_post_type_archive_link('case_study');
+//     if ( ! $archive_url ) {
+//         return $content; // no archive -> nothing to do
+//     }
 
-    // Does this nav item point to that archive?
-    $item_url = $block['attrs']['url'] ?? '';
-    if ( ! $item_url ) {
-        return $content;
-    }
+//     // Does this nav item point to that archive?
+//     $item_url = $block['attrs']['url'] ?? '';
+//     if ( ! $item_url ) {
+//         return $content;
+//     }
 
-    // Normalize to compare paths (handles absolute + relative URLs).
-    $to_path = function ($url) {
-        // If it's relative, make it absolute against home_url
-        if (isset($url[0]) && $url[0] === '/') {
-            $url = home_url($url);
+//     // Normalize to compare paths (handles absolute + relative URLs).
+//     $to_path = function ($url) {
+//         // If it's relative, make it absolute against home_url
+//         if (isset($url[0]) && $url[0] === '/') {
+//             $url = home_url($url);
+//         }
+//         $url = strtok($url, '#?'); // drop query/hash
+//         return untrailingslashit( wp_parse_url($url, PHP_URL_PATH) ?: '' );
+//     };
+
+//     if ($to_path($item_url) !== $to_path($archive_url)) {
+//         return $content;
+//     }
+
+//     // Mark as current
+//     if (stripos($content, 'aria-current=') === false) {
+//         $content = preg_replace('/<a\b/i', '<a aria-current="page"', $content, 1);
+//     }
+//     if (preg_match('/\bclass=("|\')(.*?)\1/i', $content, $m)) {
+//         $q = $m[1];
+//         $classes = trim($m[2] . ' current-menu-item current_page_item');
+//         $content = preg_replace('/\bclass=("|\')(.*?)\1/i', 'class='.$q.$classes.$q, $content, 1);
+//     } else {
+//         $content = preg_replace('/<a\b(?![^>]*\bclass=)/i', '<a class="current-menu-item current_page_item"', $content, 1);
+//     }
+
+//     return $content;
+// }, 10, 2);
+
+// Dynamic blocks for Case Studies page content split
+add_action('init', function(){
+    // Top segment of current page content, before separator with class "cs-loop-split"
+    register_block_type('ceiba/case-studies-top', array(
+        'api_version' => 2,
+        'render_callback' => function( $attributes = [], $content = '', $block = null ){
+            $post = get_post();
+            if ( ! $post ) return '';
+            $blocks = parse_blocks( $post->post_content );
+            $out = '';
+            foreach ( $blocks as $b ) {
+                $name = isset($b['blockName']) ? $b['blockName'] : '';
+                $class = isset($b['attrs']['className']) ? $b['attrs']['className'] : '';
+                if ( $name === 'core/separator' && strpos($class, 'cs-loop-split') !== false ) {
+                    break;
+                }
+                $out .= render_block( $b );
+            }
+            return $out;
+        },
+        'supports' => array( 'inserter' => false ),
+    ));
+
+    // Bottom segment of current page content, after separator with class "cs-loop-split"
+    register_block_type('ceiba/case-studies-bottom', array(
+        'api_version' => 2,
+        'render_callback' => function( $attributes = [], $content = '', $block = null ){
+            $post = get_post();
+            if ( ! $post ) return '';
+            $blocks = parse_blocks( $post->post_content );
+            $out = '';
+            $after = false;
+            foreach ( $blocks as $b ) {
+                if ( ! $after ) {
+                    $name = isset($b['blockName']) ? $b['blockName'] : '';
+                    $class = isset($b['attrs']['className']) ? $b['attrs']['className'] : '';
+                    if ( $name === 'core/separator' && strpos($class, 'cs-loop-split') !== false ) {
+                        $after = true;
+                    }
+                    continue;
+                }
+                $out .= render_block( $b );
+            }
+            return $out;
+        },
+        'supports' => array( 'inserter' => false ),
+    ));
+});
+
+// Shortcode to render Case Studies loop inside page content
+add_action('init', function(){
+    add_shortcode('case_studies_loop', function($atts){
+        $atts = shortcode_atts([
+            'per_page' => 12,
+            'columns'  => 3,
+        ], $atts, 'case_studies_loop');
+
+        $ppp = max(1, intval($atts['per_page']));
+        $cols = max(1, intval($atts['columns']));
+        $paged = max(1, (int) get_query_var('paged'), (int) get_query_var('page'));
+
+        $q = new WP_Query([
+            'post_type'      => 'case_study',
+            'posts_per_page' => $ppp,
+            'paged'          => $paged,
+            'post_status'    => 'publish',
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'no_found_rows'  => false,
+        ]);
+
+        ob_start();
+        if ( $q->have_posts() ){
+            $grid_style = sprintf('grid-template-columns: repeat(%d, minmax(0,1fr));', $cols);
+            echo '<div class="posts-grid" style="display:grid; gap: var(--wp--style--block-gap, 24px); ' . esc_attr($grid_style) . '">';
+            while( $q->have_posts() ){
+                $q->the_post();
+                echo '<article class="wp-block-group blog-list-item">';
+                if ( has_post_thumbnail() ){
+                    echo '<div class="blog-list-item__media">';
+                    the_post_thumbnail('large');
+                    echo '</div>';
+                }
+                echo '<div class="wp-block-group blog-list-item__body">';
+                echo '<h3 class="blog-list-item__title"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h3>';
+                echo '</div>';
+                echo '</article>';
+            }
+            echo '</div>';
+
+            // Pagination
+            $big = 999999;
+            $base = trailingslashit( get_permalink( get_queried_object_id() ) ) . '%_%';
+            $format = 'page/%#%/';
+            $links = paginate_links([
+                'base'      => $base,
+                'format'    => $format,
+                'current'   => max( 1, $paged ),
+                'total'     => max( 1, (int) $q->max_num_pages ),
+                'type'      => 'list',
+                'prev_text' => __('Newer'),
+                'next_text' => __('Older'),
+            ]);
+            if ( $links ){
+                echo '<nav class="posts-pagination">' . $links . '</nav>';
+            }
+        } else {
+            echo '<p>' . esc_html__('No case studies found.', 'ceiba') . '</p>';
         }
-        $url = strtok($url, '#?'); // drop query/hash
-        return untrailingslashit( wp_parse_url($url, PHP_URL_PATH) ?: '' );
-    };
-
-    if ($to_path($item_url) !== $to_path($archive_url)) {
-        return $content;
-    }
-
-    // Mark as current
-    if (stripos($content, 'aria-current=') === false) {
-        $content = preg_replace('/<a\b/i', '<a aria-current="page"', $content, 1);
-    }
-    if (preg_match('/\bclass=("|\')(.*?)\1/i', $content, $m)) {
-        $q = $m[1];
-        $classes = trim($m[2] . ' current-menu-item current_page_item');
-        $content = preg_replace('/\bclass=("|\')(.*?)\1/i', 'class='.$q.$classes.$q, $content, 1);
-    } else {
-        $content = preg_replace('/<a\b(?![^>]*\bclass=)/i', '<a class="current-menu-item current_page_item"', $content, 1);
-    }
-
-    return $content;
-}, 10, 2);
+        wp_reset_postdata();
+        return ob_get_clean();
+    });
+});

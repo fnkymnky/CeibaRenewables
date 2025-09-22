@@ -2,6 +2,8 @@
   --gap: clamp(16px, 3vw, 32px);
   display: block;
   padding: 24px 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
 
   &.has-ceiba-navy-background-color p {
     color: var(--wp--preset--color--bg);
@@ -45,6 +47,7 @@
   /* NAVY SECTION */
   &.has-ceiba-navy-background-color {
     position: relative;
+    color: var(--wp--preset--color--white, #fff);
 
     &:after {
       content: '';
@@ -78,6 +81,7 @@
   /* GREEN SECTION */
   &.has-ceiba-green-background-color {
     position: relative;
+    color: var(--wp--preset--color--white, #fff);
     
     .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;
@@ -99,6 +103,7 @@
   /* WHITE SECTION */
   &.has-bg-background-color {
     position: relative;
+    color: var(--wp--preset--color--ceiba-navy, #333);
 
     .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;
@@ -252,6 +257,8 @@
 @media (min-width: 720px) {
   .wp-block-ceiba-content-section {
     padding: 32px 0;
+    margin-top: 64px;
+    margin-bottom: 64px;
   }
   .ceiba-csct__col.ceiba-csct__col--body {
     padding: 32px 96px;
