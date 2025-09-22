@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 /**
- * Title: Case Studies – Query (12 grid)
+ * Title: Case Studies - Query (12 grid)
  * Slug: ceiba/case-studies-query
  * Categories: query, posts
  * Block Types: core/query
- * Keywords: case studies, listing
+  * Inserter: true
  * Viewport Width: 1280
  */
 ?>

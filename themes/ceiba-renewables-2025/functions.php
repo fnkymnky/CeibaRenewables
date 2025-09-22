@@ -246,3 +246,29 @@ function ceiba_hide_template_parts_editor_script() {
 	wp_enqueue_script( 'ceiba-hide-template-parts' );
 }
 
+
+// Ensure theme patterns are registered (item + query) even if auto-discovery fails.
+add_action('init', function(){
+    if ( ! function_exists('register_block_pattern') ) return;
+    $reg = WP_Block_Patterns_Registry::get_instance();
+    $base = get_stylesheet_directory() . '/patterns';
+    $patterns = [
+        [ 'slug' => 'ceiba/blog-item',          'title' => 'Blog - Item (Grid Card)',          'file' => $base . '/blog-item.php',          'blockTypes' => ['core/post-template'], 'categories' => ['posts','query'], 'inserter' => true ],
+        [ 'slug' => 'ceiba/blog-query',         'title' => 'Blog - Query (12 grid)',           'file' => $base . '/blog-query.php',         'blockTypes' => ['core/query'],         'categories' => ['posts','query'], 'inserter' => true ],
+        [ 'slug' => 'ceiba/case-studies-item',  'title' => 'Case Studies - Item (Grid Card)',  'file' => $base . '/case-studies-item.php',  'blockTypes' => ['core/post-template'], 'categories' => ['posts','query'], 'inserter' => true ],
+        [ 'slug' => 'ceiba/case-studies-query', 'title' => 'Case Studies - Query (12 grid)',   'file' => $base . '/case-studies-query.php', 'blockTypes' => ['core/query'],         'categories' => ['posts','query'], 'inserter' => true ],
+    ];
+    foreach($patterns as $p){
+        if ( ! file_exists($p['file']) ) continue;
+        if ( method_exists($reg, 'is_registered') && $reg->is_registered($p['slug']) ) continue;
+        ob_start(); include $p['file']; $content = trim(ob_get_clean());
+        if ( ! $content ) continue;
+        register_block_pattern($p['slug'], [
+            'title'       => $p['title'],
+            'categories'  => $p['categories'],
+            'blockTypes'  => $p['blockTypes'],
+            'content'     => $content,
+            'inserter'    => $p['inserter'],
+        ]);
+    }
+}, 20);
