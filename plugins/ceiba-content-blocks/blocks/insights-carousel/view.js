@@ -20,6 +20,11 @@ import 'swiper/css';
     const prevEl = container.querySelector('.swiper-button-prev');
     const nextEl = container.querySelector('.swiper-button-next');
 
+    // Determine slidesPerView per breakpoint based on how many slides there are
+    const spvLg = Math.min(3, Math.max(1, slideCount));
+    const spvMd = slideCount < 2 ? 1 : Math.min(2, slideCount);
+    const spvSm = slideCount < 3 ? 1 : 1.15; // stretch for 1–2 items
+
     const s = new Swiper(container, {
       modules: [Navigation],
       spaceBetween: 16,
@@ -28,10 +33,10 @@ import 'swiper/css';
       slidesPerGroup: 1,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: 1.15, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
-        768:  { slidesPerView: 2.15, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
-        1025: { slidesPerView: 3, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
-        1300: { slidesPerView: 3, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
+        0:    { slidesPerView: spvSm, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
+        768:  { slidesPerView: slideCount >= 3 ? 2.15 : spvMd, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
+        1025: { slidesPerView: spvLg, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
+        1300: { slidesPerView: spvLg, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
       },
       watchOverflow: true,
       autoHeight: true,

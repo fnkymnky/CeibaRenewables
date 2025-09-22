@@ -3,7 +3,7 @@
   "name": "ceiba/column-content-item",
   "title": "Multi-Column Section Item",
   "category": "ceiba-blocks",
-  "parent": ["ceiba/column-content"],
+  
   "icon": "screenoptions",
   "description": "A single column item for Column Content Block.",
   "supports": {
@@ -15,4 +15,3 @@
   "style": "file:./style-index.css",
   "render": "file:./render.php"
 }
-

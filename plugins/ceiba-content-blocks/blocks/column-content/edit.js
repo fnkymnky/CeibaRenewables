@@ -5,9 +5,11 @@ import {
   InnerBlocks,
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl, Notice } from '@wordpress/components';
-import { useMemo } from '@wordpress/element';
+import { useEffect, useMemo } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { createBlock } from '@wordpress/blocks';
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, setAttributes, clientId }) {
   const { columnsCount = 3, layoutMode = 'contained' } = attributes;
 
   const hasBg = !!attributes?.backgroundColor || !!attributes?.style?.color?.background || !!attributes?.style?.color?.gradient;
@@ -16,7 +18,8 @@ export default function Edit({ attributes, setAttributes }) {
 
   const blockProps = useBlockProps({ className: `ceiba-ccb${alignSuffix} cols-${columnsCount}` });
 
-  const columnsTemplate = useMemo(() => Array.from({ length: Math.min(Math.max(columnsCount, 1), 4) }, () => ['ceiba/column-content-item']), [columnsCount]);
+  // Keep template minimal to avoid insert failures if child scripts load late.
+  const columnsTemplate = useMemo(() => [], []);
   const template = useMemo(() => ([
     ['core/group', { className: 'ccb__top' }, [
       ['core/heading', { level: 2 }],
@@ -28,6 +31,42 @@ export default function Edit({ attributes, setAttributes }) {
       ['core/buttons']
     ]]
   ]), [columnsTemplate]);
+
+  // Locate the child Group that holds the columns and keep its children in sync with columnsCount
+  const { columnsGroup, columnsChildren } = useSelect(
+    (select) => {
+      const be = select('core/block-editor');
+      const children = be.getBlocks(clientId) || [];
+      const group = children.find(
+        (b) => b?.name === 'core/group' && (b?.attributes?.className || '').includes('ccb__columns')
+      );
+      return {
+        columnsGroup: group,
+        columnsChildren: group ? be.getBlocks(group.clientId) : [],
+      };
+    },
+    [clientId]
+  );
+
+  const { insertBlocks, removeBlocks } = useDispatch('core/block-editor');
+
+  useEffect(() => {
+    if (!columnsGroup) return;
+    const desired = Math.min(Math.max(columnsCount || 1, 1), 4);
+    const current = (columnsChildren || []).length;
+
+    if (current === desired) return;
+
+    if (current < desired) {
+      const toAdd = desired - current;
+      const newBlocks = Array.from({ length: toAdd }, () => createBlock('ceiba/column-content-item'));
+      // Insert at the end of the columns group
+      insertBlocks(newBlocks, current, columnsGroup.clientId);
+    } else if (current > desired) {
+      const toRemove = columnsChildren.slice(desired).map((b) => b.clientId);
+      if (toRemove.length) removeBlocks(toRemove);
+    }
+  }, [columnsGroup, columnsChildren?.length, columnsCount, insertBlocks, removeBlocks]);
 
   return (
     <>
@@ -70,4 +109,3 @@ export default function Edit({ attributes, setAttributes }) {
     </>
   );
 }
-

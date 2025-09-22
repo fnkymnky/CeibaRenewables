@@ -28,8 +28,8 @@ h6 {
   margin: 0;
 }
 
-.wp-block-heading {
-  margin-bottom: 16px;
+strong {
+  font-weight: bold;
 }
 
 .page-title-header {

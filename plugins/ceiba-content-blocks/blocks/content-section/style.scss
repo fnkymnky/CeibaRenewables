@@ -123,6 +123,7 @@
   /* NAVY SECTION */
   &.has-ceiba-navy-background-color {
     position: relative;
+    color: var(--wp--preset--color--white, #fff);
 
     &:after {
       content: '';
@@ -156,6 +157,7 @@
   /* GREEN SECTION */
   &.has-ceiba-green-background-color {
     position: relative;
+    color: var(--wp--preset--color--white, #fff);
 
     .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;
@@ -168,7 +170,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         display: block;
-        bottom:-150px; left:-16px;
+        bottom:-60px; left:-16px;
         position: absolute;      
       }  
     }
@@ -177,6 +179,7 @@
   /* WHITE SECTION */
   &.has-bg-background-color {
     position: relative;
+    color: var(--wp--preset--color--ceiba-navy, #333);
 
     .ceiba-csct__col.ceiba-csct__col--media {
       position: relative;

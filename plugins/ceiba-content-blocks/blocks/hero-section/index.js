@@ -36,12 +36,12 @@ function Edit( props ) {
     el('section', blockProps,
       el('div', { className: 'ceiba-hero__top', style: editorBgUrl ? { backgroundImage: `url(${editorBgUrl})` } : undefined },
         el('div', { className: 'ceiba-hero__backdrop', 'aria-hidden': true }),
-        el('div', { className: 'ceiba-hero__inner' },
+        el('div', { className: 'ceiba-hero__top__inner' },
           el(RichText, { tagName: 'h1', className: 'ceiba-hero__title', placeholder: __('Add hero title', 'ceiba'), value: title, allowedFormats: [], onChange: (val) => setAttributes({ title: val }) })
         )
       ),
       el('div', { className: 'ceiba-hero__bottom' },
-        el('div', { className: 'ceiba-hero__inner' },
+        el('div', { className: 'ceiba-hero__bottom__inner' },
           el('div', { className: 'ceiba-hero__content' },
             el(InnerBlocks, {
               allowedBlocks: ALLOWED_BLOCKS,

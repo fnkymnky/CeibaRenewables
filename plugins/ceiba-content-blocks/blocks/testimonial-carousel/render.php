@@ -40,9 +40,9 @@ ob_start(); ?>
               <footer>
                 <cite>
                   <?php echo esc_html( $role ); ?>
-                  <?php if ( $title ) : ?>
+                  <!-- <?php if ( $title ) : ?>
                     <div class="ceiba-tc__title"><?php echo esc_html( $title ); ?></div>
-                  <?php endif; ?>
+                  <?php endif; ?> -->
                 </cite>
               </footer>
             <?php endif; ?>

@@ -2,6 +2,15 @@
   --gap: clamp(16px, 3vw, 32px);
   padding: 32px 16px;
 
+  &.has-ceiba-green-background-color {
+    color: var(--wp--preset--color--white, #fff);
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--wp--preset--color--white, #fff);
+    }
+
+  }
+
   .ccb__inner { width: 100%; }
 
   .ccb__columns {
@@ -25,19 +34,19 @@
   .wp-block-ceiba-column-content {
     padding: 64px 24px;
 
-  &.has-ceiba-green-background-color {
-    position: relative;
-    &:before {
-      content: '';
-      background: url(./assets/white-blue-rings.svg) no-repeat;
-      display: block;
-      position: absolute;
-      top: -24px;
-      right: -64px;
-      height: 200px;
-      width: 200px;
+    &.has-ceiba-green-background-color {
+      position: relative;
+      &:before {
+        content: '';
+        background: url(./assets/white-blue-rings.svg) no-repeat;
+        display: block;
+        position: absolute;
+        top: -24px;
+        right: -64px;
+        height: 200px;
+        width: 200px;
+      }
     }
-  }
 
     .ccb__top {
       margin-bottom: 64px;

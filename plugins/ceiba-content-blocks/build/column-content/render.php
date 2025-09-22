@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $attr = wp_parse_args( $attributes, [
-  'columnsCount' => 3,
+  'columnsCount' => 4,
   'layoutMode'   => 'contained', // 'contained' | 'full'
 ] );
 
