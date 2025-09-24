@@ -28,15 +28,15 @@ add_action('init', function () {
         'supports' => ['title'],
     ]);
 
-    register_post_type('case_study', [
-        'labels'             => [ 'name' => 'Case Studies', 'singular_name' => 'Case Study' ],
+    register_post_type('project', [
+        'labels'             => [ 'name' => 'Projects', 'singular_name' => 'Project' ],
         'public'             => true,
         'show_ui'            => true,
         'show_in_rest'       => true,
         'menu_icon'          => 'dashicons-media-document',
         'supports'           => ['title','editor','thumbnail','excerpt'],
         'has_archive'        => false,
-        'rewrite' => ['slug' => 'case-studies'],
+        'rewrite' => ['slug' => 'projects'],
     ]);
 
 
@@ -89,11 +89,11 @@ add_action('init', function () {
     }
 });
 
-// Highlight the Case Studies archive menu item on archive and single views.
+// Highlight the projects archive menu item on archive and single views.
 add_filter('nav_menu_css_class', function ($classes, $item) {
-    if (is_post_type_archive('case_study') || is_singular('case_study')) {
+    if (is_post_type_archive('project') || is_singular('project')) {
         // Target the "Post Type Archive" menu item for this CPT
-        if ($item->type === 'post_type_archive' && $item->object === 'case_study') {
+        if ($item->type === 'post_type_archive' && $item->object === 'project') {
             $classes[] = 'current-menu-item';
             $classes[] = 'current_page_item'; // some themes still look for this
         }
@@ -103,8 +103,8 @@ add_filter('nav_menu_css_class', function ($classes, $item) {
 
 // Accessibility nicety: set aria-current on the same item.
 add_filter('nav_menu_link_attributes', function ($atts, $item) {
-    if (is_post_type_archive('case_study') || is_singular('case_study')) {
-        if ($item->type === 'post_type_archive' && $item->object === 'case_study') {
+    if (is_post_type_archive('project') || is_singular('project')) {
+        if ($item->type === 'post_type_archive' && $item->object === 'project') {
             $atts['aria-current'] = 'page';
         }
     }
@@ -144,7 +144,7 @@ add_filter('enter_title_here', function($text, $post){
 }, 10, 2);
 
 // // Allow-list for Case Studies (supports both old/new filter signatures)
-// function ceiba_allowed_blocks_for_case_study( $allowed, $context = null ) {
+// function ceiba_allowed_blocks_for_project( $allowed, $context = null ) {
 //     $post_type = null;
 
 //     if ( is_array( $context ) && isset( $context['post_type'] ) ) {
@@ -155,7 +155,7 @@ add_filter('enter_title_here', function($text, $post){
 //         $post_type = $context->postType;
 //     }
 
-//     if ( $post_type !== 'case_study' ) {
+//     if ( $post_type !== 'project' ) {
 //         return $allowed; // don't touch other post types
 //     }
 
@@ -180,7 +180,7 @@ add_filter('enter_title_here', function($text, $post){
 // }
 
 // // Ensure the allow-list actually applies in the editor
-// add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_case_study', 10, 2);
+// add_filter('allowed_block_types_all', 'ceiba_allowed_blocks_for_project', 10, 2);
 
 // Make the Case Studies archive link "current" on archive + singles (block theme Navigation).
 // add_filter('render_block', function (string $content, array $block) {
@@ -189,12 +189,12 @@ add_filter('enter_title_here', function($text, $post){
 //     }
 
 //     // Only when viewing the CPT
-//     if ( ! ( is_post_type_archive('case_study') || is_singular('case_study') ) ) {
+//     if ( ! ( is_post_type_archive('project') || is_singular('project') ) ) {
 //         return $content;
 //     }
 
 //     // Get the CPT archive URL (correct function name)
-//     $archive_url = get_post_type_archive_link('case_study');
+//     $archive_url = get_post_type_archive_link('project');
 //     if ( ! $archive_url ) {
 //         return $content; // no archive -> nothing to do
 //     }
@@ -296,7 +296,7 @@ add_action('init', function(){
         $paged = max(1, (int) get_query_var('paged'), (int) get_query_var('page'));
 
         $q = new WP_Query([
-            'post_type'      => 'case_study',
+            'post_type'      => 'project',
             'posts_per_page' => $ppp,
             'paged'          => $paged,
             'post_status'    => 'publish',
