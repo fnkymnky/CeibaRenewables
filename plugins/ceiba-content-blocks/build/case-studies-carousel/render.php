@@ -8,7 +8,7 @@ $ids = array_filter($ids);
 if (count($ids) > 6) $ids = array_slice($ids, 0, 6);
 
 $args = [
-  'post_type'           => 'case_study',
+  'post_type'           => 'project',
   'post_status'         => 'publish',
   'ignore_sticky_posts' => true,
   'no_found_rows'       => true,
@@ -41,7 +41,7 @@ ob_start(); ?>
         <article class="ceiba-ic__slide"<?php echo $bg; ?>>
           <div class="ceiba-ic__slide__backdrop" aria-hidden="true"></div>
           <div class="ceiba-insight-card__body">
-            <p class="ceiba-insight-card__label"><?php echo esc_html__('Case Study','ceiba'); ?></p>
+            <p class="ceiba-insight-card__label"><?php echo esc_html__('Project','ceiba'); ?></p>
             <h3 class="ceiba-insight-card__title"><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($title); ?></a></h3>
           </div>
         </article>

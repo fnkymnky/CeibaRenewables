@@ -156,10 +156,6 @@ add_action('init', function () {
 			'post_title' => 'Primary Navigation',
 		],
 		[
-			'post_name'  => 'contact-navigation',
-			'post_title' => 'Contact Details',
-		],
-		[
 			'post_name'  => 'footer-navigation',
 			'post_title' => 'Footer Navigation',
 		],
@@ -272,3 +268,9 @@ add_action('init', function(){
         ]);
     }
 }, 20);
+
+// Hide comments menu from admin dashboard
+function remove_item_from_menu() {
+    remove_menu_page( 'edit-comments.php' );
+}
+add_action( 'admin_init', 'remove_item_from_menu' );

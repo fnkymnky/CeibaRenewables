@@ -14,8 +14,8 @@ export default function Edit({ attributes, setAttributes }) {
       const s = select(coreStore);
       const q = { per_page: 100, order: 'desc', orderby: 'date' };
       return {
-        posts: s.getEntityRecords('postType', 'case_study', q),
-        isResolving: s.isResolving('getEntityRecords', ['postType', 'case_study', q]),
+        posts: s.getEntityRecords('postType', 'project', q),
+        isResolving: s.isResolving('getEntityRecords', ['postType', 'project', q]),
       };
     },
     []
@@ -53,10 +53,10 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <Fragment>
       <InspectorControls>
-        <PanelBody title={__('Case Studies', 'ceiba')} initialOpen>
+        <PanelBody title={__('Projects', 'ceiba')} initialOpen>
           {isResolving && <Spinner />}
           {!isResolving && items.length === 0 && (
-            <Notice status="info" isDismissible={false}>{__('No case studies found.', 'ceiba')}</Notice>
+            <Notice status="info" isDismissible={false}>{__('No projects found.', 'ceiba')}</Notice>
           )}
           {!isResolving && items.map(item => (
             <CheckboxControl
@@ -88,7 +88,7 @@ export default function Edit({ attributes, setAttributes }) {
 
       <div {...blockProps}>
         <div className="ceiba-cs-carousel__placeholder">
-          <strong>{__('Case Studies (Carousel)', 'ceiba')}</strong>
+          <strong>{__('Projects - Carousel', 'ceiba')}</strong>
           <div className="hint">
             { includeIds.length ? __('Front-end will render selected items in this order.', 'ceiba') : __('Tick items in the sidebar (1–6).', 'ceiba') }
           </div>

@@ -13,8 +13,8 @@ export default function Edit({ attributes, setAttributes }) {
     const s = select(coreStore);
     const q = { per_page: 100, order: 'desc', orderby: 'date' };
     return {
-      posts: s.getEntityRecords('postType', 'case_study', q),
-      isResolving: s.isResolving('getEntityRecords', ['postType', 'case_study', q]),
+      posts: s.getEntityRecords('postType', 'project', q),
+      isResolving: s.isResolving('getEntityRecords', ['postType', 'project', q]),
     };
   }, []);
 
@@ -29,7 +29,7 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__('Case Study', 'ceiba')} initialOpen>
+        <PanelBody title={__('Project', 'ceiba')} initialOpen>
           {isResolving ? (
             <Spinner />
           ) : (
@@ -44,7 +44,7 @@ export default function Edit({ attributes, setAttributes }) {
 
       <div {...blockProps}>
         <div className="ceiba-case-study__placeholder">
-          <strong>{__('Case Study (Single)', 'ceiba')}</strong>
+          <strong>{__('Project (Single)', 'ceiba')}</strong>
           <div className="hint">
             {postId ? __('Selected. Front-end shows preview.', 'ceiba') : __('Pick one in the sidebar.', 'ceiba')}
           </div>

@@ -9,16 +9,16 @@ $pid = absint( $attrs['postId'] );
 if ( ! $pid ) {
     echo sprintf( '<div %s><p class="ceiba-cs-empty">%s</p></div>',
         $wrapper_attributes,
-        esc_html__( 'Select a Case Study post in block settings.', 'ceiba' )
+        esc_html__( 'Select a project post in block settings.', 'ceiba' )
     );
     return;
 }
 
 $post = get_post( $pid );
-if ( ! $post || $post->post_type !== 'case_study' ) {
+if ( ! $post || $post->post_type !== 'project' ) {
     echo sprintf( '<div %s><p class="ceiba-cs-empty">%s</p></div>',
         $wrapper_attributes,
-        esc_html__( 'Invalid Case Study selection.', 'ceiba' )
+        esc_html__( 'Invalid project selection.', 'ceiba' )
     );
     return;
 }
@@ -44,7 +44,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [
 
 <article class="ceiba-ic__inner">
     <div class="ceiba-casestudy__body">
-        <h5 class="ceiba-casestudy__label"><?php echo esc_html__('Case Study','ceiba'); ?></h5>
+        <h5 class="ceiba-casestudy__label"><?php echo esc_html__('Project','ceiba'); ?></h5>
         <?php if ( $title ) : ?>
             <h2 class="ceiba-casestudy__title"><?php echo esc_html( $title ); ?></h3>
         <?php endif; ?>
@@ -52,7 +52,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [
             <p class="ceiba-casestudy__excerpt"><?php echo esc_html( $excerpt ); ?></p>
         <?php endif; ?>
         <div class="wp-block-button is-style-ceiba-green">
-            <a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link wp-element-button">Read Case Study</a>
+            <a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link wp-element-button">View Project</a>
         </div>
     </div>
 </article>

@@ -1,10 +1,10 @@
 {
   "apiVersion": 3,
   "name": "ceiba/case-study",
-  "title": "Case Study (Single)",
+  "title": "Project - Single",
   "category": "ceiba-blocks",
   "icon": "media-document",
-  "description": "Render a single Case Study card.",
+  "description": "Render a single project card.",
   "textdomain": "ceiba",
   "supports": {
     "anchor": true,

@@ -1,10 +1,10 @@
 {
   "apiVersion": 3,
   "name": "ceiba/case-studies-carousel",
-  "title": "Case Studies (Carousel)",
+  "title": "Project - Carousel",
   "category": "ceiba-blocks",
   "icon": "slides",
-  "description": "Carousel of selected Case Studies using the same Swiper setup as Testimonials.",
+  "description": "Carousel of selected projects using the same Swiper setup as Testimonials.",
   "textdomain": "ceiba",
   "supports": {
     "html": false,
