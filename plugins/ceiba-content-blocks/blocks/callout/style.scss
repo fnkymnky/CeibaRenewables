@@ -1,3 +1,15 @@
+.callout-group {
+  margin: 32px 16px;
+  align-items: flex-start!important;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .callout-group {
+    margin: 64px 24px;
+  }
+}
+
 .wp-block-ceiba-callout {
   padding: 32px;
   border-radius: 32px;
@@ -5,26 +17,10 @@
 }
 
 .ceiba-callout {
-  &__inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  &__media {
-    margin-bottom: 24px;
-  }
-
-  &__media__frame {}
-
-  &__img {}
-
-  &__media__img {
-    /* Deprecated: previously used for background-image based preview */
-  }
-
-  &__content {}
+  container-name: callout;  
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
 
   /* GREEN SECTION */
   &.has-ceiba-green-background-color {
@@ -66,14 +62,28 @@
   }
 }
 
-@media (min-width: 720px) {
+@container callout (width < 720px) {
+  .ceiba-callout {
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    &__media {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@container callout (width > 720px) {
   .wp-block-ceiba-callout {
     padding: 32px 48px;
     border-radius: 64px;
     margin: 64px 24px;
-  } 
+  }   
   .ceiba-callout {
-
     &__inner {
       display: flex;
       align-items: center;
@@ -101,9 +111,10 @@
     &.is-image-right .ceiba-callout__content {
       order: 0;
       margin-right: 96px;
-    }    
+    }        
   }
 }
+
 
 @media (min-width: 1300px) {
   .wp-block-ceiba-callout {

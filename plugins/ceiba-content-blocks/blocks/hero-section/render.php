@@ -30,7 +30,7 @@ if ( isset( $attr['align'] ) ) {
 }
 
 $unique_id = uniqid('ceiba-hero-');
-$wrapper = get_block_wrapper_attributes( [ 'id' => $unique_id, 'class' => 'ceiba-hero' . $align_class ] );
+$wrapper = get_block_wrapper_attributes( [ 'id' => $unique_id, 'class' => 'ceiba-hero fade-up' . $align_class ] );
 
 $bg_url_full   = $bg_url;
 $bg_url_mobile = $bg_url;

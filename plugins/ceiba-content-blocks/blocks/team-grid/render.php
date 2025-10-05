@@ -13,7 +13,7 @@ if ( $has_bg ) {
   $extra_align = ' align' . $attributes['align'];
 }
 
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-team-grid' . $extra_align ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-team-grid fade-up' . $extra_align ] );
 
 ob_start(); ?>
 <section class="ceiba-team-grid__inner">

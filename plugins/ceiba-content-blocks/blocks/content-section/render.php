@@ -21,7 +21,7 @@ $attr = wp_parse_args( $attributes, [
 $align_class = ( isset($attr['imageSide']) && $attr['imageSide'] === 'right' ) ? 'has-media-right' : 'has-media-left';
 // If editors selected our new "Full width" option but align wasn't explicitly set, mirror core by adding alignfull
 $maybe_alignfull = ( empty( $attributes['align'] ) && isset( $attr['width'] ) && $attr['width'] === 'full' ) ? ' alignfull' : '';
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-csct ' . $align_class . $maybe_alignfull ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-csct fade-up ' . $align_class . $maybe_alignfull ] );
 
 $fit = in_array( $attr['imageFit'], [ 'cover', 'fill', 'stretch' ], true ) ? $attr['imageFit'] : 'cover';
 $object_fit = $fit === 'cover' ? 'cover' : ( $fit === 'stretch' ? 'fill' : 'contain' );

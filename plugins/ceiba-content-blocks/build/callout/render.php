@@ -11,7 +11,7 @@ $image_id   = absint( $attrs['imageId'] );
 $image_size = is_string( $attrs['imageSize'] ) && $attrs['imageSize'] ? $attrs['imageSize'] : 'large';
 $image_left = ! empty( $attrs['imageLeft'] );
 
-$wrapper_classes = [ 'ceiba-callout', $image_left ? 'is-image-left' : 'is-image-right' ];
+$wrapper_classes = [ 'ceiba-callout fade-up', $image_left ? 'is-image-left' : 'is-image-right' ];
 $wrapper = get_block_wrapper_attributes( [ 'class' => implode(' ', $wrapper_classes) ] );
 
 $image_html = '';

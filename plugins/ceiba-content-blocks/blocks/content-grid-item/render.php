@@ -9,7 +9,7 @@ return function( $attributes = [] ) {
   $tag      = in_array( $attributes['tag'] ?? 'h3', [ 'h2','h3','h4' ], true ) ? $attributes['tag'] : 'h3';
 
   ob_start(); ?>
-  <div class="content-grid-item">
+  <div class="content-grid-item fade-up">
     <?php if ( $mediaURL ) : ?>
       <div class="content-grid-item__image">
         <img src="<?php echo esc_url( $mediaURL ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async" />

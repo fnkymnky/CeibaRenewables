@@ -14,7 +14,7 @@
       color: var(--wp--preset--color--bg);
     }
     p, li {
-      color: var(--wp--preset--color--ceiba-navy);
+      color: var(--wp--preset--color--white);
     }
   }  
 
@@ -57,7 +57,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       display: block;
-      bottom:48px; right:-96px;
+      bottom:48px; right:-146px;
       position: absolute;
     }
     
@@ -90,7 +90,7 @@
         content: '';
         width: 210px;
         height: 210px;
-        background: url(./assets/single-white-ring.svg);
+        background: url(./assets/single-blue-ring.svg);
         background-size: contain;
         background-repeat: no-repeat;
         display: block;
@@ -138,7 +138,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       display: block;
-      bottom:48px; left:-96px;
+      bottom:48px; left:-146px;
       position: absolute;   
     }
 
@@ -171,7 +171,7 @@
         content: '';
         width: 210px;
         height: 210px;
-        background: url(./assets/single-white-ring.svg);
+        background: url(./assets/single-blue-ring.svg);
         background-size: contain;
         background-repeat: no-repeat;
         display: block;

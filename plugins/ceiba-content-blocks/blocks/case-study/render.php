@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $attrs = wp_parse_args( $attributes, [ 'postId' => 0 ] );
 
-$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'wp-block-ceiba-case-study alignfull' ] );
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'fade-up wp-block-ceiba-case-study alignfull' ] );
 
 $pid = absint( $attrs['postId'] );
 if ( ! $pid ) {

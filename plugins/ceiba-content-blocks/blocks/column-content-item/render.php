@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ccb-col' ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'fade-up ccb-col' ] );
 
 ob_start(); ?>
 <div class="ccb-col__inner">

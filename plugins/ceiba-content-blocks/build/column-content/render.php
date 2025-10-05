@@ -19,7 +19,7 @@ if ( $force_full ) {
   $extra_align = ' align' . $attributes['align'];
 }
 
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-ccb cols-' . $columns . $extra_align ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'fade-up ceiba-ccb cols-' . $columns . $extra_align ] );
 
 $inner_style = 'max-width:var(--wp--style--global--content-size);width:100%;margin-left:auto;margin-right:auto;';
 

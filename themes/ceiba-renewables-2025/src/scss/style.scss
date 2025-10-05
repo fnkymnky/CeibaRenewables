@@ -78,7 +78,8 @@ ol li::marker {
   }
 
   .slm-contact__item--phone,
-  .slm-contact__item--email {
+  .slm-contact__item--email,
+  .slm-contact__item--address {
     margin: 0 16px 0 16px;
     display: inline-block;
     justify-content: center;
@@ -90,7 +91,8 @@ ol li::marker {
   }
 
   .slm-contact__item--phone:before,
-  .slm-contact__item--email:before {
+  .slm-contact__item--email:before,
+  .slm-contact__item--address:before {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900; // solid icons
     left: -16px;
@@ -104,6 +106,20 @@ ol li::marker {
 
   .slm-contact__item--email:before {
     content: "\f0e0";
+  }
+
+  .slm-contact__item--address {
+    line-height: 1.4;
+    height: auto;
+  }
+
+  .slm-contact__item--address:before {
+    content: "\f3c5";
+  }
+
+  // Hide address in contact bar.
+  .slm-contact__item--address {
+    display: none;
   }
 }
 
@@ -216,7 +232,7 @@ ol li::marker {
       flex-direction: column;
       gap: 16px;
       
-      a {
+      .slm-contact__item {
         color: var(--wp--preset--color--bg);
       }
     }
@@ -366,9 +382,10 @@ ol li::marker {
           margin-bottom: 4px;
         }
 
-        &__excerpt p {
+        .wp-block-post-excerpt__excerpt {
           font-size: 0.875rem;
           margin-bottom: 4px;
+          line-height: 1.5;
         }
 
         &__readmore {
@@ -573,6 +590,13 @@ form {
   }
 }
 
+// UTILITIES
+
+// Special override class to remove margin from top of column-section when it's direcly under the hero section
+.remove-hero-margin {
+  margin-top: -56px;
+}
+
 
 @media ( min-width: 1024px ) {
   .wp-block-navigation__responsive-container-open:not(.always-shown) {
@@ -580,6 +604,11 @@ form {
   }
   .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
     display: block !important;
+  }
+
+  // Special override class to remove margin from top of column-section when it's direcly under the hero section
+  .remove-hero-margin {
+    margin-top: -88px;
   }
 }
 

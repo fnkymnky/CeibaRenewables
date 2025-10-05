@@ -37,6 +37,12 @@ function social_links_manager_sanitize_links( $input ) {
 
 function social_links_manager_sanitize_contact( $input ) {
     $output = array();
+    if ( isset( $input['address'] ) ) {
+        $address = sanitize_textarea_field( (string) $input['address'] );
+        if ( $address !== '' ) {
+            $output['address'] = $address;
+        }
+    }
     if ( isset( $input['phone'] ) ) {
         $phone = wp_strip_all_tags( (string) $input['phone'] );
         // Allow digits, spaces, plus, parentheses, and hyphens only.
@@ -70,10 +76,14 @@ function social_links_manager_admin_page() {
                 'tiktok'    => '',
                 'youtube'   => '',
             ) );
-            $contact = get_option( 'social_links_manager_contact', array( 'phone' => '', 'email' => '' ) );
+            $contact = get_option( 'social_links_manager_contact', array( 'address' => '', 'phone' => '', 'email' => '' ) );
             ?>
             <h2 style="margin-top:1.5em;"><?php esc_html_e( 'Contact Details', 'social-links-manager' ); ?></h2>
             <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Address', 'social-links-manager' ); ?></th>
+                    <td><textarea name="social_links_manager_contact[address]" class="large-text" rows="4" placeholder="123 High Street&#10;Anytown&#10;AB12 3CD"><?php echo esc_textarea( $contact['address'] ?? '' ); ?></textarea></td>
+                </tr>
                 <tr>
                     <th scope="row"><?php esc_html_e( 'Phone number', 'social-links-manager' ); ?></th>
                     <td><input type="text" name="social_links_manager_contact[phone]" value="<?php echo esc_attr( $contact['phone'] ?? '' ); ?>" class="regular-text" placeholder="+44 20 1234 5678"></td>
@@ -264,17 +274,24 @@ add_action( 'init', function () {
 
 add_shortcode( 'social_links', 'social_links_manager_shortcode' );
 
-// Shortcode to display contact info (phone/email)
+// Shortcode to display contact info (phone/email/address)
 function slm_contact_info_shortcode() {
-    $contact = get_option( 'social_links_manager_contact', array( 'phone' => '', 'email' => '' ) );
+    $contact = get_option( 'social_links_manager_contact', array( 'address' => '', 'phone' => '', 'email' => '' ) );
+    $address = isset( $contact['address'] ) ? trim( (string) $contact['address'] ) : '';
     $phone = isset( $contact['phone'] ) ? trim( (string) $contact['phone'] ) : '';
     $email = isset( $contact['email'] ) ? trim( (string) $contact['email'] ) : '';
 
-    if ( $phone === '' && $email === '' ) {
+    if (  $address === '' && $phone === '' && $email === '' ) {
         return '';
     }
 
     $out = '<div class="slm-contact">';
+    if ( $address !== '' ) {
+        $out .= sprintf(
+            '<div class="slm-contact__item slm-contact__item--address">%s</div>',
+            nl2br( esc_html( $address ) )
+        );
+    }
     if ( $phone !== '' ) {
         // Build tel link by stripping spaces and parentheses
         $tel = preg_replace( '/[\s\(\)]/', '', $phone );
@@ -298,3 +315,4 @@ add_shortcode( 'slm_contact_info', 'slm_contact_info_shortcode' );
 
 
 ?>
+

@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $pid = isset($attributes['postId']) ? absint($attributes['postId']) : 0;
-$wrapper = get_block_wrapper_attributes([ 'class' => 'cb-t-single' ]);
+$wrapper = get_block_wrapper_attributes([ 'class' => 'cb-t-single fade-up' ]);
 
 if ( ! $pid ) {
     echo '<div ' . $wrapper . '><p class="cb-empty">Select a testimonial.</p></div>';

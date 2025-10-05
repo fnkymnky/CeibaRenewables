@@ -23,7 +23,7 @@ $q = new WP_Query($args);
 if (!$q->have_posts()) return '';
 
 $count = (int) $q->post_count;
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-ic' ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-ic fade-up' ] );
 
 ob_start(); ?>
   <div class="ceiba-ic__inner">

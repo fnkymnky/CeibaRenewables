@@ -52,6 +52,6 @@ if ( isset( $block ) && is_object( $block ) && ! empty( $block->parsed_block['in
 }
 
 if ( trim( $html ) !== '' ) {
-  $wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-team-grid__item' ] );
+  $wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-team-grid__item fade-up' ] );
   echo sprintf( '<article %s>%s</article>', $wrapper, $html );
 }

@@ -274,3 +274,25 @@ function remove_item_from_menu() {
     remove_menu_page( 'edit-comments.php' );
 }
 add_action( 'admin_init', 'remove_item_from_menu' );
+
+// ANIMATIONS
+function mytheme_enqueue_scroll_animations() {
+    if ( ! is_admin() ) {
+        // Frontend only
+        wp_enqueue_style(
+            'fade-animations',
+            get_template_directory_uri() . '/assets/animations.css',
+            array(),
+            null
+        );
+
+        wp_enqueue_script(
+            'scroll-animations',
+            get_template_directory_uri() . '/js/animations.js',
+            array(),
+            null,
+            true
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_scroll_animations' );

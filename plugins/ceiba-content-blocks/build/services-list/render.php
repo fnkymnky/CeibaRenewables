@@ -21,7 +21,7 @@ if ( empty( $children ) ) {
     return '';
 }
 
-$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-page-list' ] );
+$wrapper = get_block_wrapper_attributes( [ 'class' => 'ceiba-page-list fade-up' ] );
 
 echo '<section ' . $wrapper . '>';
 echo '  <div class="ceiba-pl">';

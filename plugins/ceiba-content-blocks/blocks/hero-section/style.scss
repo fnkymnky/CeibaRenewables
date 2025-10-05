@@ -54,11 +54,19 @@
   text-align: inherit;
 }
 
+.ceiba-hero__top-content {
+  margin-top: 16px;
+}
+
 .ceiba-hero__bottom__inner {
   max-width: 720px;
   margin: 0 auto;
   padding: 16px 16px 32px;
-  text-align: inherit;
+  text-align: left;
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
 }
 
 .ceiba-hero__title {
