@@ -1,52 +1,101 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { createElement as el, Fragment } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
-import { useSelect } from '@wordpress/data';
-import { store as blockEditorStore } from '@wordpress/block-editor';
+import {
+  useBlockProps,
+  InspectorControls,
+  InnerBlocks,
+  RichText,
+} from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import './style.scss';
 import './editor.scss';
 import save from './save';
 
-// Explicit list of allowed child blocks for the editor experience
-const ALLOWED_BLOCKS = [ 'core/heading', 'core/paragraph', 'core/buttons', 'core/list', 'core/list-item', 'core/separator', 'core/image', 'core/group' ];
+// Keep this list sane for authors; expand if needed
+const ALLOWED_BLOCKS = [
+  'core/heading',
+  'core/paragraph',
+  'core/list',
+  'core/list-item',
+  'core/separator',
+  'core/buttons',
+  'core/button',
+  'core/image',
+  'core/group',
+];
+
+/**
+ * Two logical “slots” implemented as Groups inside a single InnerBlocks tree.
+ * PHP will render each slot where it belongs.
+ * The metadata.name shows up in List View for nicer authoring.
+ */
+const TEMPLATE = [
+  [
+    'core/group',
+    {
+      className: 'ceiba-hero__top-extra',
+      metadata: { name: 'Hero: Top content (under H1)' },
+    },
+  ],
+  [
+    'core/group',
+    {
+      className: 'ceiba-hero__bottom-content',
+      metadata: { name: 'Hero: Bottom content' },
+    },
+  ],
+];
 
 function Edit( props ) {
-  const { attributes, setAttributes, clientId } = props;
-  const { title } = attributes;
-  const blockProps = useBlockProps({ className: 'ceiba-hero' });
+  const { attributes, setAttributes } = props;
+  const { title = '' } = attributes;
 
-  const hasInnerBlocks = useSelect(
-    (select) => select(blockEditorStore).getBlocks(clientId).length > 0,
-    [clientId]
-  );
+  const blockProps = useBlockProps({
+    className: 'ceiba-hero ceiba-hero--editor',
+  });
 
-  const featuredId = useSelect( (select) => select('core/editor')?.getEditedPostAttribute('featured_media'), [] );
-  const featured = useSelect( (select) => featuredId ? select('core').getMedia(featuredId) : null, [featuredId] );
-
-  const editorBgUrl = featured?.source_url || '';
-
-  return el(Fragment, null,
-    el(InspectorControls, null,
-      el(PanelBody, { title: __('Background', 'ceiba'), initialOpen: true },
-        el('p', null, __('This hero uses the page Featured Image. To change it, set the Featured Image in the page settings. If none is set, the background will be empty in the editor.', 'ceiba'))
-      )
-    ),
-    el('section', blockProps,
-      el('div', { className: 'ceiba-hero__top', style: editorBgUrl ? { backgroundImage: `url(${editorBgUrl})` } : undefined },
-        el('div', { className: 'ceiba-hero__backdrop', 'aria-hidden': true }),
-        el('div', { className: 'ceiba-hero__top__inner' },
-          el(RichText, { tagName: 'h1', className: 'ceiba-hero__title', placeholder: __('Add hero title', 'ceiba'), value: title, allowedFormats: [], onChange: (val) => setAttributes({ title: val }) })
+  return el(
+    Fragment,
+    null,
+    el(
+      'section',
+      blockProps,
+      // Top area - editor preview of the H1 (front-end actual markup is in PHP)
+      el(
+        'div',
+        { className: 'ceiba-hero__top' },
+        el(
+          'div',
+          { className: 'ceiba-hero__top__inner' },
+          el(RichText, {
+            tagName: 'h1',
+            className: 'ceiba-hero__title',
+            value: title,
+            placeholder: __('Add title…', 'ceiba'),
+            onChange: (val) => setAttributes({ title: val }),
+            allowedFormats: [],
+          }),
+          // We show a small hint where the top content will be placed on the front-end
+          el('div', { className: 'ceiba-hero__top__hint' }, __('Top content renders here on the front-end', 'ceiba'))
         )
       ),
-      el('div', { className: 'ceiba-hero__bottom' },
-        el('div', { className: 'ceiba-hero__bottom__inner' },
+
+      el('div', { className: 'ceiba-hero__top__green-border' }),
+
+      // Bottom area in the editor hosts the InnerBlocks; template contains both slots.
+      el(
+        'div',
+        { className: 'ceiba-hero__bottom' },
+        el(
+          'div',
+          { className: 'ceiba-hero__bottom__inner' },
           el('div', { className: 'ceiba-hero__content' },
             el(InnerBlocks, {
-              allowedBlocks: ALLOWED_BLOCKS,
+              template: TEMPLATE,
               templateLock: false,
-              renderAppender: hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
+              allowedBlocks: ALLOWED_BLOCKS,
+              renderAppender: InnerBlocks.ButtonBlockAppender,
             })
           )
         )
@@ -55,5 +104,7 @@ function Edit( props ) {
   );
 }
 
-
-registerBlockType('ceiba/hero-section', { edit: Edit, save });
+registerBlockType('ceiba/hero-section', {
+  edit: Edit,
+  save,
+});
