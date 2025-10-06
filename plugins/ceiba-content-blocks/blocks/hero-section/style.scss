@@ -52,6 +52,12 @@
   max-width: var(--wp--style--global--content-size, 1080px);
   margin: 0 auto;
   text-align: inherit;
+
+  .wp-block-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .ceiba-hero__top-content {

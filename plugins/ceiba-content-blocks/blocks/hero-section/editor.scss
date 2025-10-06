@@ -24,3 +24,43 @@
 .ceiba-hero__bottom { 
   z-index: unset;
 }
+
+/* Scope to the editor so nothing leaks to the front-end */
+.editor-styles-wrapper {
+  /* Optional: only show badges when the hero block is present */
+  .block-editor-block-list__block[data-type="ceiba/hero-section"] {
+    /* Make sure our two “slots” can host a positioned badge */
+    .ceiba-hero__top-extra,
+    .ceiba-hero__bottom-content {
+      position: relative;
+      /* Optional: faint editor outline to hint drop zone */
+      outline: 1px dashed rgba(56, 88, 233, 0.25);
+      padding-top: 0.75rem; /* room for the badge */
+    }
+
+    .ceiba-hero__top-extra::before,
+    .ceiba-hero__bottom-content::before {
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      display: inline-block;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 1);
+      border: 1px solid rgb(193, 193, 193);
+      color: #1e1e1e;
+      content: ''; /* each slot sets its own content below */
+      pointer-events: none; /* never steal clicks in the editor */
+    }
+
+    .ceiba-hero__top-extra::before {
+      content: 'Content for under page title';
+    }
+    .ceiba-hero__bottom-content::before {
+      content: 'Content for under hero image';
+    }
+  }
+}
