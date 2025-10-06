@@ -1,16 +1,16 @@
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
-    margin: 32px 0;
+    margin: 16px 0;
 
     &.swiper {
         // overflow: visible;
     }
 }
 
-@media (min-width: 1025px) {
-    .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
-        margin: 64px 0;
-    }   
-}
+// @media (min-width: 1025px) {
+//     .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
+//         margin: 64px 0;
+//     }   
+// }
 
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__slide.swiper-slide { 
     background: var(--wp--preset--color--ceiba-navy);
