@@ -20,9 +20,13 @@
       "text": false,
       "gradients": false,
       "link": false
-    }
+    },
+    "className": true
   },
   "attributes": {
+    "anchor": {
+      "type": "string"
+    },
     "width": {
       "type": "string",
       "default": "constrained"

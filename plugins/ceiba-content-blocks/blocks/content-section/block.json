@@ -9,9 +9,11 @@
     "anchor": true,
     "align": ["wide", "full"],
     "spacing": { "padding": true, "margin": true },
-    "color": { "background": true, "text": false, "gradients": false, "link": false }
+    "color": { "background": true, "text": false, "gradients": false, "link": false },
+    "className": true
   },
   "attributes": {
+    "anchor": { "type": "string" },
     "width": { "type": "string", "default": "constrained" },
     "title": { "type": "string", "default": "" },
     "content": { "type": "string", "default": "" },

@@ -276,7 +276,7 @@ function remove_item_from_menu() {
 add_action( 'admin_init', 'remove_item_from_menu' );
 
 // ANIMATIONS
-function mytheme_enqueue_scroll_animations() {
+function enqueue_scroll_animations() {
     if ( ! is_admin() ) {
         // Frontend only
         wp_enqueue_style(
@@ -293,6 +293,14 @@ function mytheme_enqueue_scroll_animations() {
             null,
             true
         );
+
+        wp_enqueue_script(
+            'scroll-to-menu',
+            get_template_directory_uri() . '/js/scroll-to-menu.js',
+            array(),
+            null,
+            true
+        );		
     }
 }
-add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_scroll_animations' );
+add_action( 'wp_enqueue_scripts', 'enqueue_scroll_animations' );
