@@ -502,7 +502,7 @@ ol li::marker {
 }
 
 /* Rounded Image Custom Style - Tied to core/image block */
-.wp-block-image.is-style-partial-rounded {
+.wp-block-image.is-style-partial-rounded img {
   border-radius: 32px;
   overflow: hidden;
 }
@@ -601,8 +601,21 @@ form {
   display: none;
 }
 
+// DETAILS BLOCK
+.wp-block-details {
+  border-top: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
+  border-bottom: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
+  color: var(--wp--preset--color--ceiba-green, #45ad58);
+  padding: 8px;
+  margin: 32px 0;
+}
+
 
 // UTILITIES
+
+.gap-24 {
+  gap: 24px;
+}
 
 // Special override class to remove margin from top of column-section when it's direcly under the hero section
 .remove-hero-margin {
@@ -916,7 +929,7 @@ form {
   }
 
   /* Rounded Image Custom Style - Tied to core/image block */
-  .wp-block-image.is-style-partial-rounded {
+  .wp-block-image.is-style-partial-rounded img {
     border-radius: 48px;
   }
 
@@ -945,18 +958,20 @@ form {
 
   // Services Anchor Nav
   .scroll-to-nav {
-    display: block;
+    display: flex;
     position: sticky;
     top: 0;
+    justify-content: center;
     background: white;
-    padding: 24px 0;
+    padding: 32px 0;
     z-index: 20;
+
 
     &:before {
       content: "";
       width:100%;
       position: absolute;
-      top: 34px;
+      top: 41px;
       border-bottom: 1px solid var(--wp--preset--color--ceiba-green, #45ad58);
     }
 
@@ -964,7 +979,9 @@ form {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      padding: 0 16px;
+      padding: 0 24px;
+      max-width: 1280px;
+      width: 100%;
 
       a {
         text-decoration: none;

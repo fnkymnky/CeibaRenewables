@@ -11,7 +11,11 @@
 
   }
 
-  .ccb__inner { width: 100%; }
+  .ccb__inner { 
+    width: 100%; 
+    position: relative;
+    z-index: 2;
+  }
 
   .ccb__columns {
     display: grid;
@@ -32,10 +36,10 @@
 
 @media (min-width: 720px) {
   .wp-block-ceiba-column-content {
+    padding: 64px 32px;
+    position: relative;
 
     &.has-ceiba-green-background-color {
-      padding: 64px 24px;
-      position: relative;
       &:before {
         content: '';
         background: url(./assets/white-blue-rings.svg) no-repeat;
@@ -45,12 +49,11 @@
         right: -64px;
         height: 200px;
         width: 200px;
+        z-index: 1;
       }
     }
 
     &.has-ceiba-navy-background-color {
-      padding: 64px 24px;
-      position: relative;
       &:before {
         content: '';
         background: url(./assets/single-green-ring.svg) no-repeat;
@@ -60,6 +63,7 @@
         right: -64px;
         height: 200px;
         width: 200px;
+        z-index: 1;
       }
     }    
 

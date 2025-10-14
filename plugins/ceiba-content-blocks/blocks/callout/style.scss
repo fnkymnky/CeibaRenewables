@@ -1,26 +1,31 @@
 .callout-group {
-  margin: 32px 16px;
+  margin: 16px;
   align-items: flex-start!important;
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+
+  section { width: 100%;}
 }
 
 @media (min-width: 1024px) {
   .callout-group {
     margin: 64px 24px;
+    flex-direction: row;
+    gap: 32px;
   }
 }
 
 .wp-block-ceiba-callout {
   padding: 32px;
   border-radius: 32px;
-  margin: 32px 0;
+  margin: 32px 16px;
 }
 
 .ceiba-callout {
   container-name: callout;  
   container-type: inline-size;
   box-sizing: border-box;
-  width: 100%;
+  max-width: 100%;
 
   /* GREEN SECTION */
   &.has-ceiba-green-background-color {
@@ -81,7 +86,7 @@
   .wp-block-ceiba-callout {
     padding: 32px 48px;
     border-radius: 64px;
-    margin: 64px 0;
+    margin: 64px 32px;
   }   
   .ceiba-callout {
     &__inner {

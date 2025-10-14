@@ -74,8 +74,7 @@ if ( $body_html === '' ) {
 }
 ?>
 
-
-<section <?php echo $wrapper; ?>>
+<section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
   <div class="ceiba-csct__inner">
     <div class="ceiba-csct__grid <?php echo $img_first ? 'is-media-left' : 'is-media-right'; ?>">
       <?php if ( $img_first ) : ?>
