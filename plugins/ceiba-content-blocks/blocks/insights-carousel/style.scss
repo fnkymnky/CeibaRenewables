@@ -1,14 +1,26 @@
 /* Carousel styles scoped to insights carousel */
-.wp-block-ceiba-insights-carousel .ceiba-ic__inner {
-  margin: 32px 0;
+.wp-block-ceiba-insights-carousel {
+  padding-left: 16px; 
+  padding-right: 16px;
+  
+  .ceiba-ic__inner {
+    margin: 32px 0;
 
-  &.swiper {
-    // overflow: visible;
-  }
+    &.swiper {
+      // overflow: visible;
+    }    
+   }
+
+
 }
 
 @media (min-width: 1025px) {
-  .wp-block-ceiba-insights-carousel .ceiba-ic__inner { margin: 64px 0; }
+  .wp-block-ceiba-insights-carousel {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    .ceiba-ic__inner { margin: 64px 0; }
+  }
 }
 
 /* Card styling (maintain featured image, heading and title format) */

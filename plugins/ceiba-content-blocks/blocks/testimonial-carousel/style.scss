@@ -1,3 +1,8 @@
+.wp-block-ceiba-testimonial-carousel {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
     margin: 16px 0;
 
@@ -6,11 +11,12 @@
     }
 }
 
-// @media (min-width: 1025px) {
-//     .wp-block-ceiba-testimonial-carousel .ceiba-tc__inner {
-//         margin: 64px 0;
-//     }   
-// }
+@media (min-width: 1025px) {
+    .wp-block-ceiba-testimonial-carousel {
+        padding-left: 24px;
+        padding-right: 24px;
+    }   
+}
 
 .wp-block-ceiba-testimonial-carousel .ceiba-tc__slide.swiper-slide { 
     background: var(--wp--preset--color--ceiba-navy);

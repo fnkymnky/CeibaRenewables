@@ -36,10 +36,10 @@ import 'swiper/css';
       initialSlide: 0,
       navigation: prevEl && nextEl ? { prevEl, nextEl } : undefined,
       breakpoints: {
-        0:    { slidesPerView: spvSm, slidesOffsetBefore: 16, slidesOffsetAfter: 16, spaceBetween: 12 },
-        768:  { slidesPerView: slideCount >= 3 ? 2.15 : spvMd, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
-        1025: { slidesPerView: spvLg, slidesOffsetBefore: 24,  slidesOffsetAfter: 24, spaceBetween: 16 },
-        1300: { slidesPerView: spvLg, slidesOffsetBefore: 0,  slidesOffsetAfter: 0, spaceBetween: 16 }
+        0:    { slidesPerView: spvSm, spaceBetween: 12 },
+        768:  { slidesPerView: slideCount >= 3 ? 2.15 : spvMd, spaceBetween: 16 },
+        1025: { slidesPerView: spvLg, spaceBetween: 16 },
+        1300: { slidesPerView: spvLg, spaceBetween: 16 }
       },
       watchOverflow: true,
       observer: true,
