@@ -111,7 +111,7 @@
       "core/image":  { "border": { "radius": "8px" } },
       "core/group":  { "background": true }
     },
-    "layout": { "contentSize": "1280px" },
+    "layout": { "contentSize": "1160px" },
     "appearanceTools": true
   },
   "styles": {
